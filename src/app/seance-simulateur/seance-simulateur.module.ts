@@ -8,10 +8,12 @@ import { ArchiveSeancesSimulateurComponent } from './archive-seances-simulateur/
 import { MesSeancesSimulateurComponent } from './mes-seances-simulateur/mes-seances-simulateur.component';
 import { ListeSeancesSimulateurComponent } from './liste-seances-simulateur/liste-seances-simulateur.component';
 import { AjouterSeanceSimulateurComponent } from './ajouter-seance-simulateur/ajouter-seance-simulateur.component';
+import { NoterSeanceSimulateurComponent } from './noter-seance-simulateur/noter-seance-simulateur.component';
+import { ValiderSeanceSimulateurComponent } from './valider-seance-simulateur/valider-seance-simulateur.component';
 
 
 @NgModule({
-  declarations: [AfficherSeanceSimulateurComponent, ModifierSeanceSimulateurComponent, ArchiveSeancesSimulateurComponent, MesSeancesSimulateurComponent, ListeSeancesSimulateurComponent, AjouterSeanceSimulateurComponent],
+  declarations: [AfficherSeanceSimulateurComponent, ModifierSeanceSimulateurComponent, ArchiveSeancesSimulateurComponent, MesSeancesSimulateurComponent, ListeSeancesSimulateurComponent, AjouterSeanceSimulateurComponent, NoterSeanceSimulateurComponent, ValiderSeanceSimulateurComponent],
   imports: [
     CommonModule,
     SeanceSimulateurRoutingModule
