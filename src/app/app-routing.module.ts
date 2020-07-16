@@ -4,23 +4,23 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'authentification',
+    path: 'authentication',
     loadChildren: () => import('./authentification/authentification.module').then(m => m.AuthentificationModule)
   },
   {
-    path: 'formation',
+    path: 'training',
     loadChildren: () => import('./formation/formation.module').then(m => m.FormationModule)
   },
   {
-    path: 'reclamation',
+    path: 'claim',
     loadChildren: () => import('./reclamation/reclamation.module').then(m => m.ReclamationModule)
   },
   {
-    path: 'seanceFormation',
+    path: 'trainingSession',
     loadChildren: () => import('./seance-formation/seance-formation.module').then(m => m.SeanceFormationModule)
   },
   {
-    path: 'seanceSimulateur',
+    path: 'simulatorSession',
     loadChildren: () => import('./seance-simulateur/seance-simulateur.module').then(m => m.SeanceSimulateurModule)
   },
   {
@@ -28,12 +28,12 @@ const routes: Routes = [
     loadChildren: () => import('./syllabus/syllabus.module').then(m => m.SyllabusModule)
   },
   {
-    path: 'utilisateur',
+    path: 'user',
     loadChildren: () => import('./utilisateur/utilisateur.module').then(m => m.UtilisateurModule)
   },
   {
     path: '',
-    redirectTo: 'authentification',
+    redirectTo: 'authentication',
     pathMatch: 'full'
   }
 ];
