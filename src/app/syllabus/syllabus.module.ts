@@ -6,13 +6,15 @@ import { CreerSyllabusComponent } from './creer-syllabus/creer-syllabus.componen
 import { ListeSyllabusComponent } from './liste-syllabus/liste-syllabus.component';
 import { ModifierSyllabusComponent } from './modifier-syllabus/modifier-syllabus.component';
 import { AfficherSyllabusComponent } from './afficher-syllabus/afficher-syllabus.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [CreerSyllabusComponent, ListeSyllabusComponent, ModifierSyllabusComponent, AfficherSyllabusComponent],
-  imports: [
-    CommonModule,
-    SyllabusRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        SyllabusRoutingModule,
+        FormsModule
+    ]
 })
 export class SyllabusModule { }

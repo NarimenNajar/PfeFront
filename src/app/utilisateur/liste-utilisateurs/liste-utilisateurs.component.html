@@ -1,1 +1,28 @@
 <p>liste-utilisateurs works!</p>
+<section class="content">
+  <div class="body">
+    <div class="row" >
+      <div class="col-md-4" *ngFor="let user of ListUsers">
+        <div class="card border-apply">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header l-bg-orange">
+                <div class="user-name">{{user.nom}} {{user.prenom}}</div>
+                <div class="name-center">{{user.codePN}}</div>
+              </div>
+
+              <p>
+                {{user.email}}
+              </p>
+              <div>
+                      <span class="phone">
+                          <i class="material-icons">phone</i>{{user.numeroTel}}</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
