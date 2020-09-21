@@ -114,6 +114,7 @@
       color: #fff;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #0666a3;
     }
@@ -122,31 +123,42 @@
 <body>
 
   <form action="/">
-    <h1>Create new Syllabus</h1>
+    <h1>Create New Syllabus</h1>
+    <div class="item">
+      <p>Code Syllabus</p>
+      <div>
+        <input id="codeSyllabus" name="codeSyllabus" [(ngModel)]="syllabus.codeSyllabus">
+      </div>
+    </div>
     <div class="item">
       <p>Level</p>
       <div>
-        <input id="level" name="level" placeholder="level" [(ngModel)]="syllabus.level">
+        <input id="level" name="level"  [(ngModel)]="syllabus.level">
       </div>
     </div>
     <div class="item">
       <p>Module</p>
-      <input id="module" name="module" placeholder="module" [(ngModel)]="syllabus.module">
+      <input id="module" name="module"  [(ngModel)]="syllabus.module">
     </div>
     <div class="item">
       <p>Overview</p>
-      <input id="overview" name="overview" placeholder="overview" [(ngModel)]="syllabus.overview">
+      <input id="overview" name="overview" [(ngModel)]="syllabus.overview">
     </div>
+  <br>
+
+
     <p>Exercices</p>
 
+<div style="border: 1px solid #ccc">
+<br>
     <ul *ngFor="let e of syllabus.exercices; let index = index">
       <li>
         <div class="item">
 
-        <input id="exercice" name="exercice" placeholder="exercice" [(ngModel)]="e.exercice">
+        <input id="exercice" name="exercice" placeholder="Exercice" [(ngModel)]="e.exercice">
         </div>
         <div class="btn-block2">
-        <button type="button" name="supp" (click)="eliminerExercise(index)">Delete Exercice</button>
+        <button type="button" name="suppEx" (click)="eliminerExercise(index)">Delete Exercice</button>
         </div>
       </li>
 
@@ -158,6 +170,126 @@
     <div class="btn-block2">
       <button type="button" name="addEx" (click)="ajouterExercice()">Add Exercice</button>
     </div>
+  <br>
+</div>
+<br>
+    <p>Descriptions</p>
+    <div style="border: 1px solid #ccc">
+      <br>
+    <ul *ngFor="let description of syllabus.descriptions; let index = index2">
+      <li>
+        <div class="item">
+
+          <input id="description" name="description" placeholder="Description" [(ngModel)]="description.description">
+        </div>
+
+
+        <p>Details</p>
+        <div style="border: 1px solid #ccc">
+          <br>
+          <ul *ngFor="let det of description.details; let index = index5">
+            <li>
+              <div class="item">
+
+                <input id="detail" name="detail" placeholder="detail" [(ngModel)]="det.detail">
+              </div>
+              <div class="btn-block2">
+                <button type="button" name="suppDesc" (click)="eliminerDetailDescription(description,index)">Delete Detail</button>
+              </div>
+            </li>
+
+          </ul>
+
+          <div class="btn-block2">
+            <button type="button" name="addDesc" (click)="ajouterDetailDescription(description)">Add detail</button>
+          </div>
+        </div>
+
+
+        <div class="btn-block2">
+          <button type="button" name="suppDesc" (click)="eliminerDescription(index)">Delete Description</button>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="btn-block2">
+      <button type="button" name="addDesc" (click)="ajouterDescription()">Add Description</button>
+    </div>
+    </div>
+
+
+    <br>
+    <p>Competences</p>
+    <div style="border: 1px solid #ccc">
+      <br>
+    <ul *ngFor="let e of syllabus.competences; let index = index3">
+      <li>
+        <div class="item">
+
+          <input id="competence" name="competence" placeholder="Competence" [(ngModel)]="e.competence">
+        </div>
+        <div class="btn-block2">
+          <button type="button" name="suppComp" (click)="eliminerCompetence(index)">Delete Competence</button>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="btn-block2">
+      <button type="button" name="addComp" (click)="ajouterCompetence()">Add Competence</button>
+    </div>
+    </div>
+
+
+
+    <br>
+    <p>Parts</p>
+    <div style="border: 1px solid #ccc">
+      <br>
+      <ul *ngFor="let partie of syllabus.parties; let index = index4">
+        <li>
+          <div class="item">
+
+            <input id="partie" name="partie" placeholder="Part" [(ngModel)]="partie.partie">
+          </div>
+
+
+          <p>Tasks</p>
+          <div style="border: 1px solid #ccc">
+            <br>
+            <ul *ngFor="let tache of partie.taches; let index = index6">
+              <li>
+                <div class="item">
+
+                  <input id="tache" name="tache" placeholder="Task" [(ngModel)]="tache.tache">
+                </div>
+                <div class="btn-block2">
+                  <button type="button" name="suppDesc" (click)="eliminerTachePartie(partie,index)">Delete Task</button>
+                </div>
+              </li>
+
+            </ul>
+
+            <div class="btn-block2">
+              <button type="button" name="addDesc" (click)="ajouterTachePartie(partie)">Add Task</button>
+            </div>
+          </div>
+
+
+
+          <div class="btn-block2">
+            <button type="button" name="suppPart" (click)="eliminerPartie(index)">Delete Part</button>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="btn-block2">
+        <button type="button" name="addPart" (click)="ajouterPartie()">Add Part</button>
+      </div>
+    </div>
+
 
     <div class="btn-block">
       <button type="submit" (click)="Creer()" >Create</button>

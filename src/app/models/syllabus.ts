@@ -1,4 +1,7 @@
 import {Exercice} from './exercice';
+import {Description} from './description';
+import {Competence} from './competence';
+import {Partie} from './partie';
 
 export class Syllabus {
   id: number;
@@ -7,6 +10,9 @@ export class Syllabus {
   overview: string;
   codeSyllabus: string;
   exercices: Exercice[] = [];
+  descriptions: Description[] = [];
+  competences: Competence[] = [];
+  parties: Partie[] = [];
 
 
 
