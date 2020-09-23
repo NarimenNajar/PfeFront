@@ -9,6 +9,8 @@ export class Syllabus {
   module: string;
   overview: string;
   codeSyllabus: string;
+  years: string;
+  dateAjout: Date;
   exercices: Exercice[] = [];
   descriptions: Description[] = [];
   competences: Competence[] = [];

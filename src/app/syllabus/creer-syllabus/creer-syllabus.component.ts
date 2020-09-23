@@ -6,7 +6,8 @@ import {Description} from '../../models/description';
 import {Competence} from '../../models/competence';
 import {Partie} from '../../models/partie';
 import {Detail} from '../../models/detail';
-import {Tache} from "../../models/tache";
+import {Tache} from '../../models/tache';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-creer-syllabus',
@@ -15,7 +16,7 @@ import {Tache} from "../../models/tache";
 })
 export class CreerSyllabusComponent implements OnInit {
 
-  constructor(private syllabusService: SyllabusService) { }
+  constructor(private syllabusService: SyllabusService, private router: Router) { }
   public syllabus: Syllabus = null;
 
   ngOnInit(): void {
@@ -23,7 +24,7 @@ export class CreerSyllabusComponent implements OnInit {
   }
 
   async Creer() {
-    await this.syllabusService.creerSyllabusAsync(this.syllabus);
+    await this.syllabusService.creerSyllabusAsync(this.syllabus).then( e => this.router.navigateByUrl('/syllabus/all') );
   }
   ajouterExercice() {
     this.syllabus.exercices.push(new Exercice());

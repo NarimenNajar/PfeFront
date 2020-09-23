@@ -141,6 +141,10 @@
       <input id="module" name="module"  [(ngModel)]="syllabus.module">
     </div>
     <div class="item">
+      <p>Year</p>
+      <input id="year" name="year" placeholder="----/----" [(ngModel)]="syllabus.years">
+    </div>
+    <div class="item">
       <p>Overview</p>
       <input id="overview" name="overview" [(ngModel)]="syllabus.overview">
     </div>
@@ -292,7 +296,8 @@
 
 
     <div class="btn-block">
-      <button type="submit" (click)="Creer()" >Create</button>
+      <a href="#all" data-toggle="tab">
+      <button type="submit" (click)="Creer()" >Create</button></a>
     </div>
 
   </form>

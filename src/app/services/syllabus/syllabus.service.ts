@@ -13,7 +13,17 @@ export class SyllabusService {
   async afficherSyllabusAsync() {
     return await this.http.get<Syllabus[]>(`${this.baseUrl}` + `/all`).toPromise();
   }
+
+   afficherSyllabus() {
+    return  this.http.get<Syllabus[]>(`${this.baseUrl}` + `/all`);
+  }
+
   async creerSyllabusAsync(syllabus: Syllabus) {
+    syllabus.dateAjout = new Date();
     return await this.http.post(`${this.baseUrl}` + `/add`, syllabus).toPromise();
+  }
+
+  async afficherDetailSyllabusAsync(idSyllabus: number) {
+    return this.http.get<Syllabus>(`${this.baseUrl}` + `/detail/` + idSyllabus).toPromise();
   }
 }
