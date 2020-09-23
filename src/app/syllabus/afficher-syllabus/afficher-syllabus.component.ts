@@ -10,12 +10,14 @@ import {SyllabusService} from '../../services/syllabus/syllabus.service';
 })
 export class AfficherSyllabusComponent implements OnInit {
   private idSyllabus: number;
+   syllabus: Syllabus = new Syllabus();
   constructor(private syllabusService: SyllabusService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit() {
     this.idSyllabus = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
-    await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus).then((syllabus) => console.log(syllabus));
+    // await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus).then((syllabus) => console.log(syllabus));
+    this.syllabus = await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus);
   }
 
 
