@@ -26,4 +26,8 @@ export class SyllabusService {
   async afficherDetailSyllabusAsync(idSyllabus: number) {
     return this.http.get<Syllabus>(`${this.baseUrl}` + `/detail/` + idSyllabus).toPromise();
   }
+
+  async deleteSyllabusAsync(idSyllabus: number) {
+    return this.http.delete(`${this.baseUrl}` + `/delete/` + idSyllabus).toPromise();
+  }
 }

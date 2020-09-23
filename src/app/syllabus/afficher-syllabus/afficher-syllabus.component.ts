@@ -18,4 +18,6 @@ export class AfficherSyllabusComponent implements OnInit {
     await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus).then((syllabus) => console.log(syllabus));
   }
 
+
+
 }

@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./liste-syllabus.component.css']
 })
 export class ListeSyllabusComponent implements OnInit {
-  displayedColumns: string[] = ['CodeSyllabus', 'module', 'years', 'level'];
+  displayedColumns: string[] = ['CodeSyllabus', 'module', 'years', 'level', 'actions'];
   public dataSource: MatTableDataSource<Syllabus>;
 
   constructor(private syllabusService: SyllabusService, private router: Router) {
@@ -33,5 +33,8 @@ export class ListeSyllabusComponent implements OnInit {
 
   showDetailSyllabus(idSyllabus: number) {
     this.router.navigateByUrl('/syllabus/show/' + idSyllabus);
+  }
+   deleteSyllabys(idSyllabus: number) {
+   this.syllabusService.deleteSyllabusAsync(idSyllabus);
   }
 }
