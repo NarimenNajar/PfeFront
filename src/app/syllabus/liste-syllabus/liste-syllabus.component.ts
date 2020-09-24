@@ -34,7 +34,7 @@ export class ListeSyllabusComponent implements OnInit {
   showDetailSyllabus(idSyllabus: number) {
     this.router.navigateByUrl('/syllabus/show/' + idSyllabus);
   }
-   deleteSyllabys(idSyllabus: number) {
-   this.syllabusService.deleteSyllabusAsync(idSyllabus);
+   async deleteSyllabys(idSyllabus: number) {
+   await this.syllabusService.deleteSyllabusAsync(idSyllabus).then((e) =>  window.location.reload() );
   }
 }

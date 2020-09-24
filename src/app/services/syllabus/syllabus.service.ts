@@ -28,6 +28,6 @@ export class SyllabusService {
   }
 
   async deleteSyllabusAsync(idSyllabus: number) {
-    return this.http.delete(`${this.baseUrl}` + `/delete/` + idSyllabus).toPromise();
+    return await this.http.delete(`${this.baseUrl}` + `/delete/` + idSyllabus).toPromise();
   }
 }

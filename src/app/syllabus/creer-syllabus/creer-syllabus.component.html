@@ -1,19 +1,4 @@
-<!--
 
-<input id="level" name="level" placeholder="level" [(ngModel)]="syllabus.level">
-<input id="module" name="module" placeholder="module" [(ngModel)]="syllabus.module">
-<input id="overview" name="overview" placeholder="overview" [(ngModel)]="syllabus.overview">
-<input id="codeSyllabus" name="codeSyllabus" placeholder="codeSyllabus" [(ngModel)]="syllabus.codeSyllabus">
-
-<ul *ngFor="let e of syllabus.exercices; let index = index">
-  <li><input id="exercice" name="exercice" placeholder="exercice" [(ngModel)]="e.exercice">
-    <button type="submit" name="supp" (click)="eliminerExercise(index)">supp</button>
-  </li>
-</ul>
-<input type="button" (click)="ajouterExercice()" value="ajouter">
-<button type="submit" (click)="Creer()" >Create</button>
-
--->
 
 
 <head>
@@ -123,35 +108,74 @@
 <body>
 
   <form action="/">
-    <h1>Create New Syllabus</h1>
-    <div class="item">
-      <p>Code Syllabus</p>
-      <div>
-        <input id="codeSyllabus" name="codeSyllabus" [(ngModel)]="syllabus.codeSyllabus">
-      </div>
+    <div align="center">
+
+    <h1>Create New Syllabus</h1></div>
+    <br><br>
+     <table style="width:100%">
+      <tr>
+        <td style="text-align: center" width="20%" rowspan="2">
+          <img src="/assets/img/nouvelair.png" width="180" >
+        </td>
+        <td style="text-align: center" width="60%">
+
+          <div class="item">
+            <p>Level</p>
+            <div>
+              <input id="level" name="level"  [(ngModel)]="syllabus.level">
+            </div>
+          </div>
+
+        </td>
+        <td style="text-align: center" width="20%" rowspan="2">
+          <div class="item">
+            <p>Code Syllabus</p>
+            <div>
+              <input id="codeSyllabus" name="codeSyllabus" [(ngModel)]="syllabus.codeSyllabus">
+            </div>
+          </div>
+        </td>
+      </tr>
+       <tr>
+         <td  style="text-align: center" width="60%">
+           <div class="item">
+             <p>Year</p>
+             <input id="year" name="year" placeholder="----/----" [(ngModel)]="syllabus.years">
+           </div>
+         </td>
+       </tr>
+    </table>
+
+    <br>
+    <br>
+    <div style="text-align: center">
+      <h1 style="color: #004990">
+        TRAINEE SYLLABUS
+      </h1>
     </div>
-    <div class="item">
-      <p>Level</p>
-      <div>
-        <input id="level" name="level"  [(ngModel)]="syllabus.level">
-      </div>
+    <br> <br>
+    <div style="text-align: center">
+      <img src="/assets/img/simulateur.PNG" width="60%" >
+
     </div>
+    <br> <br>
+
     <div class="item">
-      <p>Module</p>
+      <p>Module</p><br>
+
       <input id="module" name="module"  [(ngModel)]="syllabus.module">
     </div>
+
     <div class="item">
-      <p>Year</p>
-      <input id="year" name="year" placeholder="----/----" [(ngModel)]="syllabus.years">
-    </div>
-    <div class="item">
-      <p>Overview</p>
-      <input id="overview" name="overview" [(ngModel)]="syllabus.overview">
+      <p>Overview</p><br>
+
+      <textarea id="overview" name="overview" [(ngModel)]="syllabus.overview" rows="5"></textarea>
     </div>
   <br>
 
 
     <p>Exercices</p>
+    <br>
 
 <div style="border: 1px solid #ccc">
 <br>
@@ -177,7 +201,8 @@
   <br>
 </div>
 <br>
-    <p>Descriptions</p>
+    <p>Descriptions</p><br>
+
     <div style="border: 1px solid #ccc">
       <br>
     <ul *ngFor="let description of syllabus.descriptions; let index = index2">
@@ -223,32 +248,10 @@
     </div>
 
 
-    <br>
-    <p>Competences</p>
-    <div style="border: 1px solid #ccc">
-      <br>
-    <ul *ngFor="let e of syllabus.competences; let index = index3">
-      <li>
-        <div class="item">
-
-          <input id="competence" name="competence" placeholder="Competence" [(ngModel)]="e.competence">
-        </div>
-        <div class="btn-block2">
-          <button type="button" name="suppComp" (click)="eliminerCompetence(index)">Delete Competence</button>
-        </div>
-      </li>
-
-    </ul>
-
-    <div class="btn-block2">
-      <button type="button" name="addComp" (click)="ajouterCompetence()">Add Competence</button>
-    </div>
-    </div>
-
 
 
     <br>
-    <p>Parts</p>
+<!--    <p>Parts</p>
     <div style="border: 1px solid #ccc">
       <br>
       <ul *ngFor="let partie of syllabus.parties; let index = index4">
@@ -293,6 +296,158 @@
         <button type="button" name="addPart" (click)="ajouterPartie()">Add Part</button>
       </div>
     </div>
+
+-->
+    <br><br>
+
+    <p>Parts</p>
+    <br>
+
+    <div style="border: 1px solid #ccc">
+      <br>
+
+    <div *ngFor="let partie of syllabus.parties; let index = index4">
+      <table style="width:100%">
+        <th style="background-color: #ffcc33">
+          <div class="item" >
+
+          <input id="partie" name="partie" placeholder="Part" [(ngModel)]="partie.partie">
+        </div>
+        </th>
+        <th style="background-color: #ffcc33" width="10%">
+          <div class="btn-block2">
+            <button type="button" name="suppPart" (click)="eliminerPartie(index)">Delete Part</button>
+          </div>
+        </th>
+        <th style="background-color: #ffcc33">U</th>
+        <th style="background-color: #ffcc33">P</th>
+        <th style="background-color: #ffcc33">S</th>
+        <th style="background-color: #ffcc33">S+</th>
+        <tr *ngFor="let tache of partie.taches; let index = index6">
+          <td> <div class="item">
+
+            <input id="tache" name="tache" placeholder="Task" [(ngModel)]="tache.tache">
+
+          </div>
+          </td>
+          <td width="10%"> <div class="btn-block2">
+            <button type="button" name="suppDesc" (click)="eliminerTachePartie(partie,index)">Delete Task</button>
+          </div>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+      </table>
+
+      <div class="btn-block2">
+      <button type="button" name="addDesc" (click)="ajouterTachePartie(partie)">Add Task</button>
+    </div><br>
+
+    </div>
+    <div class="btn-block2">
+      <button type="button" name="addPart" (click)="ajouterPartie()">Add Part</button>
+    </div><br>
+    </div>
+
+   <!-- <br>
+    <p>Competences</p>
+    <div style="border: 1px solid #ccc">
+      <br>
+      <ul *ngFor="let e of syllabus.competences; let index = index3">
+        <li>
+          <div class="item">
+
+            <input id="competence" name="competence" placeholder="Competence" [(ngModel)]="e.competence">
+          </div>
+          <div class="btn-block2">
+            <button type="button" name="suppComp" (click)="eliminerCompetence(index)">Delete Competence</button>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="btn-block2">
+        <button type="button" name="addComp" (click)="ajouterCompetence()">Add Competence</button>
+      </div>
+    </div>
+
+-->
+
+    <br>
+    <br>
+    <p> Competencies</p>
+    <br>
+    <div style="border: 1px solid #ccc">
+<br>
+    <div >
+      <table style="width:100%" >
+        <th style="background-color: #ffcc33; text-align: center" colspan="2">COMPETENCIES</th>
+        <th style="background-color: #ffcc33; text-align: center">1</th>
+        <th style="background-color: #ffcc33; text-align: center">2</th>
+        <th style="background-color: #ffcc33; text-align: center">3</th>
+        <th style="background-color: #ffcc33; text-align: center">4</th>
+        <th style="background-color: #ffcc33; text-align: center">5</th>
+        <tr *ngFor="let e of syllabus.competences; let index = index3">
+          <td>
+            <div class="item">
+
+              <input id="competence" name="competence" placeholder="Competence" [(ngModel)]="e.competence">
+            </div>
+          </td>
+            <td width="10%">
+            <div class="btn-block2">
+              <button type="button" name="suppComp" (click)="eliminerCompetence(index)">Delete Competence</button>
+            </div>
+
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+      </table>
+    </div>   <div class="btn-block2">
+    <button type="button" name="addComp" (click)="ajouterCompetence()">Add Competence</button>
+  </div></div>
+    <br>  <br>
+
+
+
+    <div>
+      <table style="width:100%">
+        <th style="background-color: #ffcc33; width: 20%;text-align: center">ITEMS</th>
+        <th style="background-color: #ffcc33; width: 80%;text-align: center">COMMENTS</th>
+        <tr style="height:190px" ><td></td>
+          <td></td></tr>
+      </table>
+    </div>
+    <br><br>
+    <div style="text-align: center">
+      <table  style="width:70%; text-align: center" align="center">
+        <th style="background-color: #ffcc33; width: 100%;text-align: center" colspan="2">Final Result</th>
+        <tr>
+          <td style="width: 50%; height: 70px"><i class="far fa-square fa-sm fa-fw mr-2 text-orange-300"></i>UNSATISFACTORY</td>
+          <td style="width: 50%; height: 70px"><i class="far fa-square fa-sm fa-fw mr-2 text-orange-300"></i>SATISFACTORY</td>
+        </tr>
+      </table>
+    </div>
+    <br><br>
+    <div style="text-align: center">
+      <table  style="width:70%; text-align: center" align="center">
+        <th style="background-color: #ffcc33; width: 50%;text-align: center" >Trainee Validation</th>
+        <th style="background-color: #ffcc33; width: 50%;text-align: center" >Instructor Validation</th>
+        <tr>
+          <td style="height: 100px"></td>
+          <td style="height: 100px"></td>
+        </tr>
+      </table>
+    </div>
+    <br> <br>
 
 
     <div class="btn-block">

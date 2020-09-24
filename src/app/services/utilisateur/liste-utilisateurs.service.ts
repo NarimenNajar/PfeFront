@@ -20,4 +20,7 @@ export class ListeUtilisateursService {
     return await this.http.get<Utilisateur[]>(`${this.baseUrl}` + `/all`).toPromise();
   }
 
+  async afficherDetailUtilisateurAsync(idUtilisateur: number) {
+    return this.http.get<Utilisateur>(`${this.baseUrl}` + `/detail/` + idUtilisateur).toPromise();
+  }
 }

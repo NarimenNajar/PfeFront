@@ -14,7 +14,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'show',
+    path: 'show/:id',
     component: AfficherUtilisateurComponent
   },
   {

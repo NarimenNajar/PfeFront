@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Utilisateur} from '../../models/utilisateur';
+import {ListeUtilisateursService} from '../../services/utilisateur/liste-utilisateurs.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-afficher-utilisateur',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./afficher-utilisateur.component.css']
 })
 export class AfficherUtilisateurComponent implements OnInit {
+  private idUtilisateur: number;
+  utilisateur: Utilisateur = new Utilisateur();
+  constructor(private listeUtilisateursService: ListeUtilisateursService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.idUtilisateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    console.log(this.activatedRoute.snapshot.paramMap.get('id'));
+    // await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus).then((syllabus) => console.log(syllabus));
+    this.utilisateur = await this.listeUtilisateursService.afficherDetailUtilisateurAsync(this.idUtilisateur);
   }
 
 }
