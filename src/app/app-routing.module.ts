@@ -32,6 +32,10 @@ const routes: Routes = [
     loadChildren: () => import('./utilisateur/utilisateur.module').then(m => m.UtilisateurModule)
   },
   {
+    path: 'home',
+    loadChildren: () => import('./app.module').then(m => m.AppModule)
+  },
+  {
     path: '',
     redirectTo: 'authentication',
     pathMatch: 'full'

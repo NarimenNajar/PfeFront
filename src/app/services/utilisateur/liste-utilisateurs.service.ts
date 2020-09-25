@@ -23,4 +23,9 @@ export class ListeUtilisateursService {
   async afficherDetailUtilisateurAsync(idUtilisateur: number) {
     return this.http.get<Utilisateur>(`${this.baseUrl}` + `/detail/` + idUtilisateur).toPromise();
   }
+
+  async deleteUtilisateurAsync(idUtilisateur: number) {
+    return await this.http.delete(`${this.baseUrl}` + `/deleteUser/` + idUtilisateur).toPromise();
+  }
+
 }
