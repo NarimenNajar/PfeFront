@@ -22,7 +22,7 @@ const routes: Routes = [
     component: CreerSyllabusComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: ModifierSyllabusComponent
   },
   {

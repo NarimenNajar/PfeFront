@@ -32,6 +32,18 @@ const routes: Routes = [
     loadChildren: () => import('./utilisateur/utilisateur.module').then(m => m.UtilisateurModule)
   },
   {
+    path: 'category',
+    loadChildren: () => import('./parametrage/categorie/categorie.module').then(m => m.CategorieModule)
+  },
+  {
+    path: 'population',
+    loadChildren: () => import('./parametrage/population/population.module').then(m => m.PopulationModule)
+  },
+  {
+    path: 'externalSystem',
+    loadChildren: () => import('./parametrage/systeme-externe/systeme-externe.module').then(m => m.SystemeExterneModule)
+  },
+  {
     path: 'home',
     loadChildren: () => import('./app.module').then(m => m.AppModule)
   },

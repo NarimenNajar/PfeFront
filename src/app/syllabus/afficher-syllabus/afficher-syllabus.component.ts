@@ -20,6 +20,9 @@ export class AfficherSyllabusComponent implements OnInit {
     this.syllabus = await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus);
   }
 
+  editSyllabus(idSyllabus: number) {
+    this.router.navigateByUrl('/syllabus/edit/' + idSyllabus);
+  }
 
 
 }

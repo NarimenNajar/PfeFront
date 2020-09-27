@@ -64,4 +64,5 @@ export class CreerSyllabusComponent implements OnInit {
     partie.taches.splice(index6, 1);
 
   }
+
 }

@@ -30,4 +30,7 @@ export class SyllabusService {
   async deleteSyllabusAsync(idSyllabus: number) {
     return await this.http.delete(`${this.baseUrl}` + `/delete/` + idSyllabus).toPromise();
   }
+
+   async updateSyllabus(idSyllabus: number, syllabus: Syllabus) {
+    return await this.http.put<Syllabus>(`${this.baseUrl}` + `/update/` + idSyllabus , syllabus).toPromise();  }
 }
