@@ -44,6 +44,10 @@ const routes: Routes = [
     loadChildren: () => import('./parametrage/systeme-externe/systeme-externe.module').then(m => m.SystemeExterneModule)
   },
   {
+    path: 'function',
+    loadChildren: () => import('./parametrage/fonction/fonction.module').then(m => m.FonctionModule)
+  },
+  {
     path: 'home',
     loadChildren: () => import('./app.module').then(m => m.AppModule)
   },

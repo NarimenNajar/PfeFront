@@ -1,28 +1,28 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CategorieService} from '../../../services/parametrage/categorie.service';
-import {Route, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
+import {Categorie} from '../../../models/categorie';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {Categorie} from '../../../models/categorie';
+import {Fonction} from '../../../models/fonction';
+import {FonctionService} from '../../../services/parametrage/fonction.service';
+import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 
-
 @Component({
-  selector: 'app-liste-categories',
-  templateUrl: './liste-categories.component.html',
-  styleUrls: ['./liste-categories.component.css']
+  selector: 'app-liste-fonction',
+  templateUrl: './liste-fonction.component.html',
+  styleUrls: ['./liste-fonction.component.css']
 })
-export class ListeCategoriesComponent implements OnInit {
-  displayedColumns: string[] = ['codeCategorie', 'categorie', 'actions'];
-  public dataSource: MatTableDataSource<Categorie>;
+export class ListeFonctionComponent implements OnInit {
+  displayedColumns: string[] = ['codeFonction', 'dateDebut', 'dateFin', 'actions'];
+  public dataSource: MatTableDataSource<Fonction>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private categorieService: CategorieService, private router: Router) { }
+  constructor(private fonctionService: FonctionService, private router: Router) { }
 
- async ngOnInit()  {
-    this.categorieService.afficherCategorie().subscribe(data => {
+  async ngOnInit()  {
+    this.fonctionService.afficherFonction().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -38,7 +38,8 @@ export class ListeCategoriesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  async deleteCategorie(idCategorie: number) {
+
+  async deleteFonction(idFonction: number) {
 
     Swal.fire({
       title: 'Are you sure?',
@@ -48,10 +49,10 @@ export class ListeCategoriesComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await this.categorieService.deleteCategorieAsync(idCategorie);
+        await this.fonctionService.deleteFonctionAsync(idFonction);
         Swal.fire(
           'Deleted!',
-          'Category has been deleted.',
+          'Function has been deleted.',
           'success'
         ).then((e) =>  window.location.reload() );
       }
@@ -59,12 +60,12 @@ export class ListeCategoriesComponent implements OnInit {
   }
 
 
-
-  addCat() {
-    this.router.navigateByUrl('/category/create');
+  addFonction() {
+    this.router.navigateByUrl('/function/create');
   }
 
-  editCategorie(idCategorie: number) {
-    this.router.navigateByUrl('/category/edit/' + idCategorie);
+  editFonction(idFonction: number) {
+    this.router.navigateByUrl('/function/edit/' + idFonction);
   }
+
 }

@@ -186,7 +186,7 @@
           <input id="exercice" name="e+{{e.exercice}}"  value="{{e.exercice}}"  [(ngModel)]="e.exercice">
         </div>
         <div class="btn-block2">
-          <button type="button" name="sup+{{e.exercice}}" (click)="eliminerExercise(index)">Delete Exercice</button>
+          <button type="button" name="sup+{{e.exercice}}" (click)="eliminerExercise(e.id)">Delete Exercice</button>
         </div>
       </li>
 
@@ -236,7 +236,7 @@
 
 
         <div class="btn-block2">
-          <button type="button" name="suppDesc+{{description.description}}" (click)="eliminerDescription(index)">Delete Description</button>
+          <button type="button" name="suppDesc+{{description.description}}" (click)="eliminerDescription(description.id)">Delete Description</button>
         </div>
       </li>
 

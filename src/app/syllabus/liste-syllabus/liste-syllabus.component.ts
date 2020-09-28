@@ -5,6 +5,7 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {Syllabus} from '../../models/syllabus';
 import {SyllabusService} from '../../services/syllabus/syllabus.service';
 import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-liste-syllabus',
@@ -44,7 +45,23 @@ export class ListeSyllabusComponent implements OnInit {
     this.router.navigateByUrl('/syllabus/show/' + idSyllabus);
   }
    async deleteSyllabys(idSyllabus: number) {
-   await this.syllabusService.deleteSyllabusAsync(idSyllabus).then((e) =>  window.location.reload() );
+
+   Swal.fire({
+       title: 'Are you sure?',
+       text: 'You won\'t be able to revert this!',
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonText: 'Yes, delete it!'
+     }).then(async (result) => {
+       if (result.isConfirmed) {
+         await this.syllabusService.deleteSyllabusAsync(idSyllabus);
+         Swal.fire(
+           'Deleted!',
+           'Syllabus has been deleted.',
+           'success'
+         ).then((e) =>  window.location.reload() );
+       }
+     });
   }
   editSyllabys(idSyllabys: number) {
     this.router.navigateByUrl('/syllabus/edit/' + idSyllabys);

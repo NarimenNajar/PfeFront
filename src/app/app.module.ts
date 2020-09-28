@@ -8,6 +8,9 @@ import { MatTableDataSource} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {MatNativeDateModule} from "@angular/material/core";
+
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatPaginatorModule,
     MatSortModule,
     BrowserAnimationsModule,
+    NgSelectModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
 
   ],

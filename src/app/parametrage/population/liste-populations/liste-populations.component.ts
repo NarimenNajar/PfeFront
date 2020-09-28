@@ -6,6 +6,8 @@ import {MatSort} from '@angular/material/sort';
 import {PopulationService} from '../../../services/parametrage/population.service';
 import {Router} from '@angular/router';
 import {Population} from '../../../models/population';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-liste-populations',
@@ -38,8 +40,26 @@ export class ListePopulationsComponent implements OnInit {
   }
 
   async deletePopulation(idPopulation: number) {
-    await this.populationService.deletePopulationAsync(idPopulation).then((e) =>  window.location.reload() );
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await this.populationService.deletePopulationAsync(idPopulation);
+        Swal.fire(
+          'Deleted!',
+          'Population has been deleted.',
+          'success'
+        ).then((e) =>  window.location.reload() );
+      }
+    });
   }
+
+
 
   addPopulation() {
     this.router.navigateByUrl('/population/create');

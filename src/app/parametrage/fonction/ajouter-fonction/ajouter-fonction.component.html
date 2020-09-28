@@ -102,33 +102,88 @@
 <body>
 <div class="testbox">
   <form action="/">
-    <h1>Add New Category</h1>
+    <h1>Add New Function</h1>
     <div class="item">
-      <p>Category Code</p>
+      <p>Function Code</p>
       <div>
-        <input type="text" name="name" class="form-control"  [(ngModel)]="categorie.codeCategorie" required #name="ngModel"/>
+        <input type="text" name="name" class="form-control"  [(ngModel)]="fonction.codeFonction" required #name="ngModel"/>
       </div>
       <div *ngIf="name.invalid && (name.dirty || name.touched)"
            class="alert alert-danger">
 
         <div *ngIf="name.errors.required">
-           Category Code is required.
+           Code is required.
         </div></div>
     </div>
+
+
     <div class="item">
+      <p> Function Start Date</p>
+      <input type="date"  name="dateDebut" id="startDate"  [(ngModel)]="fonction.dateDebut" required/>
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+
+    <div class="item">
+      <p>Function End Date</p>
+      <input type="date"   name="dateFin" id="endDate"  [(ngModel)]="fonction.dateFin" required/>
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+
+
+   <!-- <div class="item" >
+      <p>Start Date</p>
+
+      <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker" name="dateDebut" id="startDate"  [(ngModel)]="fonction.dateDebut">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+
+
+    <div class="item" style="width: 100%" >
+      <p>End Date</p>
+
+      <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker2" name="dateFin" id="endDate"  [(ngModel)]="fonction.dateFin">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+    </div>-->
+
+    <p>Function Type</p>
+    <ng-select  name="select-typefonction"
+               [items]="typeFonction"
+               bindLabel="typeFonction"
+               [(ngModel)]="fonction.typeFonction">
+    </ng-select>
+
+
+    <p>User's Function </p>
+    <ng-select  name="select-utilisateur"
+                [items]="utilisateurs"
+                bindLabel="codePN"
+                [(ngModel)]="fonction.utilisateur">
+    </ng-select>
+
+
+
+  <!--  <div class="item">
       <p>Category Title</p>
-      <input type="text" name="name2" class="form-control" [(ngModel)]="categorie.categorie" required #name2="ngModel"/>
+      <input type="text" name="name2" class="form-control" [(ngModel)]="fonction.fonction" required #name2="ngModel"/>
       <div *ngIf="name2.invalid && (name2.dirty || name2.touched)"
            class="alert alert-danger">
 
         <div *ngIf="name2.errors.required">
-           Category Title is required.
+          Category Title is required.
         </div></div>
-    </div>
+    </div> -->
 
 
     <div class="btn-block">
-      <button type="submit" (click)="CreerCategory()">Add</button>
+      <button type="submit" (click)="CreerFonction()">Add</button>
     </div>
   </form>
 </div>

@@ -33,14 +33,17 @@ export class ModifierSyllabusComponent implements OnInit {
   ajouterExercice() {
     this.syllabus.exercices.push(new Exercice());
   }
-  eliminerExercise(index) {
+ /* eliminerExercise(index) {
     this.syllabus.exercices.splice(index, 1);
+  }*/
+  async eliminerExercise(id) {
+    await this.syllabusService.deleteExerciceAsync(id).then(e => console.log(id));
   }
   ajouterDescription() {
     this.syllabus.descriptions.push(new Description());
   }
-  eliminerDescription(index2) {
-    this.syllabus.descriptions.splice(index2, 1);
+  eliminerDescription(id) {
+     this.syllabusService.deleteDescriptionAsync(id).then(e => console.log(id));
   }
   ajouterCompetence() {
     this.syllabus.competences.push(new Competence());
