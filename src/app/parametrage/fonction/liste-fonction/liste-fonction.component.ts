@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./liste-fonction.component.css']
 })
 export class ListeFonctionComponent implements OnInit {
-  displayedColumns: string[] = ['codeFonction', 'dateDebut', 'dateFin', 'actions'];
+  displayedColumns: string[] = ['codeFonction', 'dateDebut', 'dateFin', 'typeFonction', 'utilisateur', 'actions'];
   public dataSource: MatTableDataSource<Fonction>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -1,1 +1,135 @@
-<p>afficher-formation works!</p>
+
+<div class="btn-block2" align="right" >
+  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="editFormation(activiteFormation.id)" > <i class="far fa-edit" style="margin-right: 20px"></i>Edit Training</button>
+</div> <br><br>
+<div >
+  <h1 align="center">Training Details</h1>
+  <br><br>
+
+  <div style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
+
+    <h5 style="margin-left: 40px">Training Code : </h5>
+
+    <p style="margin-left: 50px">{{activiteFormation.codeActiviteFormation}}</p>
+  </div>  <br>
+
+  <div style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
+    <h5 style="margin-left: 40px">Type : </h5>
+
+    <p  style="margin-left: 50px" *ngIf="activiteFormation.typeActivite==0">PNT</p>
+    <p  style="margin-left: 50px" *ngIf="activiteFormation.typeActivite==1">PNC</p>
+  </div>
+
+  <br>
+
+  <div style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
+
+    <h5 style="margin-left: 40px">Number of days : </h5>
+
+    <p style="margin-left: 50px">{{activiteFormation.nombreJours}}</p>
+  </div>  <br>
+
+  <div style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
+
+    <h5 style="margin-left: 40px">Training Start Date : </h5>
+
+    <p style="margin-left: 50px">{{activiteFormation.dateDebutActivite | date}}</p>
+  </div>  <br>
+  <div style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
+
+    <h5 style="margin-left: 40px">Training End Date : </h5>
+
+    <p style="margin-left: 50px">{{activiteFormation.dateFinActivite | date}}</p>
+  </div>  <br>
+
+
+  <br>
+
+  <div>
+    <h5 style="margin-left: 40px">Training Nature : </h5>
+    <table style="width: 95%; text-align: center" align="center" >
+      <th style="width: 47.5%">Training Nature Code</th>
+      <th style="width: 47.5%">Training Nature</th>
+      <tr>
+        <td style="width: 47.5%">{{activiteFormation.natureFormation.codeNatureFormation}}</td>
+        <td style="width: 47.5%">{{ activiteFormation.natureFormation.natureFormation}}</td>
+      </tr>
+    </table>
+  </div>
+<br><br>
+  <div>
+    <h5 style="margin-left: 40px">Training Type : </h5>
+    <table style="width: 95%; text-align: center" align="center" >
+      <th style="width: 31.6%">Training Type Code</th>
+      <th style="width: 31.6%">Training Type Title</th>
+      <th style="width: 31.6%">Training Type</th>
+      <tr>
+        <td style="width: 31.6%">{{activiteFormation.typeFormation.codeTypeFormation}}</td>
+        <td style="width: 31.6%">{{ activiteFormation.typeFormation.titreFormation}}</td>
+        <td style="width: 31.6%">{{ activiteFormation.typeFormation.typeFormation}}</td>
+      </tr>
+    </table>
+  </div> <br>
+  <div class="btn-block2" align="right" >
+    <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="showDetailParametrageEcheance(activiteFormation.typeFormation.parametrageEcheance.id)" >Show Deadline Settings</button>
+  </div> <br>
+<br><br>
+  <div>
+    <h5 style="margin-left: 40px">Training Population : </h5>
+    <table style="width: 95%; text-align: center" align="center" >
+      <th style="width: 47.5%">Training Population Code</th>
+      <th style="width: 47.5%">Training Population</th>
+      <tr *ngFor="let e of activiteFormation.populations">
+        <td style="width: 47.5%">{{e.codePopulation}}</td>
+        <td style="width: 47.5%">{{ e.population}}</td>
+      </tr>
+    </table>
+  </div>
+  <br><br>
+  <div>
+    <h5 style="margin-left: 40px">Training Instructions : </h5>
+    <table style="width: 95%; text-align: center" align="center" >
+      <th style="width: 31.6%">Position</th>
+      <th style="width: 31.6%">User Code</th>
+      <th style="width: 31.6%">User Name</th>
+      <th style="width: 31.6%">Valid</th>
+      <tr *ngFor="let e of instructionsByAct">
+        <td style="width: 31.6%">{{e.position}}</td>
+        <td style="width: 31.6%" (click)="showDetailUtilisateur(e.utilisateur.id)">{{ e.utilisateur.codePN}}</td>
+        <td style="width: 31.6%" (click)="showDetailUtilisateur(e.utilisateur.id)">{{ e.utilisateur.nom}} {{ e.utilisateur.prenom}}</td>
+        <td style="width: 31.6%" *ngIf="e.valide==0">No</td>
+        <td style="width: 31.6%" *ngIf="e.valide==1">Yes</td>
+      </tr>
+    </table>
+    <br><br>
+    <div>
+      <h5 style="margin-left: 40px">Training Sessions : </h5>
+      <table style="width: 95%; text-align: center" align="center" >
+        <th style="width: 47.5%">Training Session Code</th>
+        <th style="width: 47.5%">Training Session Date</th>
+        <tr *ngFor="let e of activiteFormation.seanceFormations">
+          <td style="width: 47.5%">{{e.codeSeanceFormation}}</td>
+          <td style="width: 47.5%">{{ e.dateSeanceFormation | date}}</td>
+        </tr>
+      </table>
+    </div>
+    <br><br>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

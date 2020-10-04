@@ -1,4 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormationService} from '../../services/activiteFormation/formation.service';
+import {Router} from '@angular/router';
+import {PopulationService} from '../../services/parametrage/population.service';
+import {TypeFormationService} from '../../services/parametrage/type-formation.service';
+import {NatureFormationService} from '../../services/parametrage/nature-formation.service';
+import {MatTableDataSource} from '@angular/material/table';
+import {Population} from '../../models/population';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {ActiviteFormation} from '../../models/activiteFormation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-liste-formations',
@@ -7,9 +18,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeFormationsComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['codeActiviteFormation', 'nombreJours', 'dateDebutActivite', 'dateFinActivite', 'actions'];
+  public dataSource: MatTableDataSource<ActiviteFormation>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  constructor(private formationService: FormationService, private router: Router, private populationService: PopulationService, private typeFormationService: TypeFormationService, private natureFormationService: NatureFormationService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.formationService.afficherFormation().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      console.log(data);
+    });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  async deleteFormation(idActiviteFormation: number) {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await this.formationService.deleteFormationAsync(idActiviteFormation);
+        Swal.fire(
+          'Deleted!',
+          'Training has been deleted.',
+          'success'
+        ).then((e) =>  window.location.reload() );
+      }
+    });
+  }
+
+
+
+  addFormation() {
+    this.router.navigateByUrl('/training/add');
+  }
+
+  editFormation(idActiviteFormation: number) {
+    this.router.navigateByUrl('/training/edit/' + idActiviteFormation);
   }
 
 }

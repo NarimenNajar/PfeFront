@@ -1,6 +1,6 @@
 export class Fonctionnalite {
   id: number;
-  codeFonctionnalité: string;
+  codeFonctionnalite: string;
   fonctionnalite: string;
 
 

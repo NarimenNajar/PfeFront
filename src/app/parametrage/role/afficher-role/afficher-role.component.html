@@ -1,0 +1,27 @@
+<div class="btn-block2" align="right" >
+  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="editRole(role.id)" > <i class="far fa-edit" style="margin-right: 20px"></i>Edit Role</button>
+</div> <br><br><br>
+<div align="center">
+<h1>Role Details</h1>
+  <br><br>
+
+  <h4>Role Code : </h4>  <div style="border: 1px solid #ccc">
+
+<br>
+  <h6>{{role.codeRole}}</h6><br></div> <br> <br>
+
+  <h4>Role Title : </h4> <div style="border: 1px solid #ccc">
+  <br>
+  <h6>{{role.role}}</h6><br></div> <br> <br>
+  <h4>Role Features : </h4><br>
+<div style="border: 1px solid #ccc"> <br>
+  <div *ngFor="let e of role.fonctionnalites" >
+      <li>
+        <i> Feature Code :  {{e.codeFonctionnalite}} </i><br>
+        <i> Feature Title :  {{e.fonctionnalite}}</i>
+
+      </li> <br>
+
+  </div></div> <br> <br>
+
+</div>
