@@ -51,4 +51,8 @@ export class FormationService {
   async deleteInstructionByActiviteFormationAndUserAsync(idActiviteFormation: number, idUtilisateur: number) {
     return await this.http.delete(`${this.baseUrl1}` + `/delete/instruction/` + idActiviteFormation + `/` + idUtilisateur ).toPromise();
   }
+
+  async ajouterInstructionAsync(instruction: Instruction, idActiviteFormation: number, idUtilisateur: number) {
+    return await this.http.post(`${this.baseUrl1}` + `/instruction/add/` + idActiviteFormation + `/` + idUtilisateur , instruction).toPromise();
+  }
 }

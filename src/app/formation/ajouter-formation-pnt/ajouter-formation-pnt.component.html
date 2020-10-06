@@ -97,13 +97,15 @@
     button:hover {
       background-color: #0666a3;
     }
+
   </style>
 </head>
 <body>
 <div class="testbox">
   <form action="/">
     <h1>Add New PNT Training Session</h1>
-    <div class="item">
+    <div class="span1" id="div">
+    <div class="item" id="div1">
       <p>Training Code</p>
       <div>
         <input type="text" name="name" class="form-control"  [(ngModel)]="activiteFormation.codeActiviteFormation" required #name="ngModel"/>
@@ -156,19 +158,17 @@
     </div> -->
 
 
-
-    <div class="item">
+    <div class="item" id="div2">
       <p> Training Start Date</p>
       <input type="date"  name="dateDebut" id="startDate"  [(ngModel)]="activiteFormation.dateDebutActivite" required/>
       <i class="fas fa-calendar-alt"></i>
     </div>
-
-    <div class="item">
+    <div class="item"id="div3">
       <p>Training End Date</p>
       <input type="date"   name="dateFin" id="endDate"  [(ngModel)]="activiteFormation.dateFinActivite" required/>
       <i class="fas fa-calendar-alt"></i>
     </div>
-
+</div>
 
     <div class="item">
       <p>Training Type</p>

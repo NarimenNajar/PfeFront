@@ -20,10 +20,11 @@ import { ListeFormationPNCComponent } from './liste-formation-pnc/liste-formatio
 import { ListeFormationPNTComponent } from './liste-formation-pnt/liste-formation-pnt.component';
 import { AjouterFormationPNCComponent } from './ajouter-formation-pnc/ajouter-formation-pnc.component';
 import { AjouterFormationPNTComponent } from './ajouter-formation-pnt/ajouter-formation-pnt.component';
+import { AjouterInstructionComponent } from './ajouter-instruction/ajouter-instruction.component';
 
 
 @NgModule({
-  declarations: [AjouterFormationComponent, ModifierFormationComponent, ListeFormationsComponent, AfficherFormationComponent, ListeFormationPNCComponent, ListeFormationPNTComponent, AjouterFormationPNCComponent, AjouterFormationPNTComponent],
+  declarations: [AjouterFormationComponent, ModifierFormationComponent, ListeFormationsComponent, AfficherFormationComponent, ListeFormationPNCComponent, ListeFormationPNTComponent, AjouterFormationPNCComponent, AjouterFormationPNTComponent, AjouterInstructionComponent],
   imports: [
     CommonModule,
     FormationRoutingModule,

@@ -6,3 +6,8 @@ table {
   font-size: 14px;
   width: 100%;
 }
+.mat-cell:hover {
+  outline: none;
+  border: 1px solid #095484;
+  background: #ffcc33;
+}

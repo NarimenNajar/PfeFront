@@ -1,17 +1,18 @@
 
 <div class="btn-block2" align="right" >
-  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="editFormation(activiteFormation.id)" > <i class="far fa-edit" style="margin-right: 20px"></i>Edit Training</button>
+  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="editSimulateur(activiteFormation.id)" > <i class="far fa-edit" style="margin-right: 20px"></i>Edit Simulator</button>
 </div> <br><br>
 <div >
-  <h1 align="center">Training Details</h1>
+  <h1 align="center">Simulator Details</h1>
   <br><br>
 <div id="divA">
   <div id="div1" style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
 
-    <h5 style="margin-left: 40px">Training Code : </h5>
+    <h5 style="margin-left: 40px">Simulator Code : </h5>
 
     <p style="margin-left: 50px">{{activiteFormation.codeActiviteFormation}}</p>
   </div>
+
 
   <div id="div2" style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
     <h5 style="margin-left: 40px">Type : </h5>
@@ -28,25 +29,30 @@
 
     <p style="margin-left: 50px">{{activiteFormation.nombreJours}}</p>
   </div>
-</div>
-<br>
-  <br>
-
-  <div id="divB">
+</div> <br> <br>
+<div id="divB">
   <div id="div4" style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
+
+    <h5 style="margin-left: 40px">Period : </h5>
+
+    <p  style="margin-left: 50px" *ngIf="activiteFormation.periode==1">First Period</p>
+    <p  style="margin-left: 50px" *ngIf="activiteFormation.periode==2">Second Period</p>
+  </div>
+
+  <div id="div5" style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
 
     <h5 style="margin-left: 40px">Training Start Date : </h5>
 
     <p style="margin-left: 50px">{{activiteFormation.dateDebutActivite | date}}</p>
   </div>
-  <div  id="div5" style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
+  <div id="div6" style="border:  1px solid #ccc; margin-left: 30px; margin-right: 30px">
 
     <h5 style="margin-left: 40px">Training End Date : </h5>
 
     <p style="margin-left: 50px">{{activiteFormation.dateFinActivite | date}}</p>
-  </div>
-  </div>
-  <br>
+  </div> </div> <br>
+
+
   <br>
 
   <div>
@@ -60,7 +66,7 @@
       </tr>
     </table>
   </div>
-<br><br>
+  <br><br>
   <div>
     <h5 style="margin-left: 40px">Training Type : </h5>
     <table style="width: 95%; text-align: center" align="center" >
@@ -77,7 +83,7 @@
   <div class="btn-block2" align="right" >
     <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="showDetailParametrageEcheance(activiteFormation.typeFormation.parametrageEcheance.id)" >Show Deadline Settings</button>
   </div> <br>
-<br><br>
+  <br><br>
   <div>
     <h5 style="margin-left: 40px">Training Population : </h5>
     <table style="width: 95%; text-align: center" align="center" >
@@ -108,19 +114,25 @@
   <div class="btn-block2" align="right" >
     <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="addInstruction(activiteFormation.id)" > <i class="fas fa-plus" style="margin-right: 20px"></i>Add New Instruction</button>
   </div>
-    <br><br>
-    <div>
-      <h5 style="margin-left: 40px">Training Sessions : </h5>
-      <table style="width: 95%; text-align: center" align="center" >
-        <th style="width: 47.5%">Training Session Code</th>
-        <th style="width: 47.5%">Training Session Date</th>
-        <tr *ngFor="let e of activiteFormation.seanceFormations">
-          <td style="width: 47.5%">{{e.codeSeanceFormation}}</td>
-          <td style="width: 47.5%">{{ e.dateSeanceFormation | date}}</td>
-        </tr>
-      </table>
-    </div>
-    <br><br>
+  <br><br>
+  <div>
+    <h5 style="margin-left: 40px">Training Sessions : </h5>
+    <table style="width: 95%; text-align: center" align="center" >
+      <th style="width: 19%"> Session Code</th>
+      <th style="width: 19%"> Session Date</th>
+      <th style="width: 19%"> Simulator Code Type</th>
+      <th style="width: 19%">Simulator Type</th>
+      <th style="width: 19%"> Syllabus</th>
+      <tr *ngFor="let e of activiteFormation.seanceSimulateurs">
+        <td style="width: 19%">{{e.codeSeanceSimulateur}}</td>
+        <td style="width: 19%">{{ e.dateSeanceSimulateur | date}}</td>
+        <td style="width: 19%">{{e.typeSimulateur.codeTypeSimulateur}}</td>
+        <td style="width: 19%">{{e.typeSimulateur.typeSimulateur}}</td>
+        <td id="navig3" style="width: 19%" (click)="showDetailSyllabus(e.syllabus.id)">{{e.syllabus.codeSyllabus}}</td>
+      </tr>
+    </table>
+  </div>
+  <br><br>
 
 
 </div>

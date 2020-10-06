@@ -48,5 +48,9 @@ export class AfficherFormationComponent implements OnInit {
     this.router.navigateByUrl('/deadlineSetting/show/' + idParametrageEcheance);
   }
 
+  addInstruction(idActiviteFormation: number) {
+    this.router.navigateByUrl('/training/addInstruction/' + idActiviteFormation);
+  }
+
 
 }

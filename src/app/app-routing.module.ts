@@ -72,6 +72,10 @@ const routes: Routes = [
     loadChildren: () => import('./parametrage/fonctionnalite/fonctionnalite.module').then(m => m.FonctionnaliteModule)
   },
   {
+    path: 'simulator',
+    loadChildren: () => import('./simulateur/simulateur.module').then(m => m.SimulateurModule)
+  },
+  {
     path: 'home',
     loadChildren: () => import('./app.module').then(m => m.AppModule)
   },

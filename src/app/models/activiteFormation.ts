@@ -29,8 +29,8 @@ export class ActiviteFormation {
 
 
 
-  Periode: number;
-  seanceSimulateur: SeanceSimulateur[];
+  periode: number;
+  seanceSimulateurs: SeanceSimulateur[];
 
 
 }

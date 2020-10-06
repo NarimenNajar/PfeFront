@@ -4,10 +4,11 @@ import {AfficherFormationComponent} from './afficher-formation/afficher-formatio
 import {AjouterFormationComponent} from './ajouter-formation/ajouter-formation.component';
 import {ModifierFormationComponent} from './modifier-formation/modifier-formation.component';
 import {ListeFormationsComponent} from './liste-formations/liste-formations.component';
-import {ListeFormationPNCComponent} from "./liste-formation-pnc/liste-formation-pnc.component";
-import {ListeFormationPNTComponent} from "./liste-formation-pnt/liste-formation-pnt.component";
-import {AjouterFormationPNTComponent} from "./ajouter-formation-pnt/ajouter-formation-pnt.component";
-import {AjouterFormationPNCComponent} from "./ajouter-formation-pnc/ajouter-formation-pnc.component";
+import {ListeFormationPNCComponent} from './liste-formation-pnc/liste-formation-pnc.component';
+import {ListeFormationPNTComponent} from './liste-formation-pnt/liste-formation-pnt.component';
+import {AjouterFormationPNTComponent} from './ajouter-formation-pnt/ajouter-formation-pnt.component';
+import {AjouterFormationPNCComponent} from './ajouter-formation-pnc/ajouter-formation-pnc.component';
+import {AjouterInstructionComponent} from './ajouter-instruction/ajouter-instruction.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'allPNT',
     component: ListeFormationPNTComponent
+  },
+  {
+    path: 'addInstruction/:id',
+    component: AjouterInstructionComponent
   }
 ];
 

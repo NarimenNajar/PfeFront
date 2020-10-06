@@ -1,38 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import {FormationService} from '../../services/activiteFormation/formation.service';
+import {SimulateurService} from '../../services/activiteFormation/simulateur.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PopulationService} from '../../services/parametrage/population.service';
 import {TypeFormationService} from '../../services/parametrage/type-formation.service';
 import {NatureFormationService} from '../../services/parametrage/nature-formation.service';
 import {ListeUtilisateursService} from '../../services/utilisateur/liste-utilisateurs.service';
+import {SyllabusService} from '../../services/syllabus/syllabus.service';
+import {TypeSimulateurService} from '../../services/parametrage/type-simulateur.service';
 import {ActiviteFormation} from '../../models/activiteFormation';
 import {TypeFormation} from '../../models/typeFormation';
 import {Population} from '../../models/population';
 import {NatureFormation} from '../../models/natureFormation';
-import {SeanceFormation} from '../../models/seanceFormation';
+import {SeanceSimulateur} from '../../models/seanceSimulateur';
 import {Utilisateur} from '../../models/utilisateur';
+import {Syllabus} from '../../models/syllabus';
+import {TypeSimulateur} from '../../models/typeSimulateur';
 import {Instruction} from '../../models/Instruction';
+import {SeanceFormation} from '../../models/seanceFormation';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-modifier-formation',
-  templateUrl: './modifier-formation.component.html',
-  styleUrls: ['./modifier-formation.component.css']
+  selector: 'app-modifier-simulateur',
+  templateUrl: './modifier-simulateur.component.html',
+  styleUrls: ['./modifier-simulateur.component.css']
 })
-export class ModifierFormationComponent implements OnInit {
+export class ModifierSimulateurComponent implements OnInit {
 
-  constructor(private formationService: FormationService, private router: Router, private populationService: PopulationService, private typeFormationService: TypeFormationService, private natureFormationService: NatureFormationService, private listeUtilisateursService: ListeUtilisateursService, private activatedRoute: ActivatedRoute) { }
-
-  public activiteFormation: ActiviteFormation = null ;
+  constructor(private simulateurService: SimulateurService, private router: Router, private populationService: PopulationService, private typeFormationService: TypeFormationService, private natureFormationService: NatureFormationService, private listeUtilisateursService: ListeUtilisateursService, private syllabusService: SyllabusService, private  typeSimulateurService: TypeSimulateurService, private activatedRoute: ActivatedRoute) { }
+  public activiteFormation: ActiviteFormation = null;
   public typeFormations: TypeFormation[] = [];
   public populations: Population[] = [];
   public natureFormations: NatureFormation[] = [];
-  public seanceFormations: SeanceFormation[] = [];
+  public seanceSimulateurs: SeanceSimulateur[] = [];
   public utilisateurs: Utilisateur[] = [];
-  public instructionsByAct: Instruction[] = [];
-  public idFormation: number;
+  public syllabuss: Syllabus[] = [];
+  public typeSimulateurs: TypeSimulateur[] = [];
   public instruction: Instruction = null;
+  public instructionsByAct: Instruction[] = [];
   public instructions: Instruction[] = [];
+  public idFormation: number;
+
 
 
 
@@ -42,11 +49,11 @@ export class ModifierFormationComponent implements OnInit {
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idFormation);
 
-    this.formationService.afficherInstructionByFormation(this.idFormation).then( instruction => {
+    this.simulateurService.afficherInstructionByFormation(this.idFormation).then( instruction => {
       this.instructionsByAct = instruction;
       console.log(instruction); });
     console.log(this.instructionsByAct);
-    this.activiteFormation = await this.formationService.afficherDetailFormationAsync(this.idFormation);
+    this.activiteFormation = await this.simulateurService.afficherDetailSimulateurAsync(this.idFormation);
 
 
     this.populationService.afficherPopulationAsync().then( population => {
@@ -65,21 +72,21 @@ export class ModifierFormationComponent implements OnInit {
       this.utilisateurs = user;
       console.log(user); });
 
-  //  this.activiteFormation.seanceFormations = this.seanceFormations;
+    //  this.activiteFormation.seanceFormations = this.seanceFormations;
 
 
   }
 
   async updateFormation(idFormation, activiteFormation) {
-    await this.formationService.updateFormation(idFormation, activiteFormation).then( e => this.router.navigateByUrl('/training/show/' + idFormation) );
+    await this.simulateurService.updateSimulateur(idFormation, activiteFormation).then( e => this.router.navigateByUrl('/simulator/show/' + idFormation) );
   }
 
   ajouterSeanceFormation() {
-    this.activiteFormation.seanceFormations = this.seanceFormations;
-    this.activiteFormation.seanceFormations.push(new SeanceFormation());
+    this.activiteFormation.seanceSimulateurs = this.seanceSimulateurs;
+    this.activiteFormation.seanceSimulateurs.push(new SeanceSimulateur());
 
   }
-  async  eliminerSeanceFormation(index, idSeanceFormation: number) {
+  async  eliminerSeanceSimulateur(index, idSeanceFormation: number) {
     // this.activiteFormation.seanceFormations.splice(index, 1);
     // this.formationService.deleteSeanceFormationAsync(idSeanceFormation);
 
@@ -92,12 +99,12 @@ export class ModifierFormationComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await this.formationService.deleteSeanceFormationAsync(idSeanceFormation);
+        await this.simulateurService.deleteSeanceSimulateurAsync(idSeanceFormation);
         Swal.fire(
           'Deleted!',
           'Session has been deleted.',
           'success'
-        ).then((e) =>  this.activiteFormation.seanceFormations.splice(index, 1) );
+        ).then((e) =>  this.activiteFormation.seanceSimulateurs.splice(index, 1) );
       }
     });
 
@@ -108,11 +115,11 @@ export class ModifierFormationComponent implements OnInit {
     this.activiteFormation.instructions = this.instructions;
     this.activiteFormation.instructions.push(new Instruction());
 
-   // this.instructionsByAct.push(new Instruction());
+    // this.instructionsByAct.push(new Instruction());
 
   }
   async eliminerInstruction(index2, idActiviteFormation: number, idUtilisateur: number) {
-   //  this.activiteFormation.instructions.splice(index2, 1);
+    //  this.activiteFormation.instructions.splice(index2, 1);
     // this.formationService.deleteInstructionByActiviteFormationAndUserAsync(idActiviteFormation, idUtilisateur);
 
     Swal.fire({
@@ -123,7 +130,7 @@ export class ModifierFormationComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await  this.formationService.deleteInstructionByActiviteFormationAndUserAsync(idActiviteFormation, idUtilisateur);
+        await  this.simulateurService.deleteInstructionByActiviteFormationAndUserAsync(idActiviteFormation, idUtilisateur);
 
         Swal.fire(
           'Deleted!',
@@ -137,8 +144,7 @@ export class ModifierFormationComponent implements OnInit {
   }
 
   async eliminerInstruction2(index2) {
-     this.activiteFormation.instructions.splice(index2, 1);
-    }
-
+    this.activiteFormation.instructions.splice(index2, 1);
+  }
 
 }
