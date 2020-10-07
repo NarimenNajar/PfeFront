@@ -58,5 +58,8 @@ export class AfficherSimulateurComponent implements OnInit {
   showDetailSyllabus(idSyllabus: number) {
     this.router.navigateByUrl('/syllabus/show/' + idSyllabus);
   }
+  showValidationInstructeurSimulateur(idSeanceSimulateur: number) {
+    this.router.navigateByUrl('/simulator/validate/instructor/' + idSeanceSimulateur);
+  }
 
 }

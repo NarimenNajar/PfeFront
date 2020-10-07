@@ -15,6 +15,8 @@ export class SeanceSimulateur {
   typeSimulateur: TypeSimulateur;
   notes: Note[] = [];
   levels: Level[] = [];
+  validationInstructeur: number;
+  validationTrainee: number;
 
 
 

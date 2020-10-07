@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActiviteFormation} from '../../models/activiteFormation';
 import {Instruction} from "../../models/Instruction";
+import {SeanceSimulateur} from "../../models/seanceSimulateur";
+import {Note} from "../../models/note";
+import {Level} from "../../models/level";
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +48,17 @@ export class SimulateurService {
   }
   async deleteInstructionByActiviteFormationAndUserAsync(idActiviteFormation: number, idUtilisateur: number) {
     return await this.http.delete(`${this.baseUrl2}` + `/delete/instruction/` + idActiviteFormation + `/` + idUtilisateur ).toPromise();
+  }
+
+  async afficherDetailSeanceSimulateurAsync(idSeanceSimulateur: number) {
+    return this.http.get<SeanceSimulateur>(`${this.baseUrl1}` + `/seance/detail/` + idSeanceSimulateur).toPromise();
+  }
+
+
+  async afficherNotesBySeanceSimulateur(idSeanceSimulateur: number) {
+    return await this.http.get<Note[]>(`${this.baseUrl1}` + `/notes/` + idSeanceSimulateur).toPromise();
+  }
+  async afficherLevelsBySeanceSimulateur(idSeanceSimulateur: number) {
+    return await this.http.get<Level[]>(`${this.baseUrl1}` + `/levels/` + idSeanceSimulateur).toPromise();
   }
 }
