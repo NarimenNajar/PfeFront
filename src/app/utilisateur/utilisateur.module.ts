@@ -16,10 +16,14 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
+import { ListeInstructionsAllComponent } from './liste-instructions-all/liste-instructions-all.component';
+import { ListeInstructionsInstructorComponent } from './liste-instructions-instructor/liste-instructions-instructor.component';
+import { ListeInstructionsTraineeComponent } from './liste-instructions-trainee/liste-instructions-trainee.component';
+import { ListeInstructionsArchiveComponent } from './liste-instructions-archive/liste-instructions-archive.component';
 
 
 @NgModule({
-  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent],
+  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent],
   imports: [
     CommonModule,
     UtilisateurRoutingModule,

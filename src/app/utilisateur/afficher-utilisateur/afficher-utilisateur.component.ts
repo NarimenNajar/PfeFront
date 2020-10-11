@@ -20,4 +20,10 @@ export class AfficherUtilisateurComponent implements OnInit {
     this.utilisateur = await this.listeUtilisateursService.afficherDetailUtilisateurAsync(this.idUtilisateur);
   }
 
+
+  showInstructions(idUtilisateur: number) {
+    this.router.navigateByUrl('/user/instruction/all/' + idUtilisateur);
+  }
+
+
 }

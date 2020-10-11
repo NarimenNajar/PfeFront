@@ -36,6 +36,7 @@ export class AjouterSimulateurComponent implements OnInit {
   public syllabuss: Syllabus[] = [];
   public typeSimulateurs: TypeSimulateur[] = [];
   public instruction: Instruction = null;
+  public instructions: Instruction[] = [];
 
   ngOnInit(): void {
     this.activiteFormation = new ActiviteFormation();
@@ -65,6 +66,11 @@ export class AjouterSimulateurComponent implements OnInit {
     this.typeSimulateurService.afficherTypeSimulateursAsync().then(typeSimulateur => {
       this.typeSimulateurs = typeSimulateur;
       console.log(typeSimulateur); });
+    this.activiteFormation.instructions = this.instructions;
+    this.activiteFormation.instructions.push(new Instruction());
+    // this.activiteFormation.instructions[1].position = 'Instructor';
+    // console.log(this.activiteFormation.instructions[1].position);
+    this.activiteFormation.instructions.push(new Instruction());
 
     this.activiteFormation.seanceSimulateurs = this.seanceSimulateurs;
 
