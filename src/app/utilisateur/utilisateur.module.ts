@@ -20,10 +20,13 @@ import { ListeInstructionsAllComponent } from './liste-instructions-all/liste-in
 import { ListeInstructionsInstructorComponent } from './liste-instructions-instructor/liste-instructions-instructor.component';
 import { ListeInstructionsTraineeComponent } from './liste-instructions-trainee/liste-instructions-trainee.component';
 import { ListeInstructionsArchiveComponent } from './liste-instructions-archive/liste-instructions-archive.component';
+import { ListeFonctionsAllComponent } from './liste-fonctions-all/liste-fonctions-all.component';
+import { ListeFonctionsCurrentComponent } from './liste-fonctions-current/liste-fonctions-current.component';
+import { ListeFonctionsArchiveComponent } from './liste-fonctions-archive/liste-fonctions-archive.component';
 
 
 @NgModule({
-  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent],
+  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent, ListeFonctionsAllComponent, ListeFonctionsCurrentComponent, ListeFonctionsArchiveComponent],
   imports: [
     CommonModule,
     UtilisateurRoutingModule,

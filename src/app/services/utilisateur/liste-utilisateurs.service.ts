@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Utilisateur} from '../../models/utilisateur';
 import {Instruction} from "../../models/Instruction";
+import {Fonction} from "../../models/fonction";
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,15 @@ export class ListeUtilisateursService {
  afficherInstructionsArchive(idUtilisateur: number): Observable<Instruction[]> {
     return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/archive/` + idUtilisateur);
   }
+  afficherFonctionsAll(idUtilisateur: number): Observable<Fonction[]> {
+    return this.http.get<Fonction[]>(`${this.baseUrl}` + `/fonctions/all/` + idUtilisateur);
+  }
+  afficherFonctionsArchive(idUtilisateur: number): Observable<Fonction[]> {
+    return this.http.get<Fonction[]>(`${this.baseUrl}` + `/fonctions/archive/` + idUtilisateur);
+  }
+  afficherFonctionsCurrent(idUtilisateur: number): Observable<Fonction[]> {
+    return this.http.get<Fonction[]>(`${this.baseUrl}` + `/fonctions/current/` + idUtilisateur);
+  }
+
 
 }

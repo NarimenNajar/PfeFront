@@ -25,5 +25,9 @@ export class AfficherUtilisateurComponent implements OnInit {
     this.router.navigateByUrl('/user/instruction/all/' + idUtilisateur);
   }
 
+  showFonctions(idUtilisateur: number) {
+    this.router.navigateByUrl('/user/function/all/' + idUtilisateur);
+  }
+
 
 }

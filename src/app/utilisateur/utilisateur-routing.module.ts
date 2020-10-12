@@ -9,6 +9,9 @@ import {ListeInstructionsAllComponent} from './liste-instructions-all/liste-inst
 import {ListeInstructionsInstructorComponent} from './liste-instructions-instructor/liste-instructions-instructor.component';
 import {ListeInstructionsTraineeComponent} from './liste-instructions-trainee/liste-instructions-trainee.component';
 import {ListeInstructionsArchiveComponent} from "./liste-instructions-archive/liste-instructions-archive.component";
+import {ListeFonctionsAllComponent} from "./liste-fonctions-all/liste-fonctions-all.component";
+import {ListeFonctionsArchiveComponent} from "./liste-fonctions-archive/liste-fonctions-archive.component";
+import {ListeFonctionsCurrentComponent} from "./liste-fonctions-current/liste-fonctions-current.component";
 
 
 const routes: Routes = [
@@ -48,6 +51,18 @@ const routes: Routes = [
   {
     path: 'instruction/archive/:id',
     component: ListeInstructionsArchiveComponent
+  },
+  {
+    path: 'function/all/:id',
+    component: ListeFonctionsAllComponent
+  },
+  {
+    path: 'function/archive/:id',
+    component: ListeFonctionsArchiveComponent
+  },
+  {
+    path: 'function/current/:id',
+    component: ListeFonctionsCurrentComponent
   }
 ];
 
