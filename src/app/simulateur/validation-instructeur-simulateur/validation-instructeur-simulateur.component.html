@@ -200,12 +200,12 @@
     <th style="background-color: #ffcc33">P</th>
     <th style="background-color: #ffcc33">S</th>
     <th style="background-color: #ffcc33">S+</th>
-    <tr  *ngFor="let t of e.taches">
+    <tr  *ngFor="let t of e.taches; let index = index">
       <td>{{t.tache}}</td>
-      <td><input type="radio" value="U" name="rad2+{{t.id}}" ngModel></td>
-      <td><input type="radio" value="P" name="rad2+{{t.id}}" ngModel></td>
-      <td><input type="radio" value="S" name="rad2+{{t.id}}" ngModel></td>
-      <td><input type="radio" value="S+" name="rad2+{{t.id}}" ngModel></td>
+      <td><input type="radio" value="U" name="rad2+{{t.id}}" [(ngModel)]="t.levels" (ngModelChange)="getRadioValue(seanceSimulateur.id, t.id, $event)"></td>
+      <td><input type="radio" value="P" name="rad2+{{t.id}}" [(ngModel)]="t.levels" (ngModelChange)="getRadioValue(seanceSimulateur.id, t.id, $event)"></td>
+      <td><input type="radio" value="S" name="rad2+{{t.id}}" [(ngModel)]="t.levels" (ngModelChange)="getRadioValue(seanceSimulateur.id, t.id, $event)"></td>
+      <td><input type="radio" value="S+" name="rad2+{{t.id}}" [(ngModel)]="t.levels" (ngModelChange)="getRadioValue(seanceSimulateur.id, t.id, $event)"></td>
     </tr>
 
   </table> <br>  <br>
@@ -221,13 +221,13 @@
     <th style="background-color: #ffcc33">3</th>
     <th style="background-color: #ffcc33">4</th>
     <th style="background-color: #ffcc33">5</th>
-    <tr *ngFor="let e of notes">
-      <td>{{e.competence.competence}}</td>
-      <td><input type="radio" value="1" name="rad1+{{e.competence.id}}" [(ngModel)]="e.note"></td>
-      <td><input type="radio" value="2" name="rad1+{{e.competence.id}}" [(ngModel)]="e.note"></td>
-      <td><input type="radio" value="3" name="rad1+{{e.competence.id}}" [(ngModel)]="e.note"></td>
-      <td><input type="radio" value="4" name="rad1+{{e.competence.id}}" [(ngModel)]="e.note"></td>
-      <td><input type="radio" value="5" name="rad1+{{e.competence.id}}" [(ngModel)]="e.note"></td>
+    <tr *ngFor="let e of syllabus.competences">
+      <td>{{e.competence}}</td>
+      <td><input type="radio" value="1" name="rad1+{{e.id}}" [(ngModel)]="e.notes" (ngModelChange)="getRadioValueNote(seanceSimulateur.id, e.id, $event)"></td>
+      <td><input type="radio" value="2" name="rad1+{{e.id}}" [(ngModel)]="e.notes" (ngModelChange)="getRadioValueNote(seanceSimulateur.id, e.id, $event)"></td>
+      <td><input type="radio" value="3" name="rad1+{{e.id}}" [(ngModel)]="e.notes" (ngModelChange)="getRadioValueNote(seanceSimulateur.id, e.id, $event)"></td>
+      <td><input type="radio" value="4" name="rad1+{{e.id}}" [(ngModel)]="e.notes" (ngModelChange)="getRadioValueNote(seanceSimulateur.id, e.id, $event)"></td>
+      <td><input type="radio" value="5" name="rad1+{{e.id}}" [(ngModel)]="e.notes" (ngModelChange)="getRadioValueNote(seanceSimulateur.id, e.id, $event)"></td>
     </tr>
 
   </table>
@@ -266,7 +266,7 @@
 </div>
 
     <div class="btn-block">
-      <button type="submit" >Validate</button>
+      <button type="submit" (click)="valider()" >Validate</button>
     </div>
   </div>
 </form>

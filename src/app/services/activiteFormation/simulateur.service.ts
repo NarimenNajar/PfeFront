@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActiviteFormation} from '../../models/activiteFormation';
 import {Instruction} from "../../models/Instruction";
@@ -13,7 +13,9 @@ export class SimulateurService {
 
   private baseUrl1 = 'http://localhost:9080/BackFormationPN-web/rest/activiteFormation/simulateur';
   private baseUrl2 = 'http://localhost:9080/BackFormationPN-web/rest/activiteFormation/formation';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    const headers = new Headers({ 'Content-Type': ' application/json'});
+  }
 
   async afficherSimulateursAsync() {
     return await this.http.get<ActiviteFormation[]>(`${this.baseUrl1}` + `/all`).toPromise();
@@ -61,4 +63,17 @@ export class SimulateurService {
   async afficherLevelsBySeanceSimulateur(idSeanceSimulateur: number) {
     return await this.http.get<Level[]>(`${this.baseUrl1}` + `/levels/` + idSeanceSimulateur).toPromise();
   }
+  async ajouterLevelAsync(level: Level, idSeanceSimulateur: number, idTache: number) {
+    const headers = new Headers({ 'Content-Type': ' application/json'});
+    return await this.http.post(`${this.baseUrl1}` + `/level/add/` + idSeanceSimulateur + `/` + idTache , level).toPromise();
+  }
+  async ajouterNoteAsync(note: Note, idSeanceSimulateur: number, idCompetence: number) {
+    const headers = new Headers({ 'Content-Type': ' application/json'});
+    return await this.http.post(`${this.baseUrl1}` + `/note/add/` + idSeanceSimulateur + `/` + idCompetence , note).toPromise();
+  }
+
+  async validerSimulateurInstructor(idSeanceSimulateur: number, seanceSimulateur: SeanceSimulateur) {
+    return await this.http.put<SeanceSimulateur>(`${this.baseUrl1}` + `/validation/instructor/` + idSeanceSimulateur , seanceSimulateur).toPromise();
+  }
+
 }
