@@ -11,11 +11,11 @@ import {SimulateurService} from '../../services/activiteFormation/simulateur.ser
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-validation-trainee-simulateur',
-  templateUrl: './validation-trainee-simulateur.component.html',
-  styleUrls: ['./validation-trainee-simulateur.component.css']
+  selector: 'app-afficher-syllabus-valide-trainee',
+  templateUrl: './afficher-syllabus-valide-trainee.component.html',
+  styleUrls: ['./afficher-syllabus-valide-trainee.component.css']
 })
-export class ValidationTraineeSimulateurComponent implements OnInit {
+export class AfficherSyllabusValideTraineeComponent implements OnInit {
 
   public idSyllabus: number;
   syllabus: Syllabus = new Syllabus();
@@ -60,7 +60,6 @@ export class ValidationTraineeSimulateurComponent implements OnInit {
     this.instruction = await this.simulateurService.afficherSimulateurInstructor(this.simulateur.id);
 
     this.user = this.instruction.utilisateur;
-    console.log(this.user.id);
 
     this.instructionT = await this.simulateurService.afficherSimulateurTrainee(this.simulateur.id);
 
@@ -84,20 +83,6 @@ export class ValidationTraineeSimulateurComponent implements OnInit {
     } else {
       return 10000; }
   }
-
-  valider() {
-    this.seanceSimulateur.simulateur = this.simulateur;
-    this.simulateurService.validerSimulateurTrainee(this.idSeanceSimulateur, this.seanceSimulateur);
-    this.router.navigateByUrl('/simulator/show/validate/trainee/' + this.idSeanceSimulateur);
-
-  }
-  reclamer() {
-    this.seanceSimulateur.simulateur = this.simulateur;
-    this.simulateurService.reclamerSimulateurTrainee(this.idSeanceSimulateur, this.seanceSimulateur);
-    this.router.navigateByUrl('/simulator/show/validate/trainee/' + this.idSeanceSimulateur);
-
-  }
-
 
 
 }

@@ -10,6 +10,7 @@ import {TypeSimulateurService} from '../../services/parametrage/type-simulateur.
 import {ActiviteFormation} from '../../models/activiteFormation';
 import {Instruction} from '../../models/Instruction';
 import {FormationService} from '../../services/activiteFormation/formation.service';
+import {SeanceSimulateur} from '../../models/seanceSimulateur';
 
 @Component({
   selector: 'app-afficher-simulateur',
@@ -22,6 +23,7 @@ export class AfficherSimulateurComponent implements OnInit {
   private idSimulateur: number;
   activiteFormation: ActiviteFormation = new ActiviteFormation();
   public instructionsByAct: Instruction[] = [];
+  public seanceSimulateur = new SeanceSimulateur();
 
 
   async ngOnInit() {
@@ -58,8 +60,15 @@ export class AfficherSimulateurComponent implements OnInit {
   showDetailSyllabus(idSyllabus: number) {
     this.router.navigateByUrl('/syllabus/show/' + idSyllabus);
   }
-  showValidationInstructeurSimulateur(idSeanceSimulateur: number) {
-    this.router.navigateByUrl('/simulator/validate/instructor/' + idSeanceSimulateur);
+  async showValidationInstructeurSimulateur(idSeanceSimulateur: number) {
+
+    this.seanceSimulateur = await this.simulateurService.afficherDetailSeanceSimulateurAsync(idSeanceSimulateur);
+
+    if (this.seanceSimulateur.validationInstructeur === 0) {
+      this.router.navigateByUrl('/simulator/validate/instructor/' + idSeanceSimulateur);
+    } else {
+      this.router.navigateByUrl('/simulator/show/validate/instructor/' + idSeanceSimulateur);
+    }
   }
 
 }

@@ -6,6 +6,7 @@ import {SeanceSimulateur} from '../../models/seanceSimulateur';
 import {SimulateurService} from '../../services/activiteFormation/simulateur.service';
 import {Note} from '../../models/note';
 import {Level} from '../../models/level';
+import {ActiviteFormation} from "../../models/activiteFormation";
 
 @Component({
   selector: 'app-validation-instructeur-simulateur',
@@ -20,6 +21,8 @@ export class ValidationInstructeurSimulateurComponent implements OnInit {
   seanceSimulateur: SeanceSimulateur = new SeanceSimulateur();
   public notes: Note[] = [];
   public levels: Level[] = [];
+  public simulateur: ActiviteFormation = new ActiviteFormation();
+
   public test: string;
   constructor(private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -31,6 +34,10 @@ export class ValidationInstructeurSimulateurComponent implements OnInit {
     this.simulateurService.afficherNotesBySeanceSimulateur(this.idSeanceSimulateur).then( note => {
       this.notes = note;
       console.log(note); });
+
+
+    this.simulateur = await this.simulateurService.getSimulateurBySeanceSimulateur(this.idSeanceSimulateur);
+    console.log(this.simulateur);
 
    /* this.simulateurService.afficherLevelsBySeanceSimulateur(this.idSeanceSimulateur).then( level => {
       this.levels = level;
@@ -101,7 +108,9 @@ export class ValidationInstructeurSimulateurComponent implements OnInit {
     this.notes.map(note => {console.log(note.note); note.competence.notes = [];
                             console.log(this.test); this.simulateurService.ajouterNoteAsync(note, note.seanceSimulateur.id, note.competence.id);
                                });
+    this.seanceSimulateur.simulateur = this.simulateur;
+
     this.simulateurService.validerSimulateurInstructor(this.idSeanceSimulateur, this.seanceSimulateur);
-  this.router.navigateByUrl('/simulator/all');
+    this.router.navigateByUrl('/simulator/show/validate/instructor/' + this.idSeanceSimulateur);
   }
 }

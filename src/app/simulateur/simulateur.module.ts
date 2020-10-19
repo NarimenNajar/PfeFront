@@ -19,10 +19,12 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {FormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
+import { AfficherSyllabusValideInstructorComponent } from './afficher-syllabus-valide-instructor/afficher-syllabus-valide-instructor.component';
+import { AfficherSyllabusValideTraineeComponent } from './afficher-syllabus-valide-trainee/afficher-syllabus-valide-trainee.component';
 
 
 @NgModule({
-  declarations: [ListeSimulateursComponent, AjouterSimulateurComponent, AfficherSimulateurComponent, ModifierSimulateurComponent, AjouterInstructionSimulateurComponent, ValidationInstructeurSimulateurComponent, ValidationTraineeSimulateurComponent],
+  declarations: [ListeSimulateursComponent, AjouterSimulateurComponent, AfficherSimulateurComponent, ModifierSimulateurComponent, AjouterInstructionSimulateurComponent, ValidationInstructeurSimulateurComponent, ValidationTraineeSimulateurComponent, AfficherSyllabusValideInstructorComponent, AfficherSyllabusValideTraineeComponent],
   imports: [
     CommonModule,
     SimulateurRoutingModule,

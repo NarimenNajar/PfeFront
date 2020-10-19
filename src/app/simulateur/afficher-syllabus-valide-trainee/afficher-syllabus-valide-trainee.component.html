@@ -110,7 +110,7 @@
   <div >
     <div align="center">
 
-      <h1>Simulator Session Validation - Trainee </h1></div> <br><br>
+      <h1>Simulator Session Final Syllabus </h1></div> <br><br>
     <div> <table style="width:100%">
       <tr>
         <td style="text-align: center">
@@ -268,20 +268,12 @@
         <th style="background-color: #ffcc33; width: 50%;text-align: center" >Trainee Validation</th>
         <th style="background-color: #ffcc33; width: 50%;text-align: center" >Instructor Validation</th>
         <tr>
-          <td style="height: 100px"></td>
+          <td style="height: 100px">{{userT.nom}} {{userT.prenom}} <br> {{userT.codePN}} <br> <i *ngIf="seanceSimulateur.validationInstructeur === 1" class="far fa-window-close"></i><i *ngIf="seanceSimulateur.validationInstructeur === 2" class="far fa-check-circle"></i></td>
           <td style="height: 100px">{{user.nom}} {{user.prenom}} <br> {{user.codePN}}</td>
         </tr>
       </table>
     </div>
 
-    <div class="btn-block">
-      <button type="submit" (click)="valider()"><i class="far fa-check-circle"></i>Accept</button>
-    </div> <br>
-
-    <div class="btn-block">
-      <button type="submit" (click)="reclamer()" ><i class="far fa-window-close"></i>
-        Refuse and Claim </button>
-    </div>
 
   </div>
 </form>

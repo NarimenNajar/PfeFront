@@ -3,19 +3,19 @@ import {Syllabus} from '../../models/syllabus';
 import {SeanceSimulateur} from '../../models/seanceSimulateur';
 import {Note} from '../../models/note';
 import {Level} from '../../models/level';
-import {Utilisateur} from '../../models/utilisateur';
-import {ActiviteFormation} from '../../models/activiteFormation';
-import {Instruction} from '../../models/Instruction';
 import {SyllabusService} from '../../services/syllabus/syllabus.service';
 import {SimulateurService} from '../../services/activiteFormation/simulateur.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Utilisateur} from '../../models/utilisateur';
+import {ActiviteFormation} from '../../models/activiteFormation';
+import {Instruction} from '../../models/Instruction';
 
 @Component({
-  selector: 'app-validation-trainee-simulateur',
-  templateUrl: './validation-trainee-simulateur.component.html',
-  styleUrls: ['./validation-trainee-simulateur.component.css']
+  selector: 'app-afficher-syllabus-valide-instructor',
+  templateUrl: './afficher-syllabus-valide-instructor.component.html',
+  styleUrls: ['./afficher-syllabus-valide-instructor.component.css']
 })
-export class ValidationTraineeSimulateurComponent implements OnInit {
+export class AfficherSyllabusValideInstructorComponent implements OnInit {
 
   public idSyllabus: number;
   syllabus: Syllabus = new Syllabus();
@@ -27,10 +27,8 @@ export class ValidationTraineeSimulateurComponent implements OnInit {
   public lev: string;
   public no: number;
   public user: Utilisateur = new Utilisateur();
-  public userT: Utilisateur = new Utilisateur();
   public simulateur: ActiviteFormation = new ActiviteFormation();
   public instruction: Instruction = new Instruction();
-  public instructionT: Instruction = new Instruction();
 
   constructor(private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -58,14 +56,11 @@ export class ValidationTraineeSimulateurComponent implements OnInit {
     this.simulateur = await this.simulateurService.getSimulateurBySeanceSimulateur(this.idSeanceSimulateur);
     console.log(this.simulateur);
     this.instruction = await this.simulateurService.afficherSimulateurInstructor(this.simulateur.id);
+    console.log(this.simulateur.id);
 
+    console.log(this.instruction.id);
     this.user = this.instruction.utilisateur;
     console.log(this.user.id);
-
-    this.instructionT = await this.simulateurService.afficherSimulateurTrainee(this.simulateur.id);
-
-    this.userT = this.instructionT.utilisateur;
-    console.log(this.userT.id);
   }
 
   getRadioValue(seanceSimulateurId, tacheId) {
@@ -74,7 +69,7 @@ export class ValidationTraineeSimulateurComponent implements OnInit {
     if (this.levels.find(level => level.tache.id === tacheId) !== undefined) {
       return  this.lev = this.levels.find(level => level.tache.id === tacheId).level;
     } else {
-      return 'x'; }
+                  return 'x'; }
   }
 
 
@@ -85,19 +80,13 @@ export class ValidationTraineeSimulateurComponent implements OnInit {
       return 10000; }
   }
 
-  valider() {
-    this.seanceSimulateur.simulateur = this.simulateur;
-    this.simulateurService.validerSimulateurTrainee(this.idSeanceSimulateur, this.seanceSimulateur);
-    this.router.navigateByUrl('/simulator/show/validate/trainee/' + this.idSeanceSimulateur);
-
+  goToValidateTrainee(idSeanceSimulateur) {
+    if (this.seanceSimulateur.validationTrainee === 0) {
+      this.router.navigateByUrl('/simulator/validate/trainee/' + idSeanceSimulateur);
+    } else {
+      this.router.navigateByUrl('/simulator/show/validate/trainee/' + idSeanceSimulateur);
+    }
   }
-  reclamer() {
-    this.seanceSimulateur.simulateur = this.simulateur;
-    this.simulateurService.reclamerSimulateurTrainee(this.idSeanceSimulateur, this.seanceSimulateur);
-    this.router.navigateByUrl('/simulator/show/validate/trainee/' + this.idSeanceSimulateur);
-
-  }
-
 
 
 }

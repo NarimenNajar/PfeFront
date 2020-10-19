@@ -76,4 +76,20 @@ export class SimulateurService {
     return await this.http.put<SeanceSimulateur>(`${this.baseUrl1}` + `/validation/instructor/` + idSeanceSimulateur , seanceSimulateur).toPromise();
   }
 
+  async afficherSimulateurInstructor(idActiviteFormation: number) {
+    return await this.http.get<Instruction>(`${this.baseUrl1}` + `/instructor/` + idActiviteFormation).toPromise();
+  }
+  async afficherSimulateurTrainee(idActiviteFormation: number) {
+    return await this.http.get<Instruction>(`${this.baseUrl1}` + `/trainee/` + idActiviteFormation).toPromise();
+  }
+
+  async getSimulateurBySeanceSimulateur(idSeanceSimulateur: number) {
+    return await this.http.get<ActiviteFormation>(`${this.baseUrl1}` + `/seance/simulateur/` + idSeanceSimulateur).toPromise();
+  }
+  async validerSimulateurTrainee(idSeanceSimulateur: number, seanceSimulateur: SeanceSimulateur) {
+    return await this.http.put<SeanceSimulateur>(`${this.baseUrl1}` + `/validation/trainee/` + idSeanceSimulateur , seanceSimulateur).toPromise();
+  }
+  async reclamerSimulateurTrainee(idSeanceSimulateur: number, seanceSimulateur: SeanceSimulateur) {
+    return await this.http.put<SeanceSimulateur>(`${this.baseUrl1}` + `/reclamer/trainee/` + idSeanceSimulateur , seanceSimulateur).toPromise();
+  }
 }

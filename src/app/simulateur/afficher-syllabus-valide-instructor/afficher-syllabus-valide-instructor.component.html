@@ -108,9 +108,14 @@
 
 <form action="/">
   <div >
+    <div class="btn-block">
+      <button type="submit" (click)="goToValidateTrainee(idSeanceSimulateur)" > Trainee Validation</button>
+    </div>
+    <br>
+    <br>
     <div align="center">
 
-      <h1>Simulator Session Validation - Trainee </h1></div> <br><br>
+      <h1>Simulator Session Validation - Instructor</h1></div> <br><br>
     <div> <table style="width:100%">
       <tr>
         <td style="text-align: center">
@@ -274,14 +279,6 @@
       </table>
     </div>
 
-    <div class="btn-block">
-      <button type="submit" (click)="valider()"><i class="far fa-check-circle"></i>Accept</button>
-    </div> <br>
-
-    <div class="btn-block">
-      <button type="submit" (click)="reclamer()" ><i class="far fa-window-close"></i>
-        Refuse and Claim </button>
-    </div>
 
   </div>
 </form>
