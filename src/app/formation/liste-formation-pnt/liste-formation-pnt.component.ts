@@ -9,6 +9,7 @@ import {PopulationService} from '../../services/parametrage/population.service';
 import {TypeFormationService} from '../../services/parametrage/type-formation.service';
 import {NatureFormationService} from '../../services/parametrage/nature-formation.service';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-formation-pnt',
@@ -22,8 +23,12 @@ export class ListeFormationPNTComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private formationService: FormationService, private router: Router, private populationService: PopulationService, private typeFormationService: TypeFormationService, private natureFormationService: NatureFormationService) { }
+  token: string;
+  userConnected: Utilisateur;
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.formationService.afficherFormationPNT().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

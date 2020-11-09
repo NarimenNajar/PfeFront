@@ -12,8 +12,13 @@ export class AfficherUtilisateurComponent implements OnInit {
   private idUtilisateur: number;
   utilisateur: Utilisateur = new Utilisateur();
   constructor(private listeUtilisateursService: ListeUtilisateursService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  token: string;
+  userConnected: Utilisateur;
+
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idUtilisateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     // await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus).then((syllabus) => console.log(syllabus));

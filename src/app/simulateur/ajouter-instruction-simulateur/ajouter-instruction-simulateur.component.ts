@@ -17,9 +17,14 @@ export class AjouterInstructionSimulateurComponent implements OnInit {
   public instruction: Instruction = null;
   public utilisateurs: Utilisateur[] = [];
   public idUtilisateur: number;
+  token: string;
+  userConnected: Utilisateur;
+
 
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
 
     this.idActiviteFormation = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));

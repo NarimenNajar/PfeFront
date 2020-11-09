@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FonctionnaliteService} from '../../../services/parametrage/fonctionnalite.service';
 import {Fonctionnalite} from '../../../models/fonctionnalite';
 import {Role} from '../../../models/role';
+import {Utilisateur} from "../../../models/utilisateur";
 
 @Component({
   selector: 'app-modifier-role',
@@ -16,9 +17,13 @@ export class ModifierRoleComponent implements OnInit {
   public fonctionnalites: Fonctionnalite[] = [];
   public role: Role = null;
   private idRole: number;
+  token: string;
+  userConnected: Utilisateur;
 
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
 
     this.fonctionnaliteService.afficherFonctionnalitesAsync().then(fcts => {
       this.fonctionnalites = fcts;

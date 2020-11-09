@@ -1,3 +1,6 @@
+import {Role} from './role';
+import {Categorie} from './categorie';
+
 export class Utilisateur {
   id: number;
   nom: string;
@@ -14,7 +17,12 @@ export class Utilisateur {
   email: string;
   sexe: string;
   numeroTel: string;
-
+  enabled: boolean;
+  lastLogin: string;
+  confirmation: string;
+  confirmationToken: string;
+  role: Role;
+  categorie: Categorie;
 
 
 

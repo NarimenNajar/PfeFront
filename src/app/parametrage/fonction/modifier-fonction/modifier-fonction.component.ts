@@ -20,8 +20,12 @@ export class ModifierFonctionComponent implements OnInit {
   public typeFonction: TypeFonction[] = [];
   public utilisateurs: Utilisateur[] = [];
   constructor(private fonctionService: FonctionService, private typeFonctionService: TypeFonctionService, private listeUtilisateursService: ListeUtilisateursService, private router: Router, private activatedRoute: ActivatedRoute ) { }
+  token: string;
+  userConnected: Utilisateur;
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.typeFonctionService.afficherTypeFonctionsAsync().then(type => {
       this.typeFonction = type;
       console.log(type); });

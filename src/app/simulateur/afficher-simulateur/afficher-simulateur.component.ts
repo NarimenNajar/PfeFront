@@ -11,6 +11,7 @@ import {ActiviteFormation} from '../../models/activiteFormation';
 import {Instruction} from '../../models/Instruction';
 import {FormationService} from '../../services/activiteFormation/formation.service';
 import {SeanceSimulateur} from '../../models/seanceSimulateur';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-afficher-simulateur',
@@ -24,9 +25,14 @@ export class AfficherSimulateurComponent implements OnInit {
   activiteFormation: ActiviteFormation = new ActiviteFormation();
   public instructionsByAct: Instruction[] = [];
   public seanceSimulateur = new SeanceSimulateur();
+  token: string;
+  userConnected: Utilisateur;
+
 
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idSimulateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idSimulateur);

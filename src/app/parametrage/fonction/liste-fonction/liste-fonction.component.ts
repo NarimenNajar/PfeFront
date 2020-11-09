@@ -7,6 +7,7 @@ import {Fonction} from '../../../models/fonction';
 import {FonctionService} from '../../../services/parametrage/fonction.service';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-fonction',
@@ -18,10 +19,14 @@ export class ListeFonctionComponent implements OnInit {
   public dataSource: MatTableDataSource<Fonction>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  token: string;
+  userConnected: Utilisateur;
 
   constructor(private fonctionService: FonctionService, private router: Router) { }
 
   async ngOnInit()  {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.fonctionService.afficherFonction().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

@@ -9,7 +9,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgSelectModule} from '@ng-select/ng-select';
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatNativeDateModule} from '@angular/material/core';
+import { ChartsModule } from 'ng2-charts';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatSortModule,
     BrowserAnimationsModule,
     NgSelectModule,
+    ChartsModule,
+    FlashMessagesModule.forRoot(),
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
 
   ],

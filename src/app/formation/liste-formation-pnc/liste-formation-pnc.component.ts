@@ -9,6 +9,7 @@ import {PopulationService} from '../../services/parametrage/population.service';
 import {TypeFormationService} from '../../services/parametrage/type-formation.service';
 import {NatureFormationService} from '../../services/parametrage/nature-formation.service';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-formation-pnc',
@@ -21,9 +22,14 @@ export class ListeFormationPNCComponent implements OnInit {
   public dataSource: MatTableDataSource<ActiviteFormation>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  token: string;
+  userConnected: Utilisateur;
+
   constructor(private formationService: FormationService, private router: Router, private populationService: PopulationService, private typeFormationService: TypeFormationService, private natureFormationService: NatureFormationService) { }
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.formationService.afficherFormationPNC().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

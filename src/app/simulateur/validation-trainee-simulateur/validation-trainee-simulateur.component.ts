@@ -31,10 +31,15 @@ export class ValidationTraineeSimulateurComponent implements OnInit {
   public simulateur: ActiviteFormation = new ActiviteFormation();
   public instruction: Instruction = new Instruction();
   public instructionT: Instruction = new Instruction();
+  token: string;
+  userConnected: Utilisateur;
+
 
   constructor(private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idSeanceSimulateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idSeanceSimulateur);

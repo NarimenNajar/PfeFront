@@ -31,8 +31,12 @@ export class AjouterFormationComponent implements OnInit {
   public seanceFormations: SeanceFormation[] = [];
   public utilisateurs: Utilisateur[] = [];
   public instruction: Instruction = null;
+  token: string;
+  userConnected: Utilisateur;
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.activiteFormation = new ActiviteFormation();
 
     this.populationService.afficherPopulationAsync().then( population => {

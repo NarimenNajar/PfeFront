@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {Categorie} from '../../../models/categorie';
 import Swal from 'sweetalert2';
+import {Utilisateur} from '../../../models/utilisateur';
 
 
 @Component({
@@ -18,11 +19,19 @@ export class ListeCategoriesComponent implements OnInit {
   public dataSource: MatTableDataSource<Categorie>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  token: string;
+  userConnected: Utilisateur;
 
   constructor(private categorieService: CategorieService, private router: Router) { }
 
  async ngOnInit()  {
-    this.categorieService.afficherCategorie().subscribe(data => {
+   this.token = localStorage.getItem('id_token');
+   this.userConnected = JSON.parse(localStorage.getItem('user'));
+   console.log('User connected is :');
+   console.log(this.userConnected);
+   console.log(this.userConnected.id);
+
+   this.categorieService.afficherCategorie().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

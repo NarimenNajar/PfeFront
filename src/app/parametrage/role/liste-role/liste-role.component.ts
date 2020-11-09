@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {Role} from '../../../models/role';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-role',
@@ -18,10 +19,14 @@ export class ListeRoleComponent implements OnInit {
   public dataSource: MatTableDataSource<Role>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  token: string;
+  userConnected: Utilisateur;
 
   constructor(private roleService: RoleService, private router: Router) { }
 
   async ngOnInit()  {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.roleService.afficherRole().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

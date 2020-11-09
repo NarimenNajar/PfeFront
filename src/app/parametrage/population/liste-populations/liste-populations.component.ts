@@ -7,6 +7,7 @@ import {PopulationService} from '../../../services/parametrage/population.servic
 import {Router} from '@angular/router';
 import {Population} from '../../../models/population';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../../models/utilisateur";
 
 
 @Component({
@@ -20,8 +21,12 @@ export class ListePopulationsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private populationService: PopulationService, private router: Router) { }
+  token: string;
+  userConnected: Utilisateur;
 
- async ngOnInit() {
+  async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
    this.populationService.afficherPopulation().subscribe(data => {
      this.dataSource = new MatTableDataSource(data);
      this.dataSource.paginator = this.paginator;

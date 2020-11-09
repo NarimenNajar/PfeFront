@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {ParametrageEcheance} from '../../../models/parametrageEcheance';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-parametrage-echeance',
@@ -17,10 +18,14 @@ export class ListeParametrageEcheanceComponent implements OnInit {
   public dataSource: MatTableDataSource<ParametrageEcheance>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  token: string;
+  userConnected: Utilisateur;
 
   constructor(private parametrageEcheanceService: ParametrageEcheanceService, private router: Router) { }
 
   async ngOnInit()  {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.parametrageEcheanceService.afficherParametrageEcheance().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

@@ -24,8 +24,13 @@ export class ListeUtilisateursComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor( private listeUtilisateursService: ListeUtilisateursService,  private router: Router, private syllabusService: SyllabusService) { }
+  token: string;
+  userConnected: Utilisateur;
+
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
    /* this.listeUtilisateursService.afficherUtilisateurs().subscribe(data => {
     console.log(data);
     this.ListUsers = data;

@@ -8,6 +8,7 @@ import {Competence} from '../../models/competence';
 import {Partie} from '../../models/partie';
 import {Detail} from '../../models/detail';
 import {Tache} from '../../models/tache';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-modifier-syllabus',
@@ -19,9 +20,14 @@ export class ModifierSyllabusComponent implements OnInit {
   constructor( private syllabusService: SyllabusService, private router: Router , private activatedRoute: ActivatedRoute) { }
   syllabus: Syllabus = new Syllabus();
   private idSyllabus: number;
+  token: string;
+  userConnected: Utilisateur;
+
 
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idSyllabus = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     this.syllabus = await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus);

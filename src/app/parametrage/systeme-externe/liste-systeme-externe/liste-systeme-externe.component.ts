@@ -8,6 +8,7 @@ import {MatSort} from '@angular/material/sort';
 import {SystemeExterne} from '../../../models/systemeExterne';
 import {SystemeExterneService} from '../../../services/parametrage/systeme-externe.service';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-systeme-externe',
@@ -22,8 +23,12 @@ export class ListeSystemeExterneComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private systemeExterneService: SystemeExterneService, private router: Router) { }
+  token: string;
+  userConnected: Utilisateur;
 
   async ngOnInit()  {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.systemeExterneService.afficherSystemeExterne().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

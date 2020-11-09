@@ -8,6 +8,7 @@ import {Partie} from '../../models/partie';
 import {Detail} from '../../models/detail';
 import {Tache} from '../../models/tache';
 import {Router} from '@angular/router';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-creer-syllabus',
@@ -18,8 +19,13 @@ export class CreerSyllabusComponent implements OnInit {
 
   constructor(private syllabusService: SyllabusService, private router: Router) { }
   public syllabus: Syllabus = null;
+  token: string;
+  userConnected: Utilisateur;
+
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
   this.syllabus = new Syllabus();
   }
 

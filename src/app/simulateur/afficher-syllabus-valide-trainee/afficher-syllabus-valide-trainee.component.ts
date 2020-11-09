@@ -9,7 +9,8 @@ import {Instruction} from '../../models/Instruction';
 import {SyllabusService} from '../../services/syllabus/syllabus.service';
 import {SimulateurService} from '../../services/activiteFormation/simulateur.service';
 import {ActivatedRoute, Router} from '@angular/router';
-
+import {PdfService} from '../../services/pdf.service';
+declare let pdfMake: any ;
 @Component({
   selector: 'app-afficher-syllabus-valide-trainee',
   templateUrl: './afficher-syllabus-valide-trainee.component.html',
@@ -31,10 +32,15 @@ export class AfficherSyllabusValideTraineeComponent implements OnInit {
   public simulateur: ActiviteFormation = new ActiviteFormation();
   public instruction: Instruction = new Instruction();
   public instructionT: Instruction = new Instruction();
+  token: string;
+  userConnected: Utilisateur;
 
-  constructor(private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) { }
+
+  constructor(private pdfService: PdfService, private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idSeanceSimulateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idSeanceSimulateur);
@@ -65,6 +71,9 @@ export class AfficherSyllabusValideTraineeComponent implements OnInit {
 
     this.userT = this.instructionT.utilisateur;
     console.log(this.userT.id);
+    console.log('Loading External Scripts');
+    this.pdfService.load('pdfMake', 'vfsFonts');
+
   }
 
   getRadioValue(seanceSimulateurId, tacheId) {
@@ -83,6 +92,53 @@ export class AfficherSyllabusValideTraineeComponent implements OnInit {
     } else {
       return 10000; }
   }
+  generatePdf() {
+    console.log(pdfMake);
+    const documentDefinition = this.getDocumentDefinition();
+    pdfMake.createPdf(documentDefinition).open();
 
+  }
+  getDocumentDefinition() {
+    sessionStorage.setItem('syllabus', JSON.stringify(this.syllabus));
+    sessionStorage.setItem('simulateur', JSON.stringify(this.simulateur));
+    sessionStorage.setItem('seanceSimulateur', JSON.stringify(this.seanceSimulateur));
+    sessionStorage.setItem('instruction', JSON.stringify(this.instruction));
+    sessionStorage.setItem('instructionT', JSON.stringify(this.instructionT));
+    return {
+      content: [
+        {
+          text: 'SIMULATOR SESSION FINAL SYLLABUS',
+          bold: true,
+          fontSize: 20,
+          alignment: 'center',
+          margin: [0, 0, 0, 20],
+          color:  '#3669e0'
+        },
+        {
+          columns: [
+            [{
+              text: 'Logo Nouvelair',
+              style: 'name'
+            },
+              {
+                text: this.syllabus.level
+              },
+              {
+                text: this.syllabus.years,
+              }
+            ]
+          ]
+        },
+        {
+          style: 'tableExample',
+          table: {
+            body: [
+              [{text: 'Logo Nouvelair'}, {text: this.syllabus.level} , {text: this.syllabus.years}]
+            ]
+          }
+        },
+        ]
+    };
+  }
 
 }

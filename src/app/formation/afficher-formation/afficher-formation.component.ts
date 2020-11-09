@@ -7,6 +7,7 @@ import {NatureFormationService} from '../../services/parametrage/nature-formatio
 import {ListeUtilisateursService} from '../../services/utilisateur/liste-utilisateurs.service';
 import {ActiviteFormation} from '../../models/activiteFormation';
 import {Instruction} from '../../models/Instruction';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-afficher-formation',
@@ -19,9 +20,12 @@ export class AfficherFormationComponent implements OnInit {
   private idFormation: number;
   activiteFormation: ActiviteFormation = new ActiviteFormation();
   public instructionsByAct: Instruction[] = [];
-
+  token: string;
+  userConnected: Utilisateur;
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idFormation = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idFormation);

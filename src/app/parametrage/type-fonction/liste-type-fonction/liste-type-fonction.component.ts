@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {TypeFonction} from '../../../models/typeFonction';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-type-fonction',
@@ -19,8 +20,12 @@ export class ListeTypeFonctionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private typeFonctionService: TypeFonctionService, private router: Router) { }
+  token: string;
+  userConnected: Utilisateur;
 
   async ngOnInit()  {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.typeFonctionService.afficherTypeFonction().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

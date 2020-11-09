@@ -23,22 +23,25 @@ import { ListeInstructionsArchiveComponent } from './liste-instructions-archive/
 import { ListeFonctionsAllComponent } from './liste-fonctions-all/liste-fonctions-all.component';
 import { ListeFonctionsCurrentComponent } from './liste-fonctions-current/liste-fonctions-current.component';
 import { ListeFonctionsArchiveComponent } from './liste-fonctions-archive/liste-fonctions-archive.component';
+import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
-  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent, ListeFonctionsAllComponent, ListeFonctionsCurrentComponent, ListeFonctionsArchiveComponent],
-  imports: [
-    CommonModule,
-    UtilisateurRoutingModule,
-    FormsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatSortModule
-  ]
+  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent, ListeFonctionsAllComponent, ListeFonctionsCurrentComponent, ListeFonctionsArchiveComponent, AjouterUtilisateurComponent],
+    imports: [
+        CommonModule,
+        UtilisateurRoutingModule,
+        FormsModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatSortModule,
+        NgSelectModule
+    ]
 })
 export class UtilisateurModule { }

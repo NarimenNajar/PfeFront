@@ -7,6 +7,7 @@ import {SimulateurService} from '../../services/activiteFormation/simulateur.ser
 import {Note} from '../../models/note';
 import {Level} from '../../models/level';
 import {ActiviteFormation} from "../../models/activiteFormation";
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-validation-instructeur-simulateur',
@@ -25,8 +26,13 @@ export class ValidationInstructeurSimulateurComponent implements OnInit {
 
   public test: string;
   constructor(private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  token: string;
+  userConnected: Utilisateur;
+
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idSeanceSimulateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idSeanceSimulateur);

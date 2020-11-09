@@ -10,6 +10,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {ActiviteFormation} from '../../models/activiteFormation';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-formations',
@@ -23,8 +24,12 @@ export class ListeFormationsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private formationService: FormationService, private router: Router, private populationService: PopulationService, private typeFormationService: TypeFormationService, private natureFormationService: NatureFormationService) { }
+  token: string;
+  userConnected: Utilisateur;
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.formationService.afficherFormation().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

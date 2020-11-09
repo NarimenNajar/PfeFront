@@ -8,10 +8,12 @@ import {ListeUtilisateursComponent} from './liste-utilisateurs/liste-utilisateur
 import {ListeInstructionsAllComponent} from './liste-instructions-all/liste-instructions-all.component';
 import {ListeInstructionsInstructorComponent} from './liste-instructions-instructor/liste-instructions-instructor.component';
 import {ListeInstructionsTraineeComponent} from './liste-instructions-trainee/liste-instructions-trainee.component';
-import {ListeInstructionsArchiveComponent} from "./liste-instructions-archive/liste-instructions-archive.component";
-import {ListeFonctionsAllComponent} from "./liste-fonctions-all/liste-fonctions-all.component";
-import {ListeFonctionsArchiveComponent} from "./liste-fonctions-archive/liste-fonctions-archive.component";
-import {ListeFonctionsCurrentComponent} from "./liste-fonctions-current/liste-fonctions-current.component";
+import {ListeInstructionsArchiveComponent} from './liste-instructions-archive/liste-instructions-archive.component';
+import {ListeFonctionsAllComponent} from './liste-fonctions-all/liste-fonctions-all.component';
+import {ListeFonctionsArchiveComponent} from './liste-fonctions-archive/liste-fonctions-archive.component';
+import {ListeFonctionsCurrentComponent} from './liste-fonctions-current/liste-fonctions-current.component';
+import {AjouterFormationComponent} from '../formation/ajouter-formation/ajouter-formation.component';
+import {AjouterUtilisateurComponent} from './ajouter-utilisateur/ajouter-utilisateur.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'my',
     pathMatch: 'full'
+  },
+  {
+    path: 'add',
+    component: AjouterUtilisateurComponent
   },
   {
     path: 'show/:id',

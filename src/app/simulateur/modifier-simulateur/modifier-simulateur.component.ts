@@ -40,11 +40,16 @@ export class ModifierSimulateurComponent implements OnInit {
   public instructions: Instruction[] = [];
   public idFormation: number;
 
+  token: string;
+  userConnected: Utilisateur;
+
 
 
 
   async ngOnInit() {
 
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idFormation = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idFormation);

@@ -10,6 +10,7 @@ import {TypeFormationService} from '../../services/parametrage/type-formation.se
 import {NatureFormationService} from '../../services/parametrage/nature-formation.service';
 import Swal from 'sweetalert2';
 import {SimulateurService} from '../../services/activiteFormation/simulateur.service';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-simulateurs',
@@ -23,8 +24,13 @@ export class ListeSimulateursComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private simulateurService: SimulateurService, private router: Router, private populationService: PopulationService, private typeFormationService: TypeFormationService, private natureFormationService: NatureFormationService) { }
+  token: string;
+  userConnected: Utilisateur;
+
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.simulateurService.afficherSimulateur().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

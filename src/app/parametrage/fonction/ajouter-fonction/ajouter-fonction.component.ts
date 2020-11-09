@@ -18,9 +18,13 @@ export class AjouterFonctionComponent implements OnInit {
   public fonction: Fonction = null;
   public typeFonction: TypeFonction[] = [];
   public utilisateurs: Utilisateur[] = [];
+  token: string;
+  userConnected: Utilisateur;
 
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.fonction = new Fonction();
     this.typeFonctionService.afficherTypeFonctionsAsync().then(type => {
       this.typeFonction = type;

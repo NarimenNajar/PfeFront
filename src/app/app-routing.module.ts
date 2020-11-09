@@ -80,6 +80,10 @@ const routes: Routes = [
     loadChildren: () => import('./app.module').then(m => m.AppModule)
   },
   {
+    path: 'charts',
+    loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule)
+  },
+  {
     path: '',
     redirectTo: 'authentication',
     pathMatch: 'full'

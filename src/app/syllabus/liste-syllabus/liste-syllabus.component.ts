@@ -6,6 +6,7 @@ import {Syllabus} from '../../models/syllabus';
 import {SyllabusService} from '../../services/syllabus/syllabus.service';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-syllabus',
@@ -17,6 +18,9 @@ export class ListeSyllabusComponent implements OnInit {
   public dataSource: MatTableDataSource<Syllabus>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  token: string;
+  userConnected: Utilisateur;
+
 
 
   constructor(private syllabusService: SyllabusService, private router: Router) {
@@ -24,6 +28,8 @@ export class ListeSyllabusComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.syllabusService.afficherSyllabus().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

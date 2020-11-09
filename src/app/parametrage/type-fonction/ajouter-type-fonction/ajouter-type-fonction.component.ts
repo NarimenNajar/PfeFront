@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TypeFonctionService} from '../../../services/parametrage/type-fonction.service';
 import {Router} from '@angular/router';
 import {TypeFonction} from '../../../models/typeFonction';
+import {Utilisateur} from "../../../models/utilisateur";
 
 @Component({
   selector: 'app-ajouter-type-fonction',
@@ -12,8 +13,12 @@ export class AjouterTypeFonctionComponent implements OnInit {
 
   constructor(private typeFonctionService: TypeFonctionService, private router: Router) { }
   public typeFonction: TypeFonction = null;
+  token: string;
+  userConnected: Utilisateur;
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.typeFonction = new TypeFonction();
   }
   async CreerTypeFonction() {

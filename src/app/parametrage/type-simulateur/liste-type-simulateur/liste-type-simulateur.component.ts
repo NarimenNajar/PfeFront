@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {TypeSimulateur} from '../../../models/typeSimulateur';
 import {TypeSimulateurService} from '../../../services/parametrage/type-simulateur.service';
+import {Utilisateur} from "../../../models/utilisateur";
 
 @Component({
   selector: 'app-liste-type-simulateur',
@@ -19,8 +20,12 @@ export class ListeTypeSimulateurComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private typeSimulateurService: TypeSimulateurService, private router: Router) { }
+  token: string;
+  userConnected: Utilisateur;
 
   async ngOnInit()  {
+    this.token = localStorage.getItem('id_token');
+    this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.typeSimulateurService.afficherTypeSimulateur().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

@@ -5,6 +5,7 @@ import {Instruction} from "../../models/Instruction";
 import {SeanceSimulateur} from "../../models/seanceSimulateur";
 import {Note} from "../../models/note";
 import {Level} from "../../models/level";
+import {Reclamation} from "../../models/reclamation";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class SimulateurService {
 
   private baseUrl1 = 'http://localhost:9080/BackFormationPN-web/rest/activiteFormation/simulateur';
   private baseUrl2 = 'http://localhost:9080/BackFormationPN-web/rest/activiteFormation/formation';
+  private baseUrl3 = 'http://localhost:9080/BackFormationPN-web/rest/activiteFormation/reclamation';
   constructor(private http: HttpClient) {
     const headers = new Headers({ 'Content-Type': ' application/json'});
   }
@@ -91,5 +93,23 @@ export class SimulateurService {
   }
   async reclamerSimulateurTrainee(idSeanceSimulateur: number, seanceSimulateur: SeanceSimulateur) {
     return await this.http.put<SeanceSimulateur>(`${this.baseUrl1}` + `/reclamer/trainee/` + idSeanceSimulateur , seanceSimulateur).toPromise();
+  }
+  async afficherReclamationsAsync() {
+    return await this.http.get<Reclamation[]>(`${this.baseUrl3}` + `/all`).toPromise();
+  }
+  afficherReclamations() {
+    return  this.http.get<Reclamation[]>(`${this.baseUrl3}` + `/all`);
+  }
+  async afficherReclamationsNonTraiteeAsync() {
+    return await this.http.get<Reclamation[]>(`${this.baseUrl3}` + `/nonTraitee`).toPromise();
+  }
+  afficherReclamationsNonTraitee() {
+    return  this.http.get<Reclamation[]>(`${this.baseUrl3}` + `/nonTraitee`);
+  }
+  async afficherReclamationsTraiteeAsync() {
+    return await this.http.get<Reclamation[]>(`${this.baseUrl3}` + `/traitee`).toPromise();
+  }
+  afficherReclamationsTraitee() {
+    return  this.http.get<Reclamation[]>(`${this.baseUrl3}` + `/traitee`);
   }
 }
