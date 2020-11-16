@@ -30,10 +30,13 @@ import { ListeMyAlerteEcheanceInstructionComponent } from './liste-my-alerte-ech
 import { ListeMyAlerteFinToleranceEcheanceInstructionComponent } from './liste-my-alerte-fin-tolerance-echeance-instruction/liste-my-alerte-fin-tolerance-echeance-instruction.component';
 import { ListeAllAlerteFinToleranceEcheanceInstructionComponent } from './liste-all-alerte-fin-tolerance-echeance-instruction/liste-all-alerte-fin-tolerance-echeance-instruction.component';
 import {_MatMenuDirectivesModule, MatMenuModule} from "@angular/material/menu";
+import { ListeMyInstructionsTodayAllComponent } from './liste-my-instructions-today-all/liste-my-instructions-today-all.component';
+import { ListeMyInstructionsTodayInstructorComponent } from './liste-my-instructions-today-instructor/liste-my-instructions-today-instructor.component';
+import { ListeMyInstructionsTodayTraineeComponent } from './liste-my-instructions-today-trainee/liste-my-instructions-today-trainee.component';
 
 
 @NgModule({
-  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent, ListeFonctionsAllComponent, ListeFonctionsCurrentComponent, ListeFonctionsArchiveComponent, AjouterUtilisateurComponent, ListeAllAlerteEcheanceInstructionComponent, ListeMyAlerteEcheanceInstructionComponent, ListeMyAlerteFinToleranceEcheanceInstructionComponent, ListeAllAlerteFinToleranceEcheanceInstructionComponent],
+  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent, ListeFonctionsAllComponent, ListeFonctionsCurrentComponent, ListeFonctionsArchiveComponent, AjouterUtilisateurComponent, ListeAllAlerteEcheanceInstructionComponent, ListeMyAlerteEcheanceInstructionComponent, ListeMyAlerteFinToleranceEcheanceInstructionComponent, ListeAllAlerteFinToleranceEcheanceInstructionComponent, ListeMyInstructionsTodayAllComponent, ListeMyInstructionsTodayInstructorComponent, ListeMyInstructionsTodayTraineeComponent],
   imports: [
     CommonModule,
     UtilisateurRoutingModule,

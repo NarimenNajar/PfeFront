@@ -83,4 +83,23 @@ export class ListeUtilisateursService {
   async afficherAllAlerteFinTolerEcheanceInstructionsAsync() {
     return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteFinTolerEcheance/all`).toPromise();
   }
+
+  afficherMyAlerteInstructionsTodayTrainee(idUtilisateur: number): Observable<Instruction[]> {
+    return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/today/trainee/` + idUtilisateur);
+  }
+  async afficherMyAlerteInstructionsTodayTraineeAsync(idUtilisateur: number) {
+    return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/today/trainee/` + idUtilisateur).toPromise();
+  }
+  afficherMyAlerteInstructionsTodayInstructor(idUtilisateur: number): Observable<Instruction[]> {
+    return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/today/instructor/` + idUtilisateur);
+  }
+  async afficherMyAlerteInstructionsTodayInstructorAsync(idUtilisateur: number) {
+    return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/today/instructor/` + idUtilisateur).toPromise();
+  }
+  afficherMyAlerteInstructionsToday(idUtilisateur: number): Observable<Instruction[]> {
+    return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/today/all/` + idUtilisateur);
+  }
+  async afficherMyAlerteInstructionsTodayAsync(idUtilisateur: number) {
+    return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/today/all/` + idUtilisateur).toPromise();
+  }
 }

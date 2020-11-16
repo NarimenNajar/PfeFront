@@ -207,6 +207,9 @@
               </form>
             </div>
           </li>
+          <button type="button" class="btn btn-primary" (click)="showTodayInstructionsAll(userConnected.id)" style="height: 40px; margin-right: 20px; margin-top: 15px" *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC' || userConnected.role.role === 'PNT'" >
+            Today <span class="badge badge-success">{{nombreinstructionsMyTodayAll}}</span>
+          </button>
           <button type="button" class="btn btn-primary" (click)="showMyAlertEndTolerEchInstructions(userConnected.id)" style="height: 40px; margin-right: 20px; margin-top: 15px" *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC' || userConnected.role.role === 'PNT'" >
             End of Tolerance <span class="badge badge-danger">{{nombreinstructionsMyFinToler}}</span>
           </button>

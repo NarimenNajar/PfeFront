@@ -18,6 +18,9 @@ import {ListeMyAlerteEcheanceInstructionComponent} from "./liste-my-alerte-echea
 import {ListeAllAlerteEcheanceInstructionComponent} from "./liste-all-alerte-echeance-instruction/liste-all-alerte-echeance-instruction.component";
 import {ListeMyAlerteFinToleranceEcheanceInstructionComponent} from "./liste-my-alerte-fin-tolerance-echeance-instruction/liste-my-alerte-fin-tolerance-echeance-instruction.component";
 import {ListeAllAlerteFinToleranceEcheanceInstructionComponent} from "./liste-all-alerte-fin-tolerance-echeance-instruction/liste-all-alerte-fin-tolerance-echeance-instruction.component";
+import {ListeMyInstructionsTodayAllComponent} from "./liste-my-instructions-today-all/liste-my-instructions-today-all.component";
+import {ListeMyInstructionsTodayInstructorComponent} from "./liste-my-instructions-today-instructor/liste-my-instructions-today-instructor.component";
+import {ListeMyInstructionsTodayTraineeComponent} from "./liste-my-instructions-today-trainee/liste-my-instructions-today-trainee.component";
 
 
 const routes: Routes = [
@@ -77,6 +80,18 @@ const routes: Routes = [
   {
     path: 'instruction/alertDeadlineEndToler/all',
     component: ListeAllAlerteFinToleranceEcheanceInstructionComponent
+  },
+  {
+    path: 'instruction/today/all/:id',
+    component: ListeMyInstructionsTodayAllComponent
+  },
+  {
+    path: 'instruction/today/instructor/:id',
+    component: ListeMyInstructionsTodayInstructorComponent
+  },
+  {
+    path: 'instruction/today/trainee/:id',
+    component: ListeMyInstructionsTodayTraineeComponent
   },
   {
     path: 'function/all/:id',

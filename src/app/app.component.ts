@@ -29,6 +29,12 @@ export class AppComponent {
   nombreinstructionsAllEch: number;
   public instructionsMyEch: Instruction[] = [];
   nombreinstructionsMyEch: number;
+  public instructionsMyTodayAll: Instruction[] = [];
+  nombreinstructionsMyTodayAll: number;
+  public instructionsMyTodayTrainee: Instruction[] = [];
+  nombreinstructionsMyTodayTrainee: number;
+  public instructionsMyTodayInstructor: Instruction[] = [];
+  nombreinstructionsMyTodayInstructor: number;
 
 
   constructor(public router: Router, public loginService: LoginService, public simulateurService: SimulateurService, public listeUtilisateursService: ListeUtilisateursService) {
@@ -39,27 +45,32 @@ export class AppComponent {
     this.simulateurService.afficherReclamationsNonTraiteeAsync().then( reclamation => {
       this.reclamations = reclamation;
       this.nombreReclamations = this.reclamations.length;
-      console.log(this.nombreReclamations); });
+      });
 
     this.listeUtilisateursService.afficherAllAlerteFinTolerEcheanceInstructionsAsync().then( instruction => {
       this.instructionsAllFinToler = instruction;
       this.nombreinstructionsAllFinToler = this.instructionsAllFinToler.length;
-      console.log(this.nombreinstructionsAllFinToler); });
+     });
 
     this.listeUtilisateursService.afficherAllAlerteEcheanceInstructionsAsync().then( instruction => {
       this.instructionsAllEch = instruction;
       this.nombreinstructionsAllEch = this.instructionsAllEch.length;
-      console.log(this.nombreinstructionsAllEch); });
+       });
 
     this.listeUtilisateursService.afficherMyAlerteFinTolerEcheanceInstructionsAsync(this.userConnected.id).then( instruction => {
       this.instructionsMyFinToler = instruction;
       this.nombreinstructionsMyFinToler = this.instructionsMyFinToler.length;
-      console.log(this.nombreinstructionsMyFinToler); });
+      });
 
     this.listeUtilisateursService.afficherMyAlerteEcheanceInstructionsAsync(this.userConnected.id).then( instruction => {
       this.instructionsMyEch = instruction;
       this.nombreinstructionsMyEch = this.instructionsMyEch.length;
       console.log(this.nombreinstructionsMyEch); });
+
+    this.listeUtilisateursService.afficherMyAlerteInstructionsTodayAsync(this.userConnected.id).then( instruction => {
+      this.instructionsMyTodayAll = instruction;
+      this.nombreinstructionsMyTodayAll = this.instructionsMyTodayAll.length;
+      console.log(this.nombreinstructionsMyTodayAll); });
   }
   onLogout() {
     this.loginService.logoutUser();
@@ -103,5 +114,9 @@ export class AppComponent {
   }
   showMyAlertEndTolerEchInstructions(idUtilisateur: number) {
     this.router.navigateByUrl('/user/instruction/alertDeadlineEndToler/my/' + idUtilisateur);
+  }
+
+  showTodayInstructionsAll(idUtilisateur: number) {
+    this.router.navigateByUrl('/user/instruction/today/all/' + idUtilisateur);
   }
 }
