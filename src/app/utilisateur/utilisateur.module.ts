@@ -25,23 +25,30 @@ import { ListeFonctionsCurrentComponent } from './liste-fonctions-current/liste-
 import { ListeFonctionsArchiveComponent } from './liste-fonctions-archive/liste-fonctions-archive.component';
 import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
 import {NgSelectModule} from "@ng-select/ng-select";
+import { ListeAllAlerteEcheanceInstructionComponent } from './liste-all-alerte-echeance-instruction/liste-all-alerte-echeance-instruction.component';
+import { ListeMyAlerteEcheanceInstructionComponent } from './liste-my-alerte-echeance-instruction/liste-my-alerte-echeance-instruction.component';
+import { ListeMyAlerteFinToleranceEcheanceInstructionComponent } from './liste-my-alerte-fin-tolerance-echeance-instruction/liste-my-alerte-fin-tolerance-echeance-instruction.component';
+import { ListeAllAlerteFinToleranceEcheanceInstructionComponent } from './liste-all-alerte-fin-tolerance-echeance-instruction/liste-all-alerte-fin-tolerance-echeance-instruction.component';
+import {_MatMenuDirectivesModule, MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
-  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent, ListeFonctionsAllComponent, ListeFonctionsCurrentComponent, ListeFonctionsArchiveComponent, AjouterUtilisateurComponent],
-    imports: [
-        CommonModule,
-        UtilisateurRoutingModule,
-        FormsModule,
-        MatTableModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatTooltipModule,
-        MatButtonModule,
-        MatPaginatorModule,
-        MatSortModule,
-        NgSelectModule
-    ]
+  declarations: [AfficherUtilisateurComponent, ModifierUtilisateurComponent, ListeUtilisateursComponent, ArchiveUtilisateursComponent, ListeInstructionsAllComponent, ListeInstructionsInstructorComponent, ListeInstructionsTraineeComponent, ListeInstructionsArchiveComponent, ListeFonctionsAllComponent, ListeFonctionsCurrentComponent, ListeFonctionsArchiveComponent, AjouterUtilisateurComponent, ListeAllAlerteEcheanceInstructionComponent, ListeMyAlerteEcheanceInstructionComponent, ListeMyAlerteFinToleranceEcheanceInstructionComponent, ListeAllAlerteFinToleranceEcheanceInstructionComponent],
+  imports: [
+    CommonModule,
+    UtilisateurRoutingModule,
+    FormsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgSelectModule,
+    _MatMenuDirectivesModule,
+    MatMenuModule
+  ]
 })
 export class UtilisateurModule { }

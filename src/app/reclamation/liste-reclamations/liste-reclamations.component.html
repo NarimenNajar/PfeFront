@@ -1,8 +1,8 @@
 <div class="btn-block2" align="right" >
-  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%"  (click)="showReclamationsNonTraitee()"> Not Processed Complaints</button>
+  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%"  (click)="showReclamationsNonTraitee()"> Not Treated Complaints</button>
 </div> <br>
 <div class="btn-block2" align="right" >
-  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%"  (click)="showReclamationsTraitee()"> Processed Complaints</button>
+  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%"  (click)="showReclamationsTraitee()"> Treated Complaints</button>
 </div>
 
 <h3> ALL Complaints</h3>
@@ -53,6 +53,9 @@
 
       <button mat-icon-button matTooltip="Show Syllabus" (click)="showSyllabus(element.seanceSimulateur.id)" class="iconbutton" color="accent" style="margin-right: 10px">
         <mat-icon aria-label="edit" ><i class="far fa-edit" ></i></mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Mark as treated" class="iconbutton" color="warn" (click)="traiterReclamation(element.id,element)">
+        <mat-icon><i class="fas fa-check-double"></i></mat-icon>
       </button>
     </mat-cell>
   </ng-container>

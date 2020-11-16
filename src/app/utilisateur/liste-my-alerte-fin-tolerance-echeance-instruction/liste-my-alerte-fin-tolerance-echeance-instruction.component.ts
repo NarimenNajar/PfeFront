@@ -8,41 +8,39 @@ import {ListeUtilisateursService} from "../../services/utilisateur/liste-utilisa
 import {ActivatedRoute, Router} from "@angular/router";
 import {SyllabusService} from "../../services/syllabus/syllabus.service";
 import {ActiviteFormation} from "../../models/activiteFormation";
-import {MatMenuTrigger} from "@angular/material/menu";
 
 @Component({
-  selector: 'app-liste-instructions-instructor',
-  templateUrl: './liste-instructions-instructor.component.html',
-  styleUrls: ['./liste-instructions-instructor.component.css']
+  selector: 'app-liste-my-alerte-fin-tolerance-echeance-instruction',
+  templateUrl: './liste-my-alerte-fin-tolerance-echeance-instruction.component.html',
+  styleUrls: ['./liste-my-alerte-fin-tolerance-echeance-instruction.component.css']
 })
-export class ListeInstructionsInstructorComponent implements OnInit {
+export class ListeMyAlerteFinToleranceEcheanceInstructionComponent implements OnInit {
 
   idUtilisateur: number;
   utilisateur: Utilisateur = new Utilisateur();
 
-  displayedColumns: string[] = ['position', 'valide', 'echeance', 'codeActiviteFormation', 'typeActivite',  'nombreJours',  'dateDebutActivite',  'dateFinActivite'];
+  displayedColumns: string[] = ['position', 'valide', 'echeance', 'dateEch', 'dateDebutToler', 'dateFinToler', 'codeActiviteFormation', 'typeActivite',  'nombreJours',  'dateDebutActivite',  'dateFinActivite'];
   public dataSource: MatTableDataSource<Instruction>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor( private listeUtilisateursService: ListeUtilisateursService,  private router: Router, private syllabusService: SyllabusService, private activatedRoute: ActivatedRoute) { }
   token: string;
   userConnected: Utilisateur;
-  @ViewChild(MatMenuTrigger) triggerBtn: MatMenuTrigger;
 
 
   async ngOnInit() {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.idUtilisateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    console.log(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.listeUtilisateursService.afficherInstructionsByInstructor(this.idUtilisateur).subscribe(data => {
+    // this.idUtilisateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    // console.log(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.listeUtilisateursService.afficherMyAlerteFinTolerEcheanceInstructions(this.userConnected.id).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
       console.log(data);
     });
-    this.utilisateur = await this.listeUtilisateursService.afficherDetailUtilisateurAsync(this.idUtilisateur);
+    this.utilisateur = await this.listeUtilisateursService.afficherDetailUtilisateurAsync(this.userConnected.id);
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -50,19 +48,6 @@ export class ListeInstructionsInstructorComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-
-  showInstructions(idUtilisateur: number) {
-    this.router.navigateByUrl('/user/instruction/all/' + idUtilisateur);
-  }
-
-  showInstructionsTrainee(idUtilisateur: number) {
-    this.router.navigateByUrl('/user/instruction/trainee/' + idUtilisateur);
-  }
-
-  showInstructionsArchive(idUtilisateur: number) {
-    this.router.navigateByUrl('/user/instruction/archive/' + idUtilisateur);
   }
 
   showDetailFormation(idFormation: number, activiteFormation: ActiviteFormation) {
@@ -75,8 +60,5 @@ export class ListeInstructionsInstructorComponent implements OnInit {
 
   showDetailUtilisateur(idUtilisateur: number) {
     this.router.navigateByUrl('/user/show/' + idUtilisateur);
-  }
-  openMatMenuProgrammatically() {
-    this.triggerBtn.openMenu();
   }
 }

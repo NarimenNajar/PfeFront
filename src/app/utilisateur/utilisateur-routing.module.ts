@@ -14,6 +14,10 @@ import {ListeFonctionsArchiveComponent} from './liste-fonctions-archive/liste-fo
 import {ListeFonctionsCurrentComponent} from './liste-fonctions-current/liste-fonctions-current.component';
 import {AjouterFormationComponent} from '../formation/ajouter-formation/ajouter-formation.component';
 import {AjouterUtilisateurComponent} from './ajouter-utilisateur/ajouter-utilisateur.component';
+import {ListeMyAlerteEcheanceInstructionComponent} from "./liste-my-alerte-echeance-instruction/liste-my-alerte-echeance-instruction.component";
+import {ListeAllAlerteEcheanceInstructionComponent} from "./liste-all-alerte-echeance-instruction/liste-all-alerte-echeance-instruction.component";
+import {ListeMyAlerteFinToleranceEcheanceInstructionComponent} from "./liste-my-alerte-fin-tolerance-echeance-instruction/liste-my-alerte-fin-tolerance-echeance-instruction.component";
+import {ListeAllAlerteFinToleranceEcheanceInstructionComponent} from "./liste-all-alerte-fin-tolerance-echeance-instruction/liste-all-alerte-fin-tolerance-echeance-instruction.component";
 
 
 const routes: Routes = [
@@ -57,6 +61,22 @@ const routes: Routes = [
   {
     path: 'instruction/archive/:id',
     component: ListeInstructionsArchiveComponent
+  },
+  {
+    path: 'instruction/alertDeadline/my/:id',
+    component: ListeMyAlerteEcheanceInstructionComponent
+  },
+  {
+    path: 'instruction/alertDeadline/all',
+    component: ListeAllAlerteEcheanceInstructionComponent
+  },
+  {
+    path: 'instruction/alertDeadlineEndToler/my/:id',
+    component: ListeMyAlerteFinToleranceEcheanceInstructionComponent
+  },
+  {
+    path: 'instruction/alertDeadlineEndToler/all',
+    component: ListeAllAlerteFinToleranceEcheanceInstructionComponent
   },
   {
     path: 'function/all/:id',

@@ -16,6 +16,7 @@ export class ActiviteFormation {
   populations: Population[] = [];
   typeFormation: TypeFormation;
   instructions: Instruction[] = [];
+  DTYPE: string;
 
 
   // Formation

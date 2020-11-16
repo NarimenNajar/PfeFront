@@ -117,8 +117,8 @@ export class AfficherSyllabusValideTraineeComponent implements OnInit {
         {
           columns: [
             [{
-              text: 'Logo Nouvelair',
-              style: 'name'
+              image: 'assets/img/logoNouvelair.png',
+              width: 150
             },
               {
                 text: this.syllabus.level

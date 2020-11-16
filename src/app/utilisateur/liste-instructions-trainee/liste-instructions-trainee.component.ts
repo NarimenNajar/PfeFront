@@ -7,6 +7,8 @@ import {MatSort} from "@angular/material/sort";
 import {ListeUtilisateursService} from "../../services/utilisateur/liste-utilisateurs.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SyllabusService} from "../../services/syllabus/syllabus.service";
+import {ActiviteFormation} from "../../models/activiteFormation";
+import {MatMenuTrigger} from "@angular/material/menu";
 
 @Component({
   selector: 'app-liste-instructions-trainee',
@@ -25,6 +27,7 @@ export class ListeInstructionsTraineeComponent implements OnInit {
   constructor( private listeUtilisateursService: ListeUtilisateursService,  private router: Router, private syllabusService: SyllabusService, private activatedRoute: ActivatedRoute) { }
   token: string;
   userConnected: Utilisateur;
+  @ViewChild(MatMenuTrigger) triggerBtn: MatMenuTrigger;
 
 
   async ngOnInit() {
@@ -61,5 +64,20 @@ export class ListeInstructionsTraineeComponent implements OnInit {
 
   showInstructionsArchive(idUtilisateur: number) {
     this.router.navigateByUrl('/user/instruction/archive/' + idUtilisateur);
+  }
+
+  showDetailFormation(idFormation: number, activiteFormation: ActiviteFormation) {
+    if (activiteFormation.DTYPE === '1') {
+      this.router.navigateByUrl('/simulator/show/' + idFormation);
+    } else {
+      this.router.navigateByUrl('/training/show/' + idFormation);
+    }
+  }
+
+  showDetailUtilisateur(idUtilisateur: number) {
+    this.router.navigateByUrl('/user/show/' + idUtilisateur);
+  }
+  openMatMenuProgrammatically() {
+    this.triggerBtn.openMenu();
   }
 }

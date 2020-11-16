@@ -2,10 +2,10 @@
   <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%"  (click)="showReclamations()"> All Complaints</button>
 </div> <br>
 <div class="btn-block2" align="right" >
-  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%"  (click)="showReclamationsTraitee()"> Processed Complaints</button>
+  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%"  (click)="showReclamationsTraitee()"> Treated Complaints</button>
 </div>
 
-<h3> List of Not Processed Complaints</h3>
+<h3> List of Not Treated Complaints</h3>
 <br>
 <mat-form-field>
   <mat-label>Search</mat-label>
@@ -25,9 +25,9 @@
     <td mat-cell *matCellDef="let element" > {{element.date | date}} </td>
   </ng-container>
   <!-- Name Column -->
-  <ng-container matColumnDef="seanceSimulateur">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Simulator Session </th>
-    <td mat-cell *matCellDef="let element" > {{element.seanceSimulateur.codeSeanceSimulateur}} </td>
+  <ng-container matColumnDef="contenu">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Content </th>
+    <td mat-cell *matCellDef="let element" > {{element.contenu}} </td>
   </ng-container>
 
 
@@ -37,13 +37,11 @@
     <td mat-cell *matCellDef="let element" > {{element.etat}} </td>
   </ng-container>
 
-
   <!-- Name Column -->
-  <ng-container matColumnDef="simulateur">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Simulator </th>
-    <td mat-cell *matCellDef="let element" > {{element.simulateur.codeActiviteFormation}} </td>
+  <ng-container matColumnDef="seanceSimulateur">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Simulator Session </th>
+    <td mat-cell *matCellDef="let element" > {{element.seanceSimulateur.codeSeanceSimulateur}} </td>
   </ng-container>
-
 
   <!-- button -->
 
@@ -53,6 +51,10 @@
 
       <button mat-icon-button matTooltip="Show Syllabus" (click)="showSyllabus(element.seanceSimulateur.id)" class="iconbutton" color="accent" style="margin-right: 10px">
         <mat-icon aria-label="edit" ><i class="far fa-edit" ></i></mat-icon>
+      </button>
+
+      <button mat-icon-button matTooltip="Mark as treated" class="iconbutton" color="warn" (click)="traiterReclamation(element.id,element)">
+        <mat-icon><i class="fas fa-check-double"></i></mat-icon>
       </button>
     </mat-cell>
   </ng-container>

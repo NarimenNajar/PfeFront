@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/training/allPNC');
         } else if (this.user.role.role === 'Responsable Formation PNT') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/syllabus/all');
+          this.router.navigateByUrl('/charts/chartsResultSimulator');
         } else if (this.user.role.role === 'Responsable Formation PNC') {
           this.loginService.storeUserData(this.user);
           this.router.navigateByUrl('/training/allPNC');

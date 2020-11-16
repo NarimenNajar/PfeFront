@@ -8,6 +8,7 @@ import {Reclamation} from "../../models/reclamation";
 import {CategorieService} from "../../services/parametrage/categorie.service";
 import {Router} from "@angular/router";
 import {SimulateurService} from "../../services/activiteFormation/simulateur.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-liste-reclamations-non-traitee',
@@ -57,5 +58,24 @@ export class ListeReclamationsNonTraiteeComponent implements OnInit {
 
   showSyllabus(idSeanceSimulateur) {
     this.router.navigateByUrl('/simulator/show/validate/trainee/' + idSeanceSimulateur);
+  }
+  async traiterReclamation(idReclamation: number, reclamation: Reclamation) {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, mark it as treated!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await this.simulateurService.traiterReclamation(idReclamation, reclamation);
+        Swal.fire(
+          'Treated!',
+          'Complaint has been marked as treated.',
+          'success'
+        ).then((e) =>  window.location.reload() );
+      }
+    });
   }
 }

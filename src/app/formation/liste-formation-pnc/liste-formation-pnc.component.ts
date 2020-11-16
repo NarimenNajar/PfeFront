@@ -9,7 +9,7 @@ import {PopulationService} from '../../services/parametrage/population.service';
 import {TypeFormationService} from '../../services/parametrage/type-formation.service';
 import {NatureFormationService} from '../../services/parametrage/nature-formation.service';
 import Swal from 'sweetalert2';
-import {Utilisateur} from "../../models/utilisateur";
+import {Utilisateur} from '../../models/utilisateur';
 
 @Component({
   selector: 'app-liste-formation-pnc',

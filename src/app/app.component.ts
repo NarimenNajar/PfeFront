@@ -5,6 +5,8 @@ import {Utilisateur} from './models/utilisateur';
 import {SimulateurService} from './services/activiteFormation/simulateur.service';
 import {Role} from './models/role';
 import {Reclamation} from './models/reclamation';
+import {ListeUtilisateursService} from "./services/utilisateur/liste-utilisateurs.service";
+import {Instruction} from "./models/Instruction";
 
 @Component({
   selector: 'app-root',
@@ -19,8 +21,17 @@ export class AppComponent {
   public reclamations: Reclamation[] = [];
   nombreReclamations: number;
 
+  public instructionsAllFinToler: Instruction[] = [];
+  nombreinstructionsAllFinToler: number;
+  public instructionsMyFinToler: Instruction[] = [];
+  nombreinstructionsMyFinToler: number;
+  public instructionsAllEch: Instruction[] = [];
+  nombreinstructionsAllEch: number;
+  public instructionsMyEch: Instruction[] = [];
+  nombreinstructionsMyEch: number;
 
-  constructor(public router: Router, public loginService: LoginService, public simulateurService: SimulateurService) {
+
+  constructor(public router: Router, public loginService: LoginService, public simulateurService: SimulateurService, public listeUtilisateursService: ListeUtilisateursService) {
     console.log('app comp');
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
@@ -29,11 +40,30 @@ export class AppComponent {
       this.reclamations = reclamation;
       this.nombreReclamations = this.reclamations.length;
       console.log(this.nombreReclamations); });
+
+    this.listeUtilisateursService.afficherAllAlerteFinTolerEcheanceInstructionsAsync().then( instruction => {
+      this.instructionsAllFinToler = instruction;
+      this.nombreinstructionsAllFinToler = this.instructionsAllFinToler.length;
+      console.log(this.nombreinstructionsAllFinToler); });
+
+    this.listeUtilisateursService.afficherAllAlerteEcheanceInstructionsAsync().then( instruction => {
+      this.instructionsAllEch = instruction;
+      this.nombreinstructionsAllEch = this.instructionsAllEch.length;
+      console.log(this.nombreinstructionsAllEch); });
+
+    this.listeUtilisateursService.afficherMyAlerteFinTolerEcheanceInstructionsAsync(this.userConnected.id).then( instruction => {
+      this.instructionsMyFinToler = instruction;
+      this.nombreinstructionsMyFinToler = this.instructionsMyFinToler.length;
+      console.log(this.nombreinstructionsMyFinToler); });
+
+    this.listeUtilisateursService.afficherMyAlerteEcheanceInstructionsAsync(this.userConnected.id).then( instruction => {
+      this.instructionsMyEch = instruction;
+      this.nombreinstructionsMyEch = this.instructionsMyEch.length;
+      console.log(this.nombreinstructionsMyEch); });
   }
   onLogout() {
     this.loginService.logoutUser();
     this.router.navigateByUrl('/authentication/signin').then((e) =>  window.location.reload() );
-
   }
   showProfile(idUtilisateur: number) {
     this.router.navigateByUrl('/user/show/' + idUtilisateur);
@@ -61,5 +91,17 @@ export class AppComponent {
   }
   showReclamationsNonTraitee() {
     this.router.navigateByUrl('/claim/notProcessed');
+  }
+  showAllAlertEchInstructions() {
+    this.router.navigateByUrl('/user/instruction/alertDeadline/all');
+  }
+  showAllAlertEndTolerEchInstructions() {
+    this.router.navigateByUrl('/user/instruction/alertDeadlineEndToler/all');
+  }
+  showMyAlertEchInstructions(idUtilisateur: number) {
+    this.router.navigateByUrl('/user/instruction/alertDeadline/my/' + idUtilisateur);
+  }
+  showMyAlertEndTolerEchInstructions(idUtilisateur: number) {
+    this.router.navigateByUrl('/user/instruction/alertDeadlineEndToler/my/' + idUtilisateur);
   }
 }

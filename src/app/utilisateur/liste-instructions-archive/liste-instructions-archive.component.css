@@ -6,3 +6,8 @@ table {
   font-size: 14px;
   width: 100%;
 }
+#navig1:hover, #navig2:hover, #navig3:hover {
+  outline: none;
+  border: 1px solid #095484;
+  background: #ffcc33;
+}

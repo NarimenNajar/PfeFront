@@ -56,5 +56,31 @@ export class ListeUtilisateursService {
     return this.http.get<Fonction[]>(`${this.baseUrl}` + `/fonctions/current/` + idUtilisateur);
   }
 
+  afficherMyAlerteEcheanceInstructions(idUtilisateur: number): Observable<Instruction[]> {
+    return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteEcheance/` + idUtilisateur);
+  }
+  afficherAllAlerteEcheanceInstructions(): Observable<Instruction[]> {
+    return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteEcheance/all`);
+  }
 
+  afficherMyAlerteFinTolerEcheanceInstructions(idUtilisateur: number): Observable<Instruction[]> {
+    return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteFinTolerEcheance/` + idUtilisateur);
+  }
+  afficherAllAlerteFinTolerEcheanceInstructions(): Observable<Instruction[]> {
+    return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteFinTolerEcheance/all`);
+  }
+
+  async afficherMyAlerteEcheanceInstructionsAsync(idUtilisateur: number) {
+    return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteEcheance/` + idUtilisateur).toPromise();
+  }
+  async afficherAllAlerteEcheanceInstructionsAsync() {
+    return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteEcheance/all`).toPromise();
+  }
+
+  async afficherMyAlerteFinTolerEcheanceInstructionsAsync(idUtilisateur: number) {
+    return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteFinTolerEcheance/` + idUtilisateur).toPromise();
+  }
+  async afficherAllAlerteFinTolerEcheanceInstructionsAsync() {
+    return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/alerteFinTolerEcheance/all`).toPromise();
+  }
 }

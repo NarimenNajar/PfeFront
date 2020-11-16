@@ -1,14 +1,23 @@
+<div class="btn-block2" align="right" >
+  <button (click)="openMatMenuProgrammatically()"
+          mat-button>
+    Filter Menu
+  </button>
 
-<div class="btn-block2" align="right" >
-  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="showInstructions(utilisateur.id)" > Show ALL Instructions</button>
+  <button mat-icon-button
+          #triggerBtn
+          [matMenuTriggerFor]="normalMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #normalMenu="matMenu">
+    <button mat-menu-item (click)="showInstructions(utilisateur.id)">Show ALL Instructions</button>
+    <button mat-menu-item (click)="showInstructionsInstructor(utilisateur.id)">Show Instructions As Instructor</button>
+    <button mat-menu-item (click)="showInstructionsTrainee(utilisateur.id)">Show Instructions As Trainee</button>
+  </mat-menu>
 </div> <br>
-<div class="btn-block2" align="right" >
-  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="showInstructionsInstructor(utilisateur.id)" > Show Instructions As Instructor</button>
-</div><br>
-<div class="btn-block2" align="right" >
-  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="showInstructionsTrainee(utilisateur.id)" > Show Instructions As Trainee</button>
-</div> <br> <br>
-<h3>Instruction List for: <<  {{utilisateur.nom}} {{utilisateur.prenom}}  >></h3>
+ <br> <br>
+<h3>Archive of Instruction for: <<  {{utilisateur.nom}} {{utilisateur.prenom}}  >></h3>
 <br>
 <mat-form-field>
   <mat-label>Search</mat-label>
@@ -39,7 +48,7 @@
   <!-- Name Column -->
   <ng-container matColumnDef="codeActiviteFormation">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Training Session Code </th>
-    <td mat-cell *matCellDef="let element" > {{element.activiteFormation.codeActiviteFormation}} </td>
+    <td mat-cell id="navig2" *matCellDef="let element" (click)="showDetailFormation(element.activiteFormation.id,element)"> {{element.activiteFormation.codeActiviteFormation}} </td>
   </ng-container>
 
   <!-- Weight Column -->

@@ -1,24 +1,6 @@
-<div class="btn-block2" align="right" >
-  <button (click)="openMatMenuProgrammatically()"
-          mat-button>
-    Filter Menu
-  </button>
 
-  <button mat-icon-button
-          #triggerBtn
-          [matMenuTriggerFor]="normalMenu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
 
-  <mat-menu #normalMenu="matMenu">
-    <button mat-menu-item (click)="showInstructions(utilisateur.id)">Show ALL Instructions</button>
-    <button mat-menu-item (click)="showInstructionsInstructor(utilisateur.id)">Show Instructions As Instructor</button>
-    <button mat-menu-item (click)="showInstructionsArchive(utilisateur.id)">Show Archive Instructions</button>
-  </mat-menu>
-</div> <br>
-
-<br> <br>
-<h3>Training List for: <<  {{utilisateur.nom}} {{utilisateur.prenom}}  >></h3>
+<h3>Alerts of My Instruction End of Tolerance </h3>
 <br>
 <mat-form-field>
   <mat-label>Search</mat-label>
@@ -45,11 +27,27 @@
     <td mat-cell *matCellDef="let element" > {{element.echeance}} </td>
   </ng-container>
 
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="dateEch">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Deadline Date </th>
+    <td mat-cell *matCellDef="let element" > {{element.dateEch | date}} </td>
+  </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="dateDebutToler">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Tolerance Date </th>
+    <td mat-cell *matCellDef="let element" > {{element.dateDebutToler | date}} </td>
+  </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="dateFinToler">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> End Tolerance Date </th>
+    <td mat-cell *matCellDef="let element"  > {{element.dateFinToler | date}} </td>
+  </ng-container>
+
 
   <!-- Name Column -->
   <ng-container matColumnDef="codeActiviteFormation">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Training Session Code </th>
-    <td mat-cell id="navig2" *matCellDef="let element" (click)="showDetailFormation(element.activiteFormation.id,element)"> {{element.activiteFormation.codeActiviteFormation}} </td>
+    <td mat-cell id="navig2" *matCellDef="let element" (click)="showDetailFormation(element.activiteFormation.id,element)" > {{element.activiteFormation.codeActiviteFormation}} </td>
   </ng-container>
 
   <!-- Weight Column -->

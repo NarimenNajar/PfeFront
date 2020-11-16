@@ -1,11 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActiviteFormation} from '../../models/activiteFormation';
-import {Instruction} from "../../models/Instruction";
-import {SeanceSimulateur} from "../../models/seanceSimulateur";
-import {Note} from "../../models/note";
-import {Level} from "../../models/level";
-import {Reclamation} from "../../models/reclamation";
+import {Instruction} from '../../models/Instruction';
+import {SeanceSimulateur} from '../../models/seanceSimulateur';
+import {Note} from '../../models/note';
+import {Level} from '../../models/level';
+import {Reclamation} from '../../models/reclamation';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -111,5 +112,20 @@ export class SimulateurService {
   }
   afficherReclamationsTraitee() {
     return  this.http.get<Reclamation[]>(`${this.baseUrl3}` + `/traitee`);
+  }
+  async traiterReclamation(idReclamation: number, reclamation: Reclamation) {
+    return await this.http.put<Reclamation>(`${this.baseUrl3}` + `/traiter/` + idReclamation , reclamation).toPromise();
+  }
+  async afficherSeancesSimulateursAsync() {
+    return await this.http.get<SeanceSimulateur[]>(`${this.baseUrl1}` + `/seanceSimulateur/all`).toPromise();
+  }
+  afficherSeancesSimulateurs(): Observable<SeanceSimulateur[]> {
+    return  this.http.get<SeanceSimulateur[]>(`${this.baseUrl1}` + `/seanceSimulateur/all`);
+  }
+  afficherNotes(): Observable<Note[]> {
+    return  this.http.get<Note[]>(`${this.baseUrl1}` + `/all/notes`);
+  }
+  afficherLevels(): Observable<Level[]> {
+    return  this.http.get<Level[]>(`${this.baseUrl1}` + `/all/levels`);
   }
 }

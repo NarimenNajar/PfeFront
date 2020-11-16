@@ -7,20 +7,25 @@
   <ul *ngIf="router.url != '/authentication/signin'" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/app.component.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" >
       <div class="sidebar-brand-icon rotate-n-15">
        <!-- <i class="fas fa-laugh-wink"></i> -->
-        <img src="/assets/img/logoNouvelair.png" width="50" border="0" >
+        <img src="/assets/img/logoNouvelair.png" width="70" border="0" style="margin-left: 10px; margin-right: -0.7cm" >
       </div>
-      <div class="sidebar-brand-text mx-3"> Home </div>
+      <div class="sidebar-brand-text mx-3"> <h6>PN Training Management </h6> </div>
     </a>
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-      <a class="nav-link" href="/app.component.html">
+    <li class="nav-item active" *ngIf=" userConnected.role.role === 'Responsable Formation PNT'" >
+      <a class="nav-link" href="/charts/chartsResultSimulator">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+    </li>
+    <li class="nav-item active" *ngIf=" userConnected.role.role !== 'Responsable Formation PNT'" >
+      <a class="nav-link">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
@@ -127,8 +132,8 @@
         <span>Users</span>
       </a>
       <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="/user/all">ALL Users</a>
+        <div class="bg-white py-2 collapse-inner rounded" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT' || userConnected.role.role === 'Administrateur'">
+          <a class="collapse-item" href="/user/all" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT' || userConnected.role.role === 'Administrateur'">ALL Users</a>
           <a *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Administrateur'" class="collapse-item" href="/user/add">Add User</a>
 
         </div>
@@ -202,6 +207,19 @@
               </form>
             </div>
           </li>
+          <button type="button" class="btn btn-primary" (click)="showMyAlertEndTolerEchInstructions(userConnected.id)" style="height: 40px; margin-right: 20px; margin-top: 15px" *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC' || userConnected.role.role === 'PNT'" >
+            End of Tolerance <span class="badge badge-danger">{{nombreinstructionsMyFinToler}}</span>
+          </button>
+          <button type="button" class="btn btn-primary" (click)="showMyAlertEchInstructions(userConnected.id)" style="height: 40px; margin-top: 15px" *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC' || userConnected.role.role === 'PNT'">
+            Deadline <span class="badge badge-warning">{{nombreinstructionsMyEch}}</span>
+          </button>
+
+          <button type="button" class="btn btn-primary" (click)="showAllAlertEndTolerEchInstructions()" style="height: 40px; margin-right: 20px; margin-top: 15px" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT'" >
+           All End of Tolerance <span class="badge badge-danger">{{nombreinstructionsAllFinToler}}</span>
+          </button>
+          <button type="button" class="btn btn-primary" (click)="showAllAlertEchInstructions()" style="height: 40px; margin-top: 15px" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT'">
+           All Deadlines <span class="badge badge-warning">{{nombreinstructionsAllEch}}</span>
+          </button>
 
           <!-- Nav Item - Alerts -->
           <li class="nav-item dropdown no-arrow mx-1" (click)="showReclamationsNonTraitee()" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC'">
@@ -317,7 +335,7 @@
           <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{userConnected.prenom}} {{userConnected.nom}}</span>
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small"  (click)="showProfile(userConnected.id)" > {{userConnected.prenom}} {{userConnected.nom}}</span>
               <img class="img-profile rounded-circle" src="/assets/img/avion.jpg"  (click)="showProfile(userConnected.id)">
               <br> <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" (click)="onLogout()"></i>
@@ -382,7 +400,7 @@
     <footer class="sticky-footer bg-white">
       <div class="container my-auto">
         <div class="copyright text-center my-auto">
-          <img src="/assets/img/nouvelair.png" width="100" >
+          <img src="/assets/img/nouvelair.png" width="150" >
           <br> <br>
           <span>Copyright &copy; Your Website 2020</span>
         </div>
@@ -422,7 +440,7 @@
   </div>
 </div>
 
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 
