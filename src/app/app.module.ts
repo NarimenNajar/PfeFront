@@ -14,6 +14,9 @@ import { ChartsModule } from 'ng2-charts';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { MatIconModule } from '@angular/material/icon';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { MatIconModule } from '@angular/material/icon';
     NgSelectModule,
     MatIconModule,
     ChartsModule,
+    FullCalendarModule,
     HighchartsChartModule,
     FlashMessagesModule.forRoot(),
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})

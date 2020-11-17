@@ -119,4 +119,7 @@ export class AppComponent {
   showTodayInstructionsAll(idUtilisateur: number) {
     this.router.navigateByUrl('/user/instruction/today/all/' + idUtilisateur);
   }
+  goToCalendar(idUtilisateur: number) {
+    this.router.navigateByUrl('/calendar/calendarInstructions/' + idUtilisateur);
+  }
 }

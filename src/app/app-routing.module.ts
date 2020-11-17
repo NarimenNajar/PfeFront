@@ -84,6 +84,10 @@ const routes: Routes = [
     loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule)
   },
   {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule)
+  },
+  {
     path: '',
     redirectTo: 'authentication',
     pathMatch: 'full'

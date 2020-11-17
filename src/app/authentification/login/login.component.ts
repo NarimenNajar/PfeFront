@@ -55,28 +55,28 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/category/all');
         } else if (this.user.role.role === 'PNT') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/training/allPNT');
+          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
         } else if (this.user.role.role === 'PNC') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/training/allPNC');
+          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
         } else if (this.user.role.role === 'Responsable Formation PNT') {
           this.loginService.storeUserData(this.user);
           this.router.navigateByUrl('/charts/chartsResultSimulator');
         } else if (this.user.role.role === 'Responsable Formation PNC') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/training/allPNC');
+          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
         } else if (this.user.role.role === 'Agent Administratif Formation PNT') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/syllabus/all');
+          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
         } else if (this.user.role.role === 'Agent Administratif Formation PNC') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/training/allPNC');
+          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
         } else if (this.user.role.role === 'Instructeur PNC') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/training/allPNC');
+          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
         } else if (this.user.role.role === 'Instructeur PNT') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/training/allPNT');
+          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
         }
 
         /*
