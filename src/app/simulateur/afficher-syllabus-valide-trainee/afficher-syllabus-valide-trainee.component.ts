@@ -11,12 +11,18 @@ import {SimulateurService} from '../../services/activiteFormation/simulateur.ser
 import {ActivatedRoute, Router} from '@angular/router';
 import {PdfService} from '../../services/pdf.service';
 declare let pdfMake: any ;
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 @Component({
   selector: 'app-afficher-syllabus-valide-trainee',
   templateUrl: './afficher-syllabus-valide-trainee.component.html',
   styleUrls: ['./afficher-syllabus-valide-trainee.component.css']
 })
 export class AfficherSyllabusValideTraineeComponent implements OnInit {
+
+
+  constructor(private pdfService: PdfService, private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   public idSyllabus: number;
   syllabus: Syllabus = new Syllabus();
@@ -34,9 +40,7 @@ export class AfficherSyllabusValideTraineeComponent implements OnInit {
   public instructionT: Instruction = new Instruction();
   token: string;
   userConnected: Utilisateur;
-
-
-  constructor(private pdfService: PdfService, private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) {}
+  title = 'html-to-pdf';
 
   async ngOnInit() {
     this.token = localStorage.getItem('id_token');
@@ -97,6 +101,50 @@ export class AfficherSyllabusValideTraineeComponent implements OnInit {
     const documentDefinition = this.getDocumentDefinition();
     pdfMake.createPdf(documentDefinition).open();
 
+  }
+  generatePDF() {
+    /*const data = document.getElementById('contentToConvert');
+    html2canvas(data).then(canvas => {
+      const imgWidth = 208;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+      pdf.save('syllabus' + this.seanceSimulateur.codeSeanceSimulateur + '.pdf');
+    });*/
+      const element = document.getElementById('contentToConvert');
+      const options = {
+        imageTimeout: 2000,
+        background: 'white',
+        allowTaint : true,
+        useCORS: false,
+        height: element.clientHeight,
+        width: element.clientWidth
+      };
+
+      html2canvas(element, options).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+
+      const imgWidth = 210;
+      const pageHeight = 295;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
+      const doc = new jsPDF('p', 'mm');
+      let position = 0;
+
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      doc.save('Syllabus-Final-' + this.seanceSimulateur.codeSeanceSimulateur + '.pdf');
+    });
   }
   getDocumentDefinition() {
     sessionStorage.setItem('syllabus', JSON.stringify(this.syllabus));

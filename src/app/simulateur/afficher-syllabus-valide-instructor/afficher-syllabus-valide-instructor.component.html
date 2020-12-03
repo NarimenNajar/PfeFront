@@ -108,7 +108,7 @@
 
 <form action="/">
   <div >
-    <div class="btn-block">
+    <div class="btn-block" *ngIf="instructionTrainee.utilisateur.id === userConnected.id">
       <button type="submit" (click)="goToValidateTrainee(idSeanceSimulateur)" > Trainee Validation</button>
     </div>
     <br>

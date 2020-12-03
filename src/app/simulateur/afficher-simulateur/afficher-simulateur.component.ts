@@ -11,7 +11,8 @@ import {ActiviteFormation} from '../../models/activiteFormation';
 import {Instruction} from '../../models/Instruction';
 import {FormationService} from '../../services/activiteFormation/formation.service';
 import {SeanceSimulateur} from '../../models/seanceSimulateur';
-import {Utilisateur} from "../../models/utilisateur";
+import {Utilisateur} from '../../models/utilisateur';
+import {AnimationAnimateChildMetadata} from "@angular/animations";
 
 @Component({
   selector: 'app-afficher-simulateur',
@@ -25,6 +26,8 @@ export class AfficherSimulateurComponent implements OnInit {
   activiteFormation: ActiviteFormation = new ActiviteFormation();
   public instructionsByAct: Instruction[] = [];
   public seanceSimulateur = new SeanceSimulateur();
+  public instructionTrainee = new Instruction();
+  public instructionInstructor = new Instruction();
   token: string;
   userConnected: Utilisateur;
 
@@ -66,14 +69,20 @@ export class AfficherSimulateurComponent implements OnInit {
   showDetailSyllabus(idSyllabus: number) {
     this.router.navigateByUrl('/syllabus/show/' + idSyllabus);
   }
-  async showValidationInstructeurSimulateur(idSeanceSimulateur: number) {
+  async showValidationInstructeurSimulateur(idSeanceSimulateur: number, simulateur: ActiviteFormation, seanceSimulateur: SeanceSimulateur) {
 
     this.seanceSimulateur = await this.simulateurService.afficherDetailSeanceSimulateurAsync(idSeanceSimulateur);
-
-    if (this.seanceSimulateur.validationInstructeur === 0) {
+    this.instructionInstructor = await this.listeUtilisateursService.afficherInstructionBysimulateurAsInstructorAsync(simulateur.id);
+    console.log(this.instructionInstructor);
+    console.log(this.instructionInstructor.id);
+    if (this.seanceSimulateur.validationInstructeur === 0 && this.instructionInstructor.utilisateur.id === this.userConnected.id) {
       this.router.navigateByUrl('/simulator/validate/instructor/' + idSeanceSimulateur);
-    } else {
+    } else if (this.seanceSimulateur.validationInstructeur !== 0 && this.seanceSimulateur.validationTrainee === 0) {
       this.router.navigateByUrl('/simulator/show/validate/instructor/' + idSeanceSimulateur);
+    } else if (this.seanceSimulateur.validationInstructeur !== 0 && this.seanceSimulateur.validationTrainee !== 0) {
+      this.router.navigateByUrl('/simulator/show/validate/trainee/' + idSeanceSimulateur);
+    } else {
+      this.router.navigateByUrl('/syllabus/show/' + seanceSimulateur.syllabus.id);
     }
   }
 

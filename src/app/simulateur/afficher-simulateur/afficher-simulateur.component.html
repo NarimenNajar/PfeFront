@@ -124,7 +124,7 @@
       <th style="width: 19%">Simulator Type</th>
       <th style="width: 19%"> Syllabus</th>
       <tr *ngFor="let e of activiteFormation.seanceSimulateurs">
-        <td style="width: 19%" (click)="showValidationInstructeurSimulateur(e.id)">{{e.codeSeanceSimulateur}}</td>
+        <td style="width: 19%" (click)="showValidationInstructeurSimulateur(e.id, activiteFormation, e)">{{e.codeSeanceSimulateur}}</td>
         <td style="width: 19%">{{ e.dateSeanceSimulateur | date}}</td>
         <td style="width: 19%">{{e.typeSimulateur.codeTypeSimulateur}}</td>
         <td style="width: 19%">{{e.typeSimulateur.typeSimulateur}}</td>

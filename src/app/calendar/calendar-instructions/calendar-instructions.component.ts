@@ -6,8 +6,9 @@ import {ListeUtilisateursService} from '../../services/utilisateur/liste-utilisa
 import {SyllabusService} from '../../services/syllabus/syllabus.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import {MatTableDataSource} from "@angular/material/table";
-import {Instruction} from "../../models/Instruction";
+import {MatTableDataSource} from '@angular/material/table';
+import {Instruction} from '../../models/Instruction';
+import {Event} from '../../models/event';
 
 @Component({
   selector: 'app-calendar-instructions',
@@ -19,7 +20,9 @@ export class CalendarInstructionsComponent implements OnInit {
   userConnected: Utilisateur;
   idUtilisateur: number;
   utilisateur: Utilisateur = new Utilisateur();
+  event: Event = new Event();
   public instructions: Instruction[] = [];
+  public events: Event[] = [];
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth'
@@ -34,10 +37,16 @@ export class CalendarInstructionsComponent implements OnInit {
     this.idUtilisateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     this.listeUtilisateursService.afficherInstructions(this.idUtilisateur).subscribe(data => {
-      this.instructions = data;
+      data.map(data2 => {
+        this.event.title = data2.position;
+        this.event.activiteFormation = data2.activiteFormation;
+        this.event.start = data2.activiteFormation.dateDebutActivite;
+        this.event.end = data2.activiteFormation.dateFinActivite;
+        this.events.push(this.event);
+      });
       console.log(data);
     });
-    console.log(this.instructions);
+    console.log(this.events);
 
     this.calendarOptions = {
       plugins: [dayGridPlugin, interactionPlugin],
@@ -55,6 +64,7 @@ export class CalendarInstructionsComponent implements OnInit {
         center: 'title',
         right: 'dayGridMonth'
       },
+      events: this.events,
       dateClick: this.handleDateClick.bind(this),
       eventClick: this.handleEventClick.bind(this),
       eventDragStop: this.handleEventDragStop.bind(this)

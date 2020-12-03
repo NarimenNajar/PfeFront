@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Utilisateur} from '../../models/utilisateur';
 import {ActiviteFormation} from '../../models/activiteFormation';
 import {Instruction} from '../../models/Instruction';
+import {ListeUtilisateursService} from "../../services/utilisateur/liste-utilisateurs.service";
 
 @Component({
   selector: 'app-afficher-syllabus-valide-instructor',
@@ -31,9 +32,10 @@ export class AfficherSyllabusValideInstructorComponent implements OnInit {
   public instruction: Instruction = new Instruction();
   token: string;
   userConnected: Utilisateur;
+  public instructionTrainee = new Instruction();
+  public instructionInstructor = new Instruction();
 
-
-  constructor(private syllabusService: SyllabusService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private syllabusService: SyllabusService, private listeUtilisateursService: ListeUtilisateursService, private simulateurService: SimulateurService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit() {
     this.token = localStorage.getItem('id_token');
@@ -41,6 +43,7 @@ export class AfficherSyllabusValideInstructorComponent implements OnInit {
     this.idSeanceSimulateur = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idSeanceSimulateur);
+    this.instructionTrainee = await this.listeUtilisateursService.afficherInstructionBysimulateurAsTraineeAsync(this.seanceSimulateur.simulateur.id);
 
     this.simulateurService.afficherNotesBySeanceSimulateur(this.idSeanceSimulateur).then( note => {
       this.notes = note;

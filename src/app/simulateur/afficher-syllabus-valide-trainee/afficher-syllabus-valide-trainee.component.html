@@ -101,14 +101,17 @@
       background-color: #0666a3;
     }
   </style>
+  <script type="text/javascript" src="lib/jquery.min.js"></script>
+  <script type="text/javascript" src="lib/jspdf.debug.js"></script>
+  <script type="text/javascript" src="lib/html2canvas.js"></script>
 </head>
 <body>
 
 <div class="btn-block2" align="right" >
-  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="generatePdf()" > Generate PDF</button>
+  <button type="button" name="addEx" style="background-color: #ffcc33; width: 20%" (click)="generatePDF()" > Generate PDF</button>
 </div>
 
-<form action="/">
+<form action="/" id="contentToConvert">
   <div >
     <div align="center">
 

@@ -5,8 +5,8 @@ import {Utilisateur} from './models/utilisateur';
 import {SimulateurService} from './services/activiteFormation/simulateur.service';
 import {Role} from './models/role';
 import {Reclamation} from './models/reclamation';
-import {ListeUtilisateursService} from "./services/utilisateur/liste-utilisateurs.service";
-import {Instruction} from "./models/Instruction";
+import {ListeUtilisateursService} from './services/utilisateur/liste-utilisateurs.service';
+import {Instruction} from './models/Instruction';
 
 @Component({
   selector: 'app-root',
@@ -56,11 +56,12 @@ export class AppComponent {
       this.instructionsAllEch = instruction;
       this.nombreinstructionsAllEch = this.instructionsAllEch.length;
        });
-
+    if (this.userConnected !== null) {
     this.listeUtilisateursService.afficherMyAlerteFinTolerEcheanceInstructionsAsync(this.userConnected.id).then( instruction => {
       this.instructionsMyFinToler = instruction;
       this.nombreinstructionsMyFinToler = this.instructionsMyFinToler.length;
       });
+
 
     this.listeUtilisateursService.afficherMyAlerteEcheanceInstructionsAsync(this.userConnected.id).then( instruction => {
       this.instructionsMyEch = instruction;
@@ -71,6 +72,8 @@ export class AppComponent {
       this.instructionsMyTodayAll = instruction;
       this.nombreinstructionsMyTodayAll = this.instructionsMyTodayAll.length;
       console.log(this.nombreinstructionsMyTodayAll); });
+
+    }
   }
   onLogout() {
     this.loginService.logoutUser();

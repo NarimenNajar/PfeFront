@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Utilisateur} from '../../models/utilisateur';
 import {Instruction} from "../../models/Instruction";
 import {Fonction} from "../../models/fonction";
+import {Event} from "../../models/event";
 
 @Injectable({
   providedIn: 'root'
@@ -101,5 +102,11 @@ export class ListeUtilisateursService {
   }
   async afficherMyAlerteInstructionsTodayAsync(idUtilisateur: number) {
     return await this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/today/all/` + idUtilisateur).toPromise();
+  }
+  async afficherInstructionBysimulateurAsInstructorAsync(idSimulateur: number) {
+    return this.http.get<Instruction>(`${this.baseUrl}` + `/instructions/Bysimulateur/AsInstructor/` + idSimulateur).toPromise();
+  }
+  async afficherInstructionBysimulateurAsTraineeAsync(idSimulateur: number) {
+    return this.http.get<Instruction>(`${this.baseUrl}` + `/instructions/Bysimulateur/AsTrainee/` + idSimulateur).toPromise();
   }
 }
