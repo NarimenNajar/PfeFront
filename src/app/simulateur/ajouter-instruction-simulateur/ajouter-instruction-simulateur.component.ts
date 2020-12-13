@@ -31,11 +31,15 @@ export class AjouterInstructionSimulateurComponent implements OnInit {
     console.log(this.idActiviteFormation);
 
 
+    if (this.userConnected.role.role === 'Responsable Formation PNT' ||  this.userConnected.role.role === 'Agent Administratif Formation PNT') {
 
     this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
       this.utilisateurs = user;
       console.log(user); });
     this.instruction = new Instruction();
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
 
   async AjouterInstruction(idUtilisateur: number) {

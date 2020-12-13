@@ -55,10 +55,10 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/category/all');
         } else if (this.user.role.role === 'PNT') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
+          this.router.navigateByUrl('/calendar/mySchedule/' + this.user.id);
         } else if (this.user.role.role === 'PNC') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
+          this.router.navigateByUrl('/calendar/mySchedule/' + this.user.id);
         } else if (this.user.role.role === 'Responsable Formation PNT') {
           this.loginService.storeUserData(this.user);
           this.router.navigateByUrl('/charts/chartsResultSimulator');
@@ -73,10 +73,10 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
         } else if (this.user.role.role === 'Instructeur PNC') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
+          this.router.navigateByUrl('/calendar/mySchedule/' + this.user.id);
         } else if (this.user.role.role === 'Instructeur PNT') {
           this.loginService.storeUserData(this.user);
-          this.router.navigateByUrl('/calendar/calendarInstructions/' + this.user.id);
+          this.router.navigateByUrl('/calendar/mySchedule/' + this.user.id);
         }
 
         /*

@@ -1,1 +1,288 @@
-<p>modifier-utilisateur works!</p>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workplace Complaint Form</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <style>
+    html, body {
+      min-height: 100%;
+    }
+    body, div, form, input, select, p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+    }
+    h1 {
+      margin: 15px 0;
+      font-weight: 400;
+    }
+    .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+    }
+    form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px #ccc;
+    }
+    input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    input:hover, select:hover, textarea:hover {
+      outline: none;
+      border: 1px solid #095484;
+    }
+    input {
+      width: calc(100% - 10px);
+      padding: 5px;
+    }
+    select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+    }
+    textarea {
+      width: calc(100% - 6px);
+    }
+    .item {
+      position: relative;
+      margin: 10px 0;
+    }
+    input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+    }
+    .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+    }
+    .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+    }
+    [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .btn-block {
+      margin-top: 20px;
+      text-align: center;
+    }
+    button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #3669e0;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0666a3;
+    }
+  </style>
+</head>
+<body>
+<div class="testbox">
+  <form action="/">
+    <h1>Edit User</h1>
+
+    <div class="item">
+      <p>User Code</p>
+      <div>
+        <input type="text" name="name" class="form-control" value="{{utilisateur.codePN}}" [(ngModel)]="utilisateur.codePN" required #name="ngModel"/>
+      </div>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="name.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+
+    <div class="item">
+      <p>User First Name</p>
+      <div>
+        <input type="text" name="namePrenom" class="form-control" value="{{utilisateur.prenom}}"   [(ngModel)]="utilisateur.prenom" required #namePrenom="ngModel"/>
+      </div>
+      <div *ngIf="namePrenom.invalid && (namePrenom.dirty || namePrenom.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="namePrenom.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+
+    <div class="item">
+      <p>User Second Name</p>
+      <div>
+        <input type="text" name="nameNom" class="form-control" value="{{utilisateur.nom}}"   [(ngModel)]="utilisateur.nom" required #nameNom="ngModel"/>
+      </div>
+      <div *ngIf="nameNom.invalid && (nameNom.dirty || nameNom.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nameNom.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+    <div class="item">
+      <p>User License Number</p>
+      <div>
+        <input type="text" name="nameLicence" class="form-control" value="{{utilisateur.numLicencePN}}"   [(ngModel)]="utilisateur.numLicencePN" required #nameLicence="ngModel"/>
+      </div>
+      <div *ngIf="nameLicence.invalid && (nameLicence.dirty || nameLicence.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nameLicence.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+
+    <div class="item">
+      <p>User Rank</p>
+      <input type="number" name="nameRank" class="form-control" value="{{utilisateur.rank}}"  [(ngModel)]="utilisateur.rank" required #nameRank="ngModel"/>
+      <div *ngIf="nameRank.invalid && (nameRank.dirty || nameRank.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nameRank.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+
+    <div class="item">
+      <p>CIN</p>
+      <input type="number" name="nameCIN" class="form-control" value="{{utilisateur.cin}}"  [(ngModel)]="utilisateur.cin" required #nameCIN="ngModel"/>
+      <div *ngIf="nameCIN.invalid && (nameCIN.dirty || nameCIN.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nameCIN.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+
+    <div class="item">
+      <p>User Nationality</p>
+      <div>
+        <input type="text" name="nameNationality" class="form-control" value="{{utilisateur.nationalite}}"  [(ngModel)]="utilisateur.nationalite" required #nameNationality="ngModel"/>
+      </div>
+      <div *ngIf="nameNationality.invalid && (nameNationality.dirty || nameNationality.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nameNationality.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+    <div class="item">
+      <p>User Gender</p>
+      <select class="form-control"  name="nameGender"  [(ngModel)]="utilisateur.sexe" required #nameGender="ngModel">
+        <option value="homme">Male</option>
+        <option value="femme">Female</option>
+
+      </select>
+      <div *ngIf="nameGender.invalid && (nameGender.dirty || nameGender.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nameGender.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+
+    <div class="item">
+      <p> Birth Date</p>
+      <input type="date"  name="dateNaissance" id="dateNaissance"  [(ngModel)]="utilisateur.dateNaissance" required/>
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+
+    <div class="item">
+      <p>Phone Number</p>
+      <div>
+        <input type="text" name="nameTel" class="form-control"  [(ngModel)]="utilisateur.numeroTel" required #nameTel="ngModel"/>
+      </div>
+      <div *ngIf="nameTel.invalid && (nameTel.dirty || nameTel.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nameTel.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+
+    <div class="item">
+      <p>  Contract Start Date</p>
+      <input type="date"  name="dateDebutContrat" id="dateDebutContrat"  [(ngModel)]="utilisateur.dateDebutContrat" required/>
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+
+    <div class="item">
+      <p>Contract End Date</p>
+      <input type="date"   name="dateFinContrat" id="dateFinContrat"  [(ngModel)]="utilisateur.dateFinContrat" required/>
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+
+    <div class="item">
+      <p>Email</p>
+      <div>
+        <input type="text" name="nameEmail" class="form-control"  [(ngModel)]="utilisateur.email" required #nameEmail="ngModel"/>
+      </div>
+      <div *ngIf="nameEmail.invalid && (nameEmail.dirty || nameEmail.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="nameEmail.errors.required">
+          This field is required.
+        </div></div>
+    </div>
+
+    <div class="item">
+      <p>User Role</p>
+      <ng-select  class="form-control"  name="selectRole"
+                  [items]="roles"
+                  bindLabel="role"
+                  [(ngModel)]="utilisateur.role" required #selectRole="ngModel">
+      </ng-select>
+      <div *ngIf="selectRole.invalid && (selectRole.dirty || selectRole.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="selectRole.errors.required">
+          This field is required.
+        </div></div></div>
+
+    <div class="item">
+      <p>User Category </p>
+      <ng-select  class="form-control"  name="selectCategorie"
+                  [items]="categories"
+                  bindLabel="categorie"
+                  [(ngModel)]="utilisateur.categorie" required #selectCategorie="ngModel">
+      </ng-select>
+      <div *ngIf="selectCategorie.invalid && (selectCategorie.dirty || selectCategorie.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="selectCategorie.errors.required">
+          This field is required.
+        </div></div></div>
+
+
+
+    <div class="btn-block">
+      <button type="submit" (click)="update(utilisateur.id, utilisateur)">Save</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

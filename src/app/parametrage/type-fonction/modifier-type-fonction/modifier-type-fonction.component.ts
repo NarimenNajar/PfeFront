@@ -22,7 +22,12 @@ export class ModifierTypeFonctionComponent implements OnInit {
     this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idTypeFonction = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.typeFonction = await this.typeFonctionService.afficherDetailTypeFonctionAsync(this.idTypeFonction);
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.typeFonction = await this.typeFonctionService.afficherDetailTypeFonctionAsync(this.idTypeFonction);
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   async updateTypeFonction(idTypeFonction, typeFonction) {

@@ -20,7 +20,12 @@ export class AjouterPopulationComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.population = new Population();
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.population = new Population();
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
 
   async CreerPopulation() {

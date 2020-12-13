@@ -30,13 +30,18 @@ export class ListeFormationPNCComponent implements OnInit {
   async ngOnInit() {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.formationService.afficherFormationPNC().subscribe(data => {
+    if (this.userConnected.role.role === 'Responsable Formation PNC' ||  this.userConnected.role.role === 'Agent Administratif Formation PNC'){
+
+      this.formationService.afficherFormationPNC().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
       console.log(data);
     });
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
 
   applyFilter(event: Event) {

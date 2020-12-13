@@ -24,6 +24,7 @@ export class ModifierRoleComponent implements OnInit {
   async ngOnInit() {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
+    if (this.userConnected.role.role === 'Administrateur') {
 
     this.fonctionnaliteService.afficherFonctionnalitesAsync().then(fcts => {
       this.fonctionnalites = fcts;
@@ -31,6 +32,9 @@ export class ModifierRoleComponent implements OnInit {
     this.idRole = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     this.role = await this.roleService.afficherDetailRoleAsync(this.idRole);
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   async updateRole(idRole, role) {

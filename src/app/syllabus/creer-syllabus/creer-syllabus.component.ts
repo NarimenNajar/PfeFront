@@ -8,7 +8,7 @@ import {Partie} from '../../models/partie';
 import {Detail} from '../../models/detail';
 import {Tache} from '../../models/tache';
 import {Router} from '@angular/router';
-import {Utilisateur} from "../../models/utilisateur";
+import {Utilisateur} from '../../models/utilisateur';
 
 @Component({
   selector: 'app-creer-syllabus',
@@ -17,7 +17,12 @@ import {Utilisateur} from "../../models/utilisateur";
 })
 export class CreerSyllabusComponent implements OnInit {
 
-  constructor(private syllabusService: SyllabusService, private router: Router) { }
+  constructor(private syllabusService: SyllabusService, private router: Router) {
+    if (this.userConnected.role.role !== 'Responsable Formation PNT') {
+
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
+  }
   public syllabus: Syllabus = null;
   token: string;
   userConnected: Utilisateur;
@@ -26,7 +31,12 @@ export class CreerSyllabusComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-  this.syllabus = new Syllabus();
+    if (this.userConnected.role.role === 'Responsable Formation PNT') {
+      this.syllabus = new Syllabus();
+    } else {
+      // window.location.href = 'http://localhost:4200/authentication/accessDenied';
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   async Creer() {

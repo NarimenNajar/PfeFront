@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Utilisateur} from '../../models/utilisateur';
-import {Instruction} from "../../models/Instruction";
-import {Fonction} from "../../models/fonction";
-import {Event} from "../../models/event";
+import {Instruction} from '../../models/Instruction';
+import {Fonction} from '../../models/fonction';
+import {Event} from '../../models/event';
+import {Categorie} from "../../models/categorie";
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,15 @@ export class ListeUtilisateursService {
     return await this.http.delete(`${this.baseUrl}` + `/deleteUser/` + idUtilisateur).toPromise();
   }
 
-
+  async updateUtilisateur(idUtilisateur: number, utilisateur: Utilisateur) {
+    return await this.http.put<Utilisateur>(`${this.baseUrl}` + `/update/` + idUtilisateur , utilisateur).toPromise();
+  }
    afficherInstructions(idUtilisateur: number): Observable<Instruction[]> {
     return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/` + idUtilisateur);
+  }
+
+  async afficherInstructionsAsync(idUtilisateur: number) {
+    return this.http.get<Instruction[]>(`${this.baseUrl}` + `/instructions/` + idUtilisateur).toPromise();
   }
 
  afficherInstructionsByInstructor(idUtilisateur: number): Observable<Instruction[]> {
@@ -109,4 +116,5 @@ export class ListeUtilisateursService {
   async afficherInstructionBysimulateurAsTraineeAsync(idSimulateur: number) {
     return this.http.get<Instruction>(`${this.baseUrl}` + `/instructions/Bysimulateur/AsTrainee/` + idSimulateur).toPromise();
   }
+
 }

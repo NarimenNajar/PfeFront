@@ -30,7 +30,12 @@ export class ModifierSyllabusComponent implements OnInit {
     this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idSyllabus = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.syllabus = await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus);
+    if (this.userConnected.role.role === 'Responsable Formation PNT') {
+
+      this.syllabus = await this.syllabusService.afficherDetailSyllabusAsync(this.idSyllabus);
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
 
   async updateSyllabus(idSyllabus, syllabus) {

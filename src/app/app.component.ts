@@ -123,6 +123,6 @@ export class AppComponent {
     this.router.navigateByUrl('/user/instruction/today/all/' + idUtilisateur);
   }
   goToCalendar(idUtilisateur: number) {
-    this.router.navigateByUrl('/calendar/calendarInstructions/' + idUtilisateur);
+    this.router.navigateByUrl('/calendar/mySchedule/' + idUtilisateur);
   }
 }

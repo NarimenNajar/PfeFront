@@ -23,7 +23,12 @@ export class ModifierPopulationComponent implements OnInit {
     this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idPopulation = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.population = await this.populationService.afficherDetailPopulationAsync(this.idPopulation);
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.population = await this.populationService.afficherDetailPopulationAsync(this.idPopulation);
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   async updatePopulation(idPopulation, population) {

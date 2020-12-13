@@ -169,6 +169,8 @@ export class ChartsResultSimulatorComponent implements OnInit {
   constructor(public router: Router, private simulateurService: SimulateurService, public listeUtilisateursService: ListeUtilisateursService) {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
+    if (this.userConnected.role.role === 'Responsable Formation PNT') {
+
 // chart satisfactory
     this.simulateurService.afficherSeancesSimulateurs().subscribe(result => {
       this.seanceSimulateurs = result;
@@ -252,7 +254,9 @@ export class ChartsResultSimulatorComponent implements OnInit {
 
       this.updatechart3();
     });
-
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
    async ngOnInit() {

@@ -45,6 +45,7 @@ export class ModifierFormationComponent implements OnInit {
     this.idFormation = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idFormation);
+    if (this.userConnected.role.role === 'Responsable Formation PNC' ||  this.userConnected.role.role === 'Agent Administratif Formation PNC' || this.userConnected.role.role === 'Responsable Formation PNT' ||  this.userConnected.role.role === 'Agent Administratif Formation PNT'){
 
     this.formationService.afficherInstructionByFormation(this.idFormation).then( instruction => {
       this.instructionsByAct = instruction;
@@ -70,7 +71,9 @@ export class ModifierFormationComponent implements OnInit {
       console.log(user); });
 
   //  this.activiteFormation.seanceFormations = this.seanceFormations;
-
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
 
   }
 

@@ -18,7 +18,12 @@ export class AjouterSystemeExterneComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.systemeExterne = new SystemeExterne();
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.systemeExterne = new SystemeExterne();
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
 
   async CreerSystemeExterne() {

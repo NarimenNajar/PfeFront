@@ -33,12 +33,16 @@ export class AjouterInstructionComponent implements OnInit {
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idActiviteFormation);
 
+    if (this.userConnected.role.role === 'Responsable Formation PNT' ||  this.userConnected.role.role === 'Agent Administratif Formation PNT' || this.userConnected.role.role === 'Responsable Formation PNC' ||  this.userConnected.role.role === 'Agent Administratif Formation PNC') {
 
 
     this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
       this.utilisateurs = user;
       console.log(user); });
     this.instruction = new Instruction();
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
  async AjouterInstruction(idUtilisateur: number) {

@@ -23,7 +23,12 @@ export class ModifierCategorieComponent implements OnInit {
     this.userConnected = JSON.parse(localStorage.getItem('user'));
     this.idCategorie = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.categorie = await this.categorieService.afficherDetailCategorieAsync(this.idCategorie);
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.categorie = await this.categorieService.afficherDetailCategorieAsync(this.idCategorie);
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   async updateCategorie(idCategorie, categorie) {

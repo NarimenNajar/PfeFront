@@ -39,18 +39,22 @@ export class AjouterUtilisateurComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.utilisateur = new Utilisateur();
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.utilisateur = new Utilisateur();
 
 
-    this.roleService.afficherRolesAsync().then( role => {
+      this.roleService.afficherRolesAsync().then( role => {
       this.roles = role;
       console.log(role); });
 
 
-    this.categorieService.afficherCategorieAsync().then( categorie => {
+      this.categorieService.afficherCategorieAsync().then( categorie => {
       this.categories = categorie;
       console.log(categorie); });
-
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
 
   async Creer() {

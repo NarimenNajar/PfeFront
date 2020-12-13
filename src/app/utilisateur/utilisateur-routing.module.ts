@@ -14,13 +14,13 @@ import {ListeFonctionsArchiveComponent} from './liste-fonctions-archive/liste-fo
 import {ListeFonctionsCurrentComponent} from './liste-fonctions-current/liste-fonctions-current.component';
 import {AjouterFormationComponent} from '../formation/ajouter-formation/ajouter-formation.component';
 import {AjouterUtilisateurComponent} from './ajouter-utilisateur/ajouter-utilisateur.component';
-import {ListeMyAlerteEcheanceInstructionComponent} from "./liste-my-alerte-echeance-instruction/liste-my-alerte-echeance-instruction.component";
-import {ListeAllAlerteEcheanceInstructionComponent} from "./liste-all-alerte-echeance-instruction/liste-all-alerte-echeance-instruction.component";
-import {ListeMyAlerteFinToleranceEcheanceInstructionComponent} from "./liste-my-alerte-fin-tolerance-echeance-instruction/liste-my-alerte-fin-tolerance-echeance-instruction.component";
-import {ListeAllAlerteFinToleranceEcheanceInstructionComponent} from "./liste-all-alerte-fin-tolerance-echeance-instruction/liste-all-alerte-fin-tolerance-echeance-instruction.component";
-import {ListeMyInstructionsTodayAllComponent} from "./liste-my-instructions-today-all/liste-my-instructions-today-all.component";
-import {ListeMyInstructionsTodayInstructorComponent} from "./liste-my-instructions-today-instructor/liste-my-instructions-today-instructor.component";
-import {ListeMyInstructionsTodayTraineeComponent} from "./liste-my-instructions-today-trainee/liste-my-instructions-today-trainee.component";
+import {ListeMyAlerteEcheanceInstructionComponent} from './liste-my-alerte-echeance-instruction/liste-my-alerte-echeance-instruction.component';
+import {ListeAllAlerteEcheanceInstructionComponent} from './liste-all-alerte-echeance-instruction/liste-all-alerte-echeance-instruction.component';
+import {ListeMyAlerteFinToleranceEcheanceInstructionComponent} from './liste-my-alerte-fin-tolerance-echeance-instruction/liste-my-alerte-fin-tolerance-echeance-instruction.component';
+import {ListeAllAlerteFinToleranceEcheanceInstructionComponent} from './liste-all-alerte-fin-tolerance-echeance-instruction/liste-all-alerte-fin-tolerance-echeance-instruction.component';
+import {ListeMyInstructionsTodayAllComponent} from './liste-my-instructions-today-all/liste-my-instructions-today-all.component';
+import {ListeMyInstructionsTodayInstructorComponent} from './liste-my-instructions-today-instructor/liste-my-instructions-today-instructor.component';
+import {ListeMyInstructionsTodayTraineeComponent} from './liste-my-instructions-today-trainee/liste-my-instructions-today-trainee.component';
 
 
 const routes: Routes = [

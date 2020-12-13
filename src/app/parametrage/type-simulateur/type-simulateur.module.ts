@@ -13,6 +13,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {NgSelectModule} from "@ng-select/ng-select";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatTooltipModule,
     MatButtonModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgSelectModule,
+    FormsModule
   ]
 })
 export class TypeSimulateurModule { }

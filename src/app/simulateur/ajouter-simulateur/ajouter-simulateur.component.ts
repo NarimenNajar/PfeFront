@@ -44,43 +44,47 @@ export class AjouterSimulateurComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.activiteFormation = new ActiviteFormation();
+    if (this.userConnected.role.role === 'Responsable Formation PNT' ||  this.userConnected.role.role === 'Agent Administratif Formation PNT') {
 
-    this.populationService.afficherPopulationAsync().then( population => {
+      this.activiteFormation = new ActiviteFormation();
+
+      this.populationService.afficherPopulationAsync().then( population => {
       this.populations = population;
       console.log(population); });
 
-    this.typeFormationService.afficherTypeFormationsAsync().then( typeFormation => {
+      this.typeFormationService.afficherTypeFormationsAsync().then( typeFormation => {
       this.typeFormations = typeFormation;
       console.log(typeFormation); });
 
-    this.natureFormationService.afficherNatureFormationsAsync().then( natureFormation => {
+      this.natureFormationService.afficherNatureFormationsAsync().then( natureFormation => {
       this.natureFormations = natureFormation;
       console.log(natureFormation); });
 
-    this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
+      this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
       this.utilisateurs = user;
       console.log(user); });
 
 
-    this.syllabusService.afficherSyllabusAsync().then(syllabus => {
+      this.syllabusService.afficherSyllabusAsync().then(syllabus => {
       this.syllabuss = syllabus;
       console.log(syllabus); });
 
 
-    this.typeSimulateurService.afficherTypeSimulateursAsync().then(typeSimulateur => {
+      this.typeSimulateurService.afficherTypeSimulateursAsync().then(typeSimulateur => {
       this.typeSimulateurs = typeSimulateur;
       console.log(typeSimulateur); });
-    this.activiteFormation.instructions = this.instructions;
-    this.activiteFormation.instructions.push(new Instruction());
+      this.activiteFormation.instructions = this.instructions;
+      this.activiteFormation.instructions.push(new Instruction());
     // this.activiteFormation.instructions[1].position = 'Instructor';
     // console.log(this.activiteFormation.instructions[1].position);
-    this.activiteFormation.instructions.push(new Instruction());
+      this.activiteFormation.instructions.push(new Instruction());
 
-    this.activiteFormation.seanceSimulateurs = this.seanceSimulateurs;
+      this.activiteFormation.seanceSimulateurs = this.seanceSimulateurs;
 
-    this.activiteFormation.seanceSimulateurs.push(new SeanceSimulateur());
-
+      this.activiteFormation.seanceSimulateurs.push(new SeanceSimulateur());
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   async Creer() {

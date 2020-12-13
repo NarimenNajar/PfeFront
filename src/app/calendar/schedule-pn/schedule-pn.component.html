@@ -1,0 +1,19 @@
+<section class="content">
+  <div class="container-fluid">
+
+    <ejs-schedule #scheduleObj width='100%' height='650px'  [selectedDate]="selectedDate"
+                  [eventSettings]="eventSettings"
+                  (popupOpen)='onPopupOpen($event)'
+                  [currentView]="currentView"
+                  (eventRendered)="oneventRendered($event)"
+                  >
+      <e-views>
+        <e-view option="Day"></e-view>
+        <e-view option="Week"></e-view>
+        <e-view option="Month"></e-view>
+        <e-view option="Agenda"></e-view>
+      </e-views>
+    </ejs-schedule>
+
+  </div>
+</section>

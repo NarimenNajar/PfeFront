@@ -4,8 +4,8 @@ import {Router} from '@angular/router';
 import {Fonction} from '../../../models/fonction';
 import {TypeFonction} from '../../../models/typeFonction';
 import {TypeFonctionService} from '../../../services/parametrage/type-fonction.service';
-import {ListeUtilisateursService} from "../../../services/utilisateur/liste-utilisateurs.service";
-import {Utilisateur} from "../../../models/utilisateur";
+import {ListeUtilisateursService} from '../../../services/utilisateur/liste-utilisateurs.service';
+import {Utilisateur} from '../../../models/utilisateur';
 
 @Component({
   selector: 'app-ajouter-fonction',
@@ -25,13 +25,18 @@ export class AjouterFonctionComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.fonction = new Fonction();
-    this.typeFonctionService.afficherTypeFonctionsAsync().then(type => {
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.fonction = new Fonction();
+      this.typeFonctionService.afficherTypeFonctionsAsync().then(type => {
       this.typeFonction = type;
       console.log(type); });
-    this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
+      this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
       this.utilisateurs = user;
       console.log(user); });
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
   async CreerFonction() {
     await this.fonctionService.ajouterFonctionAsync(this.fonction).then( e => this.router.navigateByUrl('/function/all') );

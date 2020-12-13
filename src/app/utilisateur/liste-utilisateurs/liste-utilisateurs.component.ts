@@ -65,4 +65,7 @@ export class ListeUtilisateursComponent implements OnInit {
   async deleteUtilisateur(idUtilisateur: number) {
     await this.listeUtilisateursService.deleteUtilisateurAsync(idUtilisateur).then((e) =>  window.location.reload() );
   }
+  edit(id: number) {
+    this.router.navigateByUrl('/user/edit/' + id);
+  }
 }

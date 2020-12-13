@@ -19,7 +19,12 @@ export class AjouterTypeFonctionComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.typeFonction = new TypeFonction();
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.typeFonction = new TypeFonction();
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
   async CreerTypeFonction() {
     await this.typeFonctionService.ajouterTypeFonctionAsync(this.typeFonction).then( e => this.router.navigateByUrl('/functionType/all') );

@@ -34,28 +34,32 @@ export class AjouterFormationPNCComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.activiteFormation = new ActiviteFormation();
+    if (this.userConnected.role.role === 'Responsable Formation PNC' ||  this.userConnected.role.role === 'Agent Administratif Formation PNC') {
 
-    this.populationService.afficherPopulationAsync().then( population => {
+      this.activiteFormation = new ActiviteFormation();
+
+      this.populationService.afficherPopulationAsync().then( population => {
       this.populations = population;
       console.log(population); });
 
-    this.typeFormationService.afficherTypeFormationsAsync().then( typeFormation => {
+      this.typeFormationService.afficherTypeFormationsAsync().then( typeFormation => {
       this.typeFormations = typeFormation;
       console.log(typeFormation); });
 
-    this.natureFormationService.afficherNatureFormationsAsync().then( natureFormation => {
+      this.natureFormationService.afficherNatureFormationsAsync().then( natureFormation => {
       this.natureFormations = natureFormation;
       console.log(natureFormation); });
 
-    this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
+      this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
       this.utilisateurs = user;
       console.log(user); });
 
-    this.activiteFormation.seanceFormations = this.seanceFormations;
+      this.activiteFormation.seanceFormations = this.seanceFormations;
 
-    this.activiteFormation.seanceFormations.push(new SeanceFormation());
-
+      this.activiteFormation.seanceFormations.push(new SeanceFormation());
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   async Creer() {

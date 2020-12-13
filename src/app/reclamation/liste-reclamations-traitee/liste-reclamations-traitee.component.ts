@@ -28,6 +28,7 @@ export class ListeReclamationsTraiteeComponent implements OnInit {
     console.log('User connected is :');
     console.log(this.userConnected);
     console.log(this.userConnected.id);
+    if (this.userConnected.role.role === 'Responsable Formation PNT') {
 
     this.simulateurService.afficherReclamationsTraitee().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
@@ -36,7 +37,9 @@ export class ListeReclamationsTraiteeComponent implements OnInit {
 
       console.log(data);
     });
-
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

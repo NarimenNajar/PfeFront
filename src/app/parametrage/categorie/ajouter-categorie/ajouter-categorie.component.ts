@@ -19,7 +19,12 @@ export class AjouterCategorieComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.categorie = new Categorie();
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.categorie = new Categorie();
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
 
   async CreerCategory() {

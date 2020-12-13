@@ -29,13 +29,17 @@ export class ListeFormationPNTComponent implements OnInit {
   async ngOnInit() {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.formationService.afficherFormationPNT().subscribe(data => {
+    if (this.userConnected.role.role === 'Responsable Formation PNT' ||  this.userConnected.role.role === 'Agent Administratif Formation PNT'){
+      this.formationService.afficherFormationPNT().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
       console.log(data);
     });
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   applyFilter(event: Event) {

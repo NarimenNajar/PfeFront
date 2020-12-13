@@ -53,6 +53,7 @@ export class ModifierSimulateurComponent implements OnInit {
     this.idFormation = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.activatedRoute.snapshot.paramMap.get('id'));
     console.log(this.idFormation);
+    if (this.userConnected.role.role === 'Responsable Formation PNT' ||  this.userConnected.role.role === 'Agent Administratif Formation PNT') {
 
     this.simulateurService.afficherInstructionByFormation(this.idFormation).then( instruction => {
       this.instructionsByAct = instruction;
@@ -79,7 +80,9 @@ export class ModifierSimulateurComponent implements OnInit {
 
     //  this.activiteFormation.seanceFormations = this.seanceFormations;
 
-
+  } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+}
   }
 
   async updateFormation(idFormation, activiteFormation) {

@@ -5,8 +5,8 @@ import {FonctionService} from '../../../services/parametrage/fonction.service';
 import {Fonction} from '../../../models/fonction';
 import {TypeFonction} from '../../../models/typeFonction';
 import {Utilisateur} from '../../../models/utilisateur';
-import {TypeFonctionService} from "../../../services/parametrage/type-fonction.service";
-import {ListeUtilisateursService} from "../../../services/utilisateur/liste-utilisateurs.service";
+import {TypeFonctionService} from '../../../services/parametrage/type-fonction.service';
+import {ListeUtilisateursService} from '../../../services/utilisateur/liste-utilisateurs.service';
 
 @Component({
   selector: 'app-modifier-fonction',
@@ -26,15 +26,20 @@ export class ModifierFonctionComponent implements OnInit {
   async ngOnInit() {
     this.token = localStorage.getItem('id_token');
     this.userConnected = JSON.parse(localStorage.getItem('user'));
-    this.typeFonctionService.afficherTypeFonctionsAsync().then(type => {
+    if (this.userConnected.role.role === 'Administrateur') {
+
+      this.typeFonctionService.afficherTypeFonctionsAsync().then(type => {
       this.typeFonction = type;
       console.log(type); });
-    this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
+      this.listeUtilisateursService.afficherUtilisateursAsync().then(user => {
       this.utilisateurs = user;
       console.log(user); });
-    this.idFonction = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    console.log(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.fonction = await this.fonctionService.afficherDetailFonctionAsync(this.idFonction);
+      this.idFonction = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+      console.log(this.activatedRoute.snapshot.paramMap.get('id'));
+      this.fonction = await this.fonctionService.afficherDetailFonctionAsync(this.idFonction);
+    } else {
+      this.router.navigateByUrl('/authentication/accessDenied');
+    }
   }
 
   async updateFonction(idFonction, fonction) {

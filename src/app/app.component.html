@@ -20,11 +20,11 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active" *ngIf=" userConnected.role.role === 'Responsable Formation PNT'" >
-      <a class="nav-link" href="/charts/chartsResultSimulator">
+      <a class="nav-link" routerLink="/charts/chartsResultSimulator">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
-    <li class="nav-item active" *ngIf=" userConnected.role.role !== 'Responsable Formation PNT'" >
+    <li class="nav-item active" *ngIf=" userConnected.role.role === 'PNT' || userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'PNC' || userConnected.role.role === 'Instructeur PNC'" >
       <a class="nav-link"  (click)="goToCalendar(userConnected.id)">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -46,16 +46,16 @@
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="/category/all">Categories</a>
-          <a class="collapse-item" href="/population/all">Populations</a>
-          <a class="collapse-item" href="/externalSystem/all">External System</a>
-          <a class="collapse-item" href="#">Training Natures</a>
-          <a class="collapse-item" href="/trainingType/all">Training Types</a>
-          <a class="collapse-item" href="/simulatorType/all">Simulator Types</a>
-          <a class="collapse-item" href="/role/all">Roles</a>
-          <a class="collapse-item" href="/feature/all">Features</a>
-          <a class="collapse-item" href="/functionType/all">Function Types</a>
-          <a class="collapse-item" href="/deadlineSetting/all">Deadline Setting</a>
+          <a class="collapse-item" routerLink="/category/all">Categories</a>
+          <a class="collapse-item" routerLink="/population/all">Populations</a>
+          <a class="collapse-item" routerLink="/externalSystem/all">External System</a>
+          <a class="collapse-item" routerLink="/trainingNature/all">Training Natures</a>
+          <a class="collapse-item" routerLink="/trainingType/all">Training Types</a>
+          <a class="collapse-item" routerLink="/simulatorType/all">Simulator Types</a>
+          <a class="collapse-item" routerLink="/role/all">Roles</a>
+         <!-- <a class="collapse-item" routerLink="/feature/all">Features</a> -->
+          <a class="collapse-item" routerLink="/functionType/all">Function Types</a>
+          <a class="collapse-item" routerLink="/deadlineSetting/all">Deadline Setting</a>
         </div>
       </div>
     </li>
@@ -69,8 +69,8 @@
       <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
          <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-          <a class="collapse-item" href="/syllabus/all" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Agent Administratif Formation PNT'">All</a>
-          <a class="collapse-item" href="/syllabus/create" *ngIf=" userConnected.role.role === 'Responsable Formation PNT'">Create Syllabus</a>
+          <a class="collapse-item" routerLink="/syllabus/all" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Agent Administratif Formation PNT'">All</a>
+          <a class="collapse-item" routerLink="/syllabus/create" *ngIf=" userConnected.role.role === 'Responsable Formation PNT'">Create Syllabus</a>
 
         </div>
       </div>
@@ -93,15 +93,15 @@
       <div id="collapseTraining" class="collapse" aria-labelledby="headingTraining" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header"  *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'Agent Administratif Formation PNT' || userConnected.role.role === 'PNT'">PNT</h6>
-          <a class="collapse-item" href="/training/allPNT" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Agent Administratif Formation PNT'">ALL PNT Trainings</a>
-          <a class="collapse-item" href="/training/addPNT"  *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Agent Administratif Formation PNT'">Add New PNT Training</a>
+          <a class="collapse-item" routerLink="/training/allPNT" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Agent Administratif Formation PNT'">ALL PNT Trainings</a>
+          <a class="collapse-item" routerLink="/training/addPNT"  *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Agent Administratif Formation PNT'">Add New PNT Training</a>
           <a class="collapse-item" (click)="showInstructionsTrainee(userConnected.id)"  *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'PNT'">My Trainings</a>
           <a class="collapse-item" (click)="showInstructionsInstructor(userConnected.id)" *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'PNT'">My Instructions</a>
           <a class="collapse-item" (click)="showInstructionsArchive(userConnected.id)" *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'PNT'">My training archive</a>
           <div class="collapse-divider"></div>
           <h6 class="collapse-header" *ngIf=" userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'PNC'">PNC</h6>
-          <a class="collapse-item" href="/training/allPNC" *ngIf=" userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC'">All PNC Trainings</a>
-          <a class="collapse-item" href="/training/addPNC" *ngIf=" userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC'">Add New PNC Training</a>
+          <a class="collapse-item" routerLink="/training/allPNC" *ngIf=" userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC'">All PNC Trainings</a>
+          <a class="collapse-item" routerLink="/training/addPNC" *ngIf=" userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC'">Add New PNC Training</a>
           <a class="collapse-item" (click)="showInstructionsTrainee(userConnected.id)"  *ngIf=" userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC'">My Trainings</a>
           <a class="collapse-item" (click)="showInstructionsInstructor(userConnected.id)" *ngIf=" userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC'">My Instructions</a>
           <a class="collapse-item" (click)="showInstructionsArchive(userConnected.id)" *ngIf=" userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC'">My training archive</a>
@@ -118,8 +118,8 @@
       <div id="collapseSimulator" class="collapse" aria-labelledby="headingSimulator" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">PNT Simulator Sessions</h6>
-          <a class="collapse-item" href="/simulator/all">ALL Simulator Sessions</a>
-          <a class="collapse-item" href="/simulator/add">Add New Simulator Session</a>
+          <a class="collapse-item" routerLink="/simulator/all">ALL Simulator Sessions</a>
+          <a class="collapse-item" routerLink="/simulator/add">Add New Simulator Session</a>
           <div class="collapse-divider"></div>
         </div>
       </div>
@@ -133,13 +133,13 @@
       </a>
       <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT' || userConnected.role.role === 'Administrateur'">
-          <a class="collapse-item" href="/user/all" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT' || userConnected.role.role === 'Administrateur'">ALL Users</a>
+          <a class="collapse-item" routerLink="/user/all" *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT' || userConnected.role.role === 'Administrateur'">ALL Users</a>
           <a *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Administrateur'" class="collapse-item" href="/user/add">Add User</a>
 
         </div>
         <div class="bg-white py-2 collapse-inner rounded"  *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT' || userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC' || userConnected.role.role === 'PNT'">
-        <a class="collapse-item" href="/function/all"  *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT'">ALL Functions</a>
-          <a class="collapse-item" href="/function/create"  *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT'">Add Function</a>
+        <a class="collapse-item" routerLink="/function/all"  *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT'">ALL Functions</a>
+          <a class="collapse-item" routerLink="/function/create"  *ngIf=" userConnected.role.role === 'Responsable Formation PNT' || userConnected.role.role === 'Responsable Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNC' || userConnected.role.role === 'Agent Administratif Formation PNT'">Add Function</a>
           <a class="collapse-item" (click)="showFonctionsCurrent(userConnected.id)"  *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC' || userConnected.role.role === 'PNT'">My Current Functions</a>
           <a class="collapse-item" (click)="showFonctionsArchive(userConnected.id)"  *ngIf=" userConnected.role.role === 'Instructeur PNT' || userConnected.role.role === 'Instructeur PNC' || userConnected.role.role === 'PNC' || userConnected.role.role === 'PNT'">My Functions Archive</a>
 

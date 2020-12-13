@@ -56,6 +56,10 @@ const routes: Routes = [
     loadChildren: () => import('./parametrage/type-formation/type-formation.module').then(m => m.TypeFormationModule)
   },
   {
+    path: 'trainingNature',
+    loadChildren: () => import('./parametrage/nature-formation/nature-formation.module').then(m => m.NatureFormationModule)
+  },
+  {
     path: 'simulatorType',
     loadChildren: () => import('./parametrage/type-simulateur/type-simulateur.module').then(m => m.TypeSimulateurModule)
   },
