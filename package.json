@@ -35,7 +35,7 @@
     "chart.js": "^2.9.4",
     "cldr-data": "^36.0.0",
     "fusioncharts": "^3.15.3",
-    "highcharts": "^8.2.2",
+    "highcharts": "^9.0.0",
     "highcharts-angular": "^2.8.2",
     "html2canvas": "^1.0.0-rc.7",
     "jquery": "^3.5.1",
